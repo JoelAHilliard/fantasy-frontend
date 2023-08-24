@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 const apiURL = "https://fantasy-api-production.up.railway.app/"
+
 
 export async function getMatchups(year)
 {
@@ -7,6 +10,16 @@ export async function getMatchups(year)
     const matchupData = response.json();
 
     return matchupData;
+
+}
+
+export async function getLeaderboard()
+{
+    const response = await fetch(apiURL+"leaderboard");
+
+    const leaderboard = response.json();
+
+    return leaderboard;
 
 }
 

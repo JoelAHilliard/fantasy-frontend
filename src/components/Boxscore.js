@@ -10,6 +10,7 @@ function Boxscore(props){
             (player.slot_position !== "BE" || player.slot_position !== "IR" ?
             // depending of if left or right side
                 props.order ?
+                
                 <div className="flex flex-row text-center text-xs text-base sm:text-lg md:text-lg lg:text-2xl justify-between"> 
                     <div className='flex flex-col'>
                         <div className='flex flex-col text-left font-bold text-s'>

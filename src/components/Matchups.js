@@ -93,7 +93,7 @@ function Matchups(){
                     {data.week && data.week === week ? 
                     <div className="p-4">
                         <div className="text-center font-bold">Week {data.week} - Matchup {data.matchupNum}</div>
-                        <div className="grid grid-cols-2 gap-5 text-center bg-green-100 rounded-lg border border-green-600 px-3">
+                        <div className="grid grid-cols-2 gap-5 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-2xl">
                             {/* Team Headers & Scores */}
                             <div className="font-bold p-2 col-span-1">
                                 <div>{data.home_team}
@@ -116,6 +116,7 @@ function Matchups(){
                                 }
                             
                             </div>
+                            
                             <div id="col2">
                             {Array.isArray(data.away_team_lineup) ?
                                 <Boxscore box_score={data.away_team_lineup} order={'rev'}></Boxscore>
