@@ -4,22 +4,31 @@ import './App.css';
 
 import Test from './components/Test';
 
+import { useEffect, useState } from 'react';
+
+import Matchups from './components/Matchups';
+
+import Navbar from './components/Navbar';
 
 function App() {
+  const [data,setData] = useState();
 
-    getMatchups(2019, 1).then(data => {
-      console.log(data);
-  }).catch(error => {
-      console.error("Failed to get matchups:", error);
-  });
+  const [isOpen,setIsOpen] = useState(false);
+  const [loading,setLoading] = useState(false);
+
+  const [year, setYear] = useState("Select Year");
+
+
+
+  
+
 
 
   return (
 
     <div>
-      <p>Hello World</p>
-
-      <Test></Test>
+      {/* move nav to own componet */}
+      <Navbar></Navbar>
     </div>
   
   );

@@ -1,8 +1,8 @@
-const apiURL = "http://127.0.0.1:5000/matchups/2019/1"
+const apiURL = "https://fantasy-api-production.up.railway.app/"
 
-export function getMatchups(year,week)
+export async function getMatchups(year)
 {
-    const response = fetch(apiURL);
+    const response = await fetch(apiURL+"matchups?year="+year);
 
     const matchupData = response.json();
 
