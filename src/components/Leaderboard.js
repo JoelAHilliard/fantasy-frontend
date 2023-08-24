@@ -81,7 +81,7 @@ function Leaderboard(){
                     
                     null
                 );
-            }) : <img src={Loading}></img>}
+            }) : <img className="ml-4" style={{'width':'50px'}} src={Loading}></img>}
         </div>
         
     );
