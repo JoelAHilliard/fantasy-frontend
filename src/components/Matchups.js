@@ -108,11 +108,11 @@ function Matchups(){
                                     <div className="font-light">{data.away_score}</div>
                                 :null} 
                             </div>
-
-                            <div id="col1">
+                                
+                            <div id="col1" className="border-r border-green-600 pr-5">
                                 {Array.isArray(data.home_team_lineup) ?
                                     <Boxscore box_score = {data.home_team_lineup}></Boxscore>
-                                    : <p>No data available</p>
+                                    : null
                                 }
                             
                             </div>
@@ -120,8 +120,8 @@ function Matchups(){
                             {Array.isArray(data.away_team_lineup) ?
                                 <Boxscore box_score={data.away_team_lineup} order={'rev'}></Boxscore>
                                 :
-                                <p>No data available</p>
-        }
+                                null
+                            }
                             </div>
                          
                         </div>
