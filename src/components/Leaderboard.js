@@ -13,27 +13,24 @@ function Leaderboard(){
 
     const [category,setCategory] = useState("wins");
 
-    const categories = ["wins","losses","trades","drops","aquisitions"]
-
-
-
-    useEffect(() => {
-        if(!data){
-            getData("wins");
-        }
-      }, []);
+    const categories = ["wins","losses","trades","drops","acquisitions"]
 
     function getData(category){
+        if(data){
+            return changeCategory(category)
+        }
 
-        setCategory(category)
+        setCategory(category);
+
         setIsOpen(!isOpen);
 
         setLoading(true);
         
         getLeaderboard()
+
         .then(responseData => {
             setData(responseData[0]);
-            console.log(responseData[0])
+            
             setLoading(false);
         })
         .catch(error => {
@@ -41,7 +38,10 @@ function Leaderboard(){
         });
     }
 
-
+    function changeCategory(category){
+        setIsOpen(!isOpen);
+        setCategory(category);
+    }
 
     return(
         <div>
@@ -53,9 +53,8 @@ function Leaderboard(){
                     <FaSortDown></FaSortDown>
                 </button>
             </div>
-      
             {/* year items */}
-            {!isOpen && (
+            {isOpen && (
                 <div  className="flex flex-col w-full rounded-md shadow-lg bg-green-50 ring-1 ring-black ring-opacity-5 z-100">
                     <div className="flex flex-col mt-1" style={{'position':'absolute'}} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                         {categories.map(categ => (
@@ -64,10 +63,8 @@ function Leaderboard(){
                     </div>
                 </div>
             )}
-
-           
-                </div>
-            {data ? Object.entries(data).sort(([, playerA], [, playerB]) => playerB[category] - playerA[category]).map(([key,player]) =>{
+            </div>
+            {data && !loading ? Object.entries(data).sort(([, playerA], [, playerB]) => playerB[category] - playerA[category]).map(([key,player]) =>{
                 return(
                     (key !== '_id' && key !== 'None')?
                     <div className="ml-4 mr-4 py-3 grid grid-cols-2 gap-2 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-2xl">
@@ -81,7 +78,8 @@ function Leaderboard(){
                     
                     null
                 );
-            }) : <img className="ml-4" style={{'width':'50px'}} src={Loading}></img>}
+            }) : null}
+            {loading ? <img className="ml-4" style={{'width':'50px'}} src={Loading}></img>:null}
         </div>
         
     );
