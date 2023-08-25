@@ -51,7 +51,7 @@ function Leaderboard(){
                         {category}
                         <FaSortDown></FaSortDown>
                     </button>
-                    <h1 className="text-right font-bold text-xl text-base sm:text-xl md:text-xl lg:text-2xl">{category}</h1>
+                    <h1 className="text-right font-bold text-m text-base sm:text-s md:text-xl lg:text-2xl">{category}</h1>
                 </div>
             {/* year items */}
             {isOpen && (
