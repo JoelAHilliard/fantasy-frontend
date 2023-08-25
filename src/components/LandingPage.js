@@ -1,6 +1,6 @@
 function LandingPage(){
     return(
-        <p>Welcome</p>
+        <p>Phaucette & Hoff rankings soon.</p>
     )
 }
 

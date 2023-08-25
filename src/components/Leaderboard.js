@@ -13,7 +13,7 @@ function Leaderboard(){
 
     const [category,setCategory] = useState("select category");
 
-    const categories = ["wins","losses","trades","drops","acquisitions","playoff_wins","playoff_losses"]
+    const categories = ["wins","losses","trades","drops","acquisitions","playoff_wins","playoff_losses","points_against_alltime","points_for_alltime"]
 
     function getData(category){
         if(data){
@@ -45,7 +45,7 @@ function Leaderboard(){
 
     return(
         <div>
-            <div className="relative inline-flex flex-col text-left justify-center px-4 mt-4 mb-4 w-full">
+            <div className="relative inline-flex flex-col text-left justify-center px-4 mt-2 mb-4 w-full">
                 <div className='flex flex-row gap-5 align-center justify-between '>
                     <button onClick={() => setIsOpen(!isOpen)} className="inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-green-700 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 whitespace-nowrap">
                         {category}
@@ -58,7 +58,7 @@ function Leaderboard(){
                 <div  className="flex flex-col w-full rounded-md shadow-lg bg-green-50 ring-1 ring-black ring-opacity-5 z-100">
                     <div className="flex flex-col mt-1" style={{'position':'absolute'}} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                         {categories.map(categ => (
-                        <a onClick={()=>{getData(categ);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">{categ}</a>
+                        <a key={categ} onClick={()=>{getData(categ);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">{categ}</a>
                         ))}
                     </div>
                 </div>
@@ -68,10 +68,9 @@ function Leaderboard(){
                 return(
                     // check for invalid entries, such as database inconsistencies etc
                     (key !== '_id' && key !== 'None' && player[category] !== undefined)?
-                    <div className="ml-4 mr-4 py-3 grid grid-cols-2 gap-2 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-2xl">
+                    <div  className="ml-4 mr-4 py-3 grid grid-cols-2 gap-2 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-2xl">
                         <div>
                             <p>{key}</p>
-                            <p>{player['team_name']}</p>                        
                         </div>
                         <p>{player[category]}</p>
                     </div>
