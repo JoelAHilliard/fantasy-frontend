@@ -13,7 +13,7 @@ function Leaderboard(){
 
     const [category,setCategory] = useState("select category");
 
-    const categories = ["wins","losses","trades","drops","acquisitions"]
+    const categories = ["wins","losses","trades","drops","acquisitions","playoff_wins","playoff_losses"]
 
     function getData(category){
         if(data){
@@ -45,14 +45,14 @@ function Leaderboard(){
 
     return(
         <div>
-            <div className="relative inline-flex flex-col text-left justify-center ml-2 px-2 mt-2 mb-2">
-                <div className='flex flex-row gap-5'>
-                <button onClick={() => setIsOpen(!isOpen)} className="w-full inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-green-700 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 whitespace-nowrap">
-                    {category}
-
-                    <FaSortDown></FaSortDown>
-                </button>
-            </div>
+            <div className="relative inline-flex flex-col text-left justify-center px-4 mt-4 mb-4 w-full">
+                <div className='flex flex-row gap-5 align-center justify-between '>
+                    <button onClick={() => setIsOpen(!isOpen)} className="inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-green-700 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 whitespace-nowrap">
+                        {category}
+                        <FaSortDown></FaSortDown>
+                    </button>
+                    <h1 className="text-right font-bold text-xl text-base sm:text-xl md:text-xl lg:text-2xl">{category}</h1>
+                </div>
             {/* year items */}
             {isOpen && (
                 <div  className="flex flex-col w-full rounded-md shadow-lg bg-green-50 ring-1 ring-black ring-opacity-5 z-100">
@@ -66,7 +66,8 @@ function Leaderboard(){
             </div>
             {data && !loading ? Object.entries(data).sort(([, playerA], [, playerB]) => playerB[category] - playerA[category]).map(([key,player]) =>{
                 return(
-                    (key !== '_id' && key !== 'None')?
+                    // check for invalid entries, such as database inconsistencies etc
+                    (key !== '_id' && key !== 'None' && player[category] !== undefined)?
                     <div className="ml-4 mr-4 py-3 grid grid-cols-2 gap-2 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-2xl">
                         <div>
                             <p>{key}</p>
