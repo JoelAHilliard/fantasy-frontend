@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getLeaderboard } from "../fantasyService";
 import { FaSortDown } from 'react-icons/fa';
 
@@ -11,7 +11,7 @@ function Leaderboard(){
 
     const [loading,setLoading] = useState(false);
 
-    const [category,setCategory] = useState("wins");
+    const [category,setCategory] = useState("select category");
 
     const categories = ["wins","losses","trades","drops","acquisitions"]
 
@@ -30,7 +30,7 @@ function Leaderboard(){
 
         .then(responseData => {
             setData(responseData[0]);
-            
+
             setLoading(false);
         })
         .catch(error => {

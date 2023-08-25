@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const apiURL = "https://fantasy-api-production.up.railway.app/"
 
 

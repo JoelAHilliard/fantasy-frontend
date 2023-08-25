@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 
 import { getMatchups } from '../fantasyService';
 
@@ -50,15 +50,15 @@ function Matchups(){
                 <div className="relative inline-flex flex-col text-left justify-center ml-2 px-2">
                 <div className='flex flex-row gap-5'>
                 <button onClick={() => setIsOpen(!isOpen)} className="w-full inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-green-700 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 whitespace-nowrap">
-                    {year == "" ? "select year" : "year "+ year}
+                    {year === "" ? "select year" : "year "+ year}
 
                     <FaSortDown></FaSortDown>
                 </button>
                 <button disabled={!data} onClick={() => setIsWeekOpen(!isWeekOpen)} className="w-full inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-green-700 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 whitespace-nowrap disabled:cursor-not-allowed disabled:bg-green-700/50">
-                    {week == "" ? "select week" : "week "+ week}
+                    {week === "" ? "select week" : "week "+ week}
                     <FaSortDown></FaSortDown>
                 </button>
-                {loading ? <img style={{'width':'20px'}} src={Loading}></img>:null}
+                {loading ? <img alt="loading" style={{'width':'20px'}} src={Loading}></img>:null}
 
             </div>
       

@@ -11,7 +11,10 @@ function Navbar(){
                 <div className="container mx-auto">
                     <div className="flex items-center justify-between text-m">
                         <div>
-                            <Link to="/" className="text-xl font-bold">LTS Stats</Link>
+                            <Link to="/" className="text-xl font-bold">
+                                <h1>LTS Stats</h1>
+                                <span className='text-xs text-center'>beta</span>
+                            </Link>
                         </div>
                         <div className="flex space-x-4">
                             <Link to="/matchups" className="hover:bg-green-700 px-3 py-2 rounded transform active:scale-95 font-bold whitespace-nowrap">Historical Matchups</Link>
