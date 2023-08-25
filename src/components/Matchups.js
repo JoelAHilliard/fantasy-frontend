@@ -67,7 +67,7 @@ function Matchups(){
                 <div  className="flex flex-col w-full rounded-md shadow-lg bg-green-50 ring-1 ring-black ring-opacity-5 z-100">
                     <div className="flex flex-col mt-1" style={{'position':'absolute','width':'40%'}} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                         {years.map(year => (
-                        <a key={year} href="/" onClick={()=>{getData(year);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">{year}</a>
+                        <div key={year} onClick={()=>{getData(year);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">{year}</div>
                         ))}
                     </div>
                 </div>
@@ -79,9 +79,9 @@ function Matchups(){
                     <div className="flex flex-col mt-1" style={{'position':'absolute','width':'40%','alignSelf':'end'}} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                         {/* dynamic as num of games changed */}
                         {data[0].year === 2017 ? weeks.slice(0,15).map(week => (
-                            <a key={week} href="/" onClick={()=>{setWeek(week); setIsWeekOpen(!isWeekOpen);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">Week {week}</a>
+                            <div key={week} onClick={()=>{setWeek(week); setIsWeekOpen(!isWeekOpen);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">Week {week}</div>
                         )):  weeks.map(week => (
-                            <a key={week} href="/" onClick={()=>{setWeek(week); setIsWeekOpen(!isWeekOpen);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">Week {week}</a>
+                            <div key={week}  onClick={()=>{setWeek(week); setIsWeekOpen(!isWeekOpen);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">Week {week}</div>
                         ))}  
                     </div>
                 </div>

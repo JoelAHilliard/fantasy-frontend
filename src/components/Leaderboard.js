@@ -58,7 +58,7 @@ function Leaderboard(){
                 <div  className="flex flex-col w-full rounded-md shadow-lg bg-green-50 ring-1 ring-black ring-opacity-5 z-100">
                     <div className="flex flex-col mt-1" style={{'position':'absolute'}} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                         {categories.map(categ => (
-                        <a key={categ} onClick={()=>{getData(categ);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">{categ}</a>
+                        <div key={categ} onClick={()=>{getData(categ);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">{categ}</div>
                         ))}
                     </div>
                 </div>
@@ -72,14 +72,18 @@ function Leaderboard(){
                         <div>
                             <p>{key}</p>
                         </div>
-                        <p>{player[category]}</p>
+                        {category === "points_for_alltime" || category === "points_against_alltime" ?
+                        <p>{player[category].toFixed(2)}</p>
+                        :<p>{player[category]}</p>}
+                        
+
                     </div>
                     :
                     
                     null
                 );
             }) : null}
-            {loading ? <img className="ml-4" style={{'width':'50px'}} src={Loading}></img>:null}
+            {loading ? <img alt="loading" className="ml-4" style={{'width':'50px'}} src={Loading}></img>:null}
         </div>
         
     );
