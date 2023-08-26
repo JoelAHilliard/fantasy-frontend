@@ -1,9 +1,22 @@
-body {
-    font-family: Arial, sans-serif;
-    color:black;
-    
+.px-4 {
+    border: 2px solid black; /* Add a border around the container */
+    padding: 20px; /* Add padding to create space between border and content */
+    font-size: 20px; /* Increase the font size */
 }
+
+/* Apply styles to the ranking list */
 .ranking-list {
     list-style-type: decimal; /* Display numbers as ranking */
     margin-left: 20px;
+}
+
+/* Additional styling for the list items */
+.ranking-list li {
+    margin: 10px 0; /* Add some space between list items */
+}
+
+/* Apply global styles */
+body {
+    font-family: Arial, sans-serif;
+    color: black;
 }
