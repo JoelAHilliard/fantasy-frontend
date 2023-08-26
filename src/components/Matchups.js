@@ -19,7 +19,6 @@ function Matchups(){
         
         getMatchups(year, 1)
         .then(responseData => {
-            console.log(responseData)
             setData(responseData);
             setLoading(false);
         })

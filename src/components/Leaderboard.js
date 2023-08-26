@@ -13,7 +13,7 @@ function Leaderboard(){
 
     const [category,setCategory] = useState("select category");
 
-    const categories = ["wins","losses","trades","drops","acquisitions","playoff_wins","playoff_losses","points_against_alltime","points_for_alltime"]
+    const categories = ["wins","losses","trades","drops","acquisitions","playoff_wins","playoff_losses","points_against_alltime","points_for_alltime","championship_appearances","playoff_appearances","championship_wins"]
 
     function getData(category){
         if(data){
@@ -64,25 +64,38 @@ function Leaderboard(){
                 </div>
             )}
             </div>
-            {data && !loading ? Object.entries(data).sort(([, playerA], [, playerB]) => playerB[category] - playerA[category]).map(([key,player]) =>{
-                return(
-                    // check for invalid entries, such as database inconsistencies etc
-                    (key !== '_id' && key !== 'None' && player[category] !== undefined)?
-                    <div  className="ml-4 mr-4 py-3 grid grid-cols-2 gap-2 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-2xl">
-                        <div>
-                            <p>{key}</p>
-                        </div>
-                        {category === "points_for_alltime" || category === "points_against_alltime" ?
-                        <p>{player[category].toFixed(2)}</p>
-                        :<p>{player[category]}</p>}
-                        
+            {data && !loading ? 
+                Object.entries(data)
+                .filter(([key, _]) => key !== "_id")
+                .sort(([, playerA], [, playerB]) => {
 
-                    </div>
-                    :
+                    const aValue = isNaN(Number(playerA[category])) ? playerA[category] : Number(playerA[category]);
                     
-                    null
-                );
-            }) : null}
+                    const bValue = isNaN(Number(playerB[category])) ? playerB[category] : Number(playerB[category]);
+
+                    return bValue - aValue;
+                })
+                .map(([key, player],index) => {
+                    const isNumber = !isNaN(Number(player[category]));
+                    
+                    return (
+                        (key !== '_id' && key !== 'None' && player[category] !== undefined) ?
+                            <div key={key} className="ml-4 mr-4 py-2 grid grid-cols-2 gap-2 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-2xl">
+                                
+                                <div className="flex flex-row justify-start ml-5 gap-2"> 
+                                    <p>{index + 1}. </p>
+                                    <p>{key}</p>
+                                </div>
+                                {isNumber && (category === "points_for_alltime" || category === "points_against_alltime") ?
+                                <p>{player[category].toFixed(2)}</p>
+                                : <p>{player[category]}</p>}
+                            </div>
+                            :
+                            null
+                        );
+                    }) 
+                    : null}
+
             {loading ? <img alt="loading" className="ml-4" style={{'width':'50px'}} src={Loading}></img>:null}
         </div>
         
