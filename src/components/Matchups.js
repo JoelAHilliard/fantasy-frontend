@@ -19,6 +19,7 @@ function Matchups(){
         
         getMatchups(year, 1)
         .then(responseData => {
+            console.log(responseData)
             setData(responseData);
             setLoading(false);
         })
@@ -39,7 +40,8 @@ function Matchups(){
 
     const [week, setWeek] = useState(1);
 
-    const years = [2017,2018,2019,2020,2021,2022];
+    const years = [2022,2021,2020,2019,2018,2017];
+
 
     const weeks = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
 
@@ -92,18 +94,41 @@ function Matchups(){
                 <div>
                     {data.week && data.week === week ? 
                     <div className="p-4">
-                        <div className="text-center font-bold">Week {data.week} - Matchup {data.matchupNum}</div>
+                        {data.playoff_type ? 
+                            <div className="text-center font-bold">Week {data.week} - {data.playoff_type}</div>
+                            :
+                            <div className="text-center font-bold">Week {data.week} - Matchup {data.matchupNum}</div>
+                        }
                         <div className="grid grid-cols-2 gap-5 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-2xl">
                             {/* Team Headers & Scores */}
                             <div className="font-bold p-2 col-span-1">
-                                <div>{data.home_team}
-                                </div>
+                                {/* if championship and home team won show crown */}
+                                {data.playoff_type === "championship" ?
+                                    
+                                    data.home_score > data.away_score ? 
+                                        <div>{data.home_team} - 👑</div> 
+                                    :   <div>{data.home_team}</div>
+
+                                    : 
+                                    <div>{data.home_team}</div>
+
+                                }
                                 {data.home_score > 0?
                                     <div className="font-light">{data.home_score}</div>                                
                                 :null}
                             </div>
                             <div className="font-bold p-2 col-span-1">
-                                <div >{data.away_team}</div>
+                                {/* if championship and away team won show crown */}
+                                {data.playoff_type === "championship" ?
+                                    
+                                    data.home_score < data.away_score ? 
+                                        <div>{data.away_team} - 👑</div> 
+                                    :   <div>{data.away_team}</div>
+
+                                    : 
+                                    <div>{data.away_team}</div>
+
+                                }
                                 {data.away_score > 0 ? 
                                     <div className="font-light">{data.away_score}</div>
                                 :null} 

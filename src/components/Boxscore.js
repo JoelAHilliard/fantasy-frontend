@@ -1,13 +1,21 @@
 function Boxscore(props){
 
+    const positions_order = ["QB", "RB", "WR", "TE", "D/ST", "K"];
+
     if(!props.box_score){
         return (<p>no data</p>)
     }
 
-    return (
-        props.box_score.map(player => (
+    console.log(props)
 
-            (player.slot_position !== "BE" || player.slot_position !== "IR" ?
+    const sortedBoxScore = props.box_score.sort((a, b) => positions_order.indexOf(a.position) - positions_order.indexOf(b.position));
+
+
+
+    return (
+        sortedBoxScore.map(player => (
+
+            (player.slot_position !== "BE" && player.slot_position !== "IR" ?
             // depending of if left or right side
                 props.order ?
                 
@@ -25,7 +33,9 @@ function Boxscore(props){
                         <span>{player.position}</span>
                     </div>
                     
-                </div> : 
+                </div> 
+                
+                : 
                          
                 <div className="flex flex-row text-center text-base text-xs sm:text-lg md:text-lg lg:text-2xl justify-between"> 
                 <div className='flex flex-col text-left'>
@@ -46,6 +56,12 @@ function Boxscore(props){
                 </div> 
 
             : null)
+
+            
+
+            
+
+            
 
            
             
