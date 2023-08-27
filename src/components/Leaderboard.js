@@ -38,10 +38,14 @@ function Leaderboard(){
         });
     }
 
+    
+
     function changeCategory(category){
         setIsOpen(!isOpen);
         setCategory(category);
     }
+
+    
 
     return(
         <div style={{'flexGrow':'1'}} className="dark:bg-slate-800">
@@ -83,8 +87,12 @@ function Leaderboard(){
                             <div key={key} className="ml-4 mr-4 py-2 grid grid-cols-2 gap-2 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-2xl">
                                 
                                 <div className="flex flex-row justify-start ml-5 gap-2"> 
-                                    <p>{index + 1}. </p>
-                                    <p>{key}</p>
+                                    <p className="self-center">{index + 1}. </p>
+                                    <p className="self-center">{key}</p>
+                                    <img className="h-6 w-6 rounded-full sm:w-8 sm:h-8 self-center"
+                                     alt="url"
+                                     src={player['logo_url']? player['logo_url']:"https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG"}
+                                     onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}/>
                                 </div>
                                 {isNumber && (category === "points_for_alltime" || category === "points_against_alltime") ?
                                 <p>{player[category].toFixed(2)}</p>

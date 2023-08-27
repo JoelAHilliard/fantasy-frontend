@@ -1,6 +1,6 @@
 function Boxscore(props){
 
-    const positions_order = ["QB", "RB", "WR", "TE", "D/ST", "K"];
+    const positions_order = ["QB", "RB", "WR", "TE","RB/WR/TE", "D/ST", "K"];
 
     if(!props.box_score){
         return (<p>no data</p>)
@@ -26,7 +26,7 @@ function Boxscore(props){
                     </div>
                     <div className='flex flex-col text-right'>
                         <span className='font-bold'>{player.name}</span>
-                        <span>{player.slot_position}</span>
+                        <span>{player.position}</span>
                     </div>
                     
                 </div> 
@@ -36,7 +36,7 @@ function Boxscore(props){
                 <div className="flex flex-row text-center text-base text-xs sm:text-lg md:text-lg lg:text-2xl justify-between"> 
                 <div className='flex flex-col text-left'>
                     <span className='font-bold'>{player.name}</span>
-                    <span>{player.slot_position}</span>
+                    <span>{player.position}</span>
                 </div>                
                 <div className='flex flex-col'>
                 <div className='flex flex-col text-right font-bold'>
