@@ -88,7 +88,7 @@ function Leaderboard(){
                                 
                                 <div className="flex flex-row justify-start ml-5 gap-2"> 
                                     <p className="self-center">{index + 1}. </p>
-                                    <p className="self-center">{key}</p>
+                                    <p className="self-center whitespace-nowrap">{key}</p>
                                     <img className="h-6 w-6 rounded-full sm:w-8 sm:h-8 self-center"
                                      alt="url"
                                      src={player['logo_url']? player['logo_url']:"https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG"}
