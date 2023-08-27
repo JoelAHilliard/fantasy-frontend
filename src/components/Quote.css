@@ -1,0 +1,14 @@
+/* global styles */
+body {
+    font-family: Arial, sans-serif;
+    color: black;
+    font:16px;
+
+}
+
+.quote {
+    border: 2px solid black;
+    padding: 20px; /* Add padding to create space between border and content */
+    font-size: 20px;
+
+}

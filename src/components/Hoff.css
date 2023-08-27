@@ -1,7 +1,7 @@
 .hoff {
-    border: 2px solid black; /* Add a border around the container */
+    border: 2px solid black;
     padding: 20px; /* Add padding to create space between border and content */
-    font-size: 20px; /* Increase the font size */
+    font-size: 20px;
 }
 
 /* Apply styles to the ranking list */
@@ -15,7 +15,7 @@
     margin: 10px 0; /* Add some space between list items */
 }
 
-/* Apply global styles */
+/* global styles */
 body {
     font-family: Arial, sans-serif;
     color: black;
