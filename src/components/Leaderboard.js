@@ -44,8 +44,8 @@ function Leaderboard(){
     }
 
     return(
-        <div>
-            <div className="relative inline-flex flex-col text-left justify-center px-4 mt-2 mb-4 w-full">
+        <div style={{'flexGrow':'1'}} className="dark:bg-slate-800">
+            <div className="relative inline-flex flex-col text-left justify-center px-4 mt-2 mb-4 w-full ">
                 <div className='flex flex-row gap-5 align-center justify-between '>
                     <button onClick={() => setIsOpen(!isOpen)} className="inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-green-700 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 whitespace-nowrap">
                         {category}

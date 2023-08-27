@@ -6,11 +6,7 @@ function Boxscore(props){
         return (<p>no data</p>)
     }
 
-    console.log(props)
-
     const sortedBoxScore = props.box_score.sort((a, b) => positions_order.indexOf(a.position) - positions_order.indexOf(b.position));
-
-
 
     return (
         sortedBoxScore.map(player => (
@@ -30,7 +26,7 @@ function Boxscore(props){
                     </div>
                     <div className='flex flex-col text-right'>
                         <span className='font-bold'>{player.name}</span>
-                        <span>{player.position}</span>
+                        <span>{player.slot_position}</span>
                     </div>
                     
                 </div> 
@@ -40,7 +36,7 @@ function Boxscore(props){
                 <div className="flex flex-row text-center text-base text-xs sm:text-lg md:text-lg lg:text-2xl justify-between"> 
                 <div className='flex flex-col text-left'>
                     <span className='font-bold'>{player.name}</span>
-                    <span>{player.position}</span>
+                    <span>{player.slot_position}</span>
                 </div>                
                 <div className='flex flex-col'>
                 <div className='flex flex-col text-right font-bold'>
