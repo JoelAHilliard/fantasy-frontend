@@ -1,8 +1,13 @@
 import Hoff from "./Hoff";
+import Quote from "./Quote";
 
 function LandingPage(){
     return(
-        <Hoff></Hoff>
+        <div>
+            <Hoff></Hoff>
+            <Quote></Quote>
+
+        </div>
     )
 }
 
