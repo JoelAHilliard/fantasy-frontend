@@ -13,7 +13,7 @@ function Leaderboard(){
 
     const [category,setCategory] = useState("select category");
 
-    const categories = ["wins","losses","trades","drops","acquisitions","playoff_wins","playoff_losses","points_against_alltime","points_for_alltime","championship_appearances","playoff_appearances","championship_wins"]
+    const categories = ["wins","losses","trades","drops","acquisitions","playoff_wins","playoff_losses","points_against_alltime","points_for_alltime","avg_points_per_year","championship_appearances","playoff_appearances","championship_wins"]
 
     function getData(category){
         if(data){
@@ -29,6 +29,15 @@ function Leaderboard(){
         getLeaderboard()
 
         .then(responseData => {
+
+            for (const key in responseData[0]) {
+                
+                if(key !== "_id"){
+                    responseData[0][key]['avg_points_per_year'] = responseData[0][key]['points_for_alltime']/responseData[0][key]['years_played']
+                }
+            }
+
+
             setData(responseData[0]);
 
             setLoading(false);
@@ -80,6 +89,7 @@ function Leaderboard(){
                     return bValue - aValue;
                 })
                 .map(([key, player],index) => {
+
                     const isNumber = !isNaN(Number(player[category]));
                     
                     return (
@@ -94,7 +104,7 @@ function Leaderboard(){
                                      src={player['logo_url']? player['logo_url']:"https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG"}
                                      onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}/>
                                 </div>
-                                {isNumber && (category === "points_for_alltime" || category === "points_against_alltime") ?
+                                {isNumber && (category === "points_for_alltime" || category === "points_against_alltime" || category === "avg_points_per_year") ?
                                 <p>{player[category].toFixed(2)}</p>
                                 : <p>{player[category]}</p>}
                             </div>

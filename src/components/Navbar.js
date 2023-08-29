@@ -22,7 +22,9 @@ function Navbar(){
 
     return(
         <div className='flex flex-col' style={{'height':'100%'}}> 
+
             <Router >
+
                 <nav className="bg-green-600 dark:bg-slate-900 p-4 text-white">
                     <div className="container mx-auto">
                         <div className="flex items-center justify-between flex-wrap text-m">
@@ -50,6 +52,7 @@ function Navbar(){
                         </div>
                     </div>
                 </nav>
+
                 <div className='flex-grow'>
                     <Routes>
                         <Route path="/" exact element={<LandingPage/>} />
@@ -59,6 +62,7 @@ function Navbar(){
                 </div>
             
             </Router>
+
         </div>
         
     );
