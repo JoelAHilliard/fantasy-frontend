@@ -24,10 +24,13 @@ function Poll() {
         <button onClick={() => handleVote('team1')}>Team Phaucette</button>
         <button onClick={() => handleVote('team2')}>First Round</button>
       </div>
+      {team1Percentage !== "NaN" ? 
       <div className="results">
         <p>Team Phaucette: {team1Percentage}%</p>
         <p>Team First Round: {team2Percentage}%</p>
-      </div>
+      </div>:
+      null}
+    
     </div>
   );
 }
