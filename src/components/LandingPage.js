@@ -1,11 +1,15 @@
 import Hoff from "./Hoff";
-import Quote from "./Quote";
+import Quote from "./Quote"
+import Poll from './Poll'
 
 function LandingPage(){
     return(
+
         <div>
-            <Hoff></Hoff>
-            <Quote></Quote>
+
+          <Quote></Quote>
+          <Hoff></Hoff>
+          <Poll></Poll>
 
         </div>
     )
