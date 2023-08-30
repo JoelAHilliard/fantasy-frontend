@@ -105,8 +105,8 @@ function Leaderboard(){
                                      onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}/>
                                 </div>
                                 {isNumber && (category === "points_for_alltime" || category === "points_against_alltime" || category === "avg_points_per_year") ?
-                                <p>{player[category].toFixed(2)}</p>
-                                : <p>{player[category]}</p>}
+                                <p className="self-center">{player[category].toFixed(2)}</p>
+                                : <p className="self-center">{player[category]}</p>}
                             </div>
                             :
                             null
