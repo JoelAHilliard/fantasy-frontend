@@ -1,0 +1,20 @@
+.teams button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 5px;
+    background-color: #4c9e09;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .teams button:hover {
+    background-color: #a1ff0b;
+  }
+  
+  .results p {
+    font-size: 18px;
+    margin-top: 20px;
+  }
