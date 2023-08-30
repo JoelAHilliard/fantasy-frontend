@@ -7,10 +7,10 @@ function LandingPage(){
 
         <div>
 
-        <Quote></Quote>
-        <Hoff></Hoff>
-        <Poll></Poll>
-        
+          <Quote></Quote>
+          <Hoff></Hoff>
+          <Poll></Poll>
+
         </div>
     )
 }
