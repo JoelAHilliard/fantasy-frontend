@@ -88,74 +88,77 @@ function Matchups(){
             )}
                 </div>
                 {/* if data available */}
-                {!!data ? data.map(data =>(
-                <div>
-                    {data.week && data.week === week ? 
-                    <div className="p-4">
-                        {data.playoff_type ? 
-                            <div className="text-center font-bold">Week {data.week} - {data.playoff_type}</div>
-                            :
-                            <div className="text-center font-bold">Week {data.week} - Matchup {data.matchupNum}</div>
-                        }
-                        <div className="grid grid-cols-2 gap-5 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-2xl">
-                            {/* Team Headers & Scores */}
-                            <div className="font-bold p-2 col-span-1">
-                                {/* if championship and home team won show crown */}
-                                {data.playoff_type === "championship" ?
-                                    
-                                    data.home_score > data.away_score ? 
-                                        <div>{data.home_team} - 👑</div> 
-                                    :   <div>{data.home_team}</div>
-
-                                    : 
-                                    <div>{data.home_team}</div>
-
-                                }
-                                {data.home_score > 0?
-                                    <div className="font-light">{data.home_score}</div>                                
-                                :null}
-                            </div>
-                            <div className="font-bold p-2 col-span-1">
-                                {/* if championship and away team won show crown */}
-                                {data.playoff_type === "championship" ?
-                                    
-                                    data.home_score < data.away_score ? 
-                                        <div>{data.away_team} - 👑</div> 
-                                    :   <div>{data.away_team}</div>
-
-                                    : 
-                                    <div>
-                                        {data.away_team}
-                                    </div>
-
-                                }
-                                {data.away_score > 0 ? 
-                                    <div className="font-light">{data.away_score}</div>
-                                :null} 
-                            </div>
-                                
-                            <div id="col1" className="border-r border-green-600 pr-5">
-                                {Array.isArray(data.home_team_lineup) ?
-                                    <Boxscore box_score = {data.home_team_lineup}></Boxscore>
-                                    : null
-                                }
-                            
-                            </div>
-                            
-                            <div id="col2">
-                            {Array.isArray(data.away_team_lineup) ?
-                                <Boxscore box_score={data.away_team_lineup} order={'rev'}></Boxscore>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 px-4'>
+                    {!!data ? data.map(data =>(
+                    <div className=''>
+                        {data.week && data.week === week ? 
+                        <div className="" >
+                            {data.playoff_type ? 
+                                <div className="text-center font-bold">Week {data.week} - {data.playoff_type}</div>
                                 :
-                                null
+                                <div className="text-center font-bold">Week {data.week} - Matchup {data.matchupNum}</div>
                             }
+                            <div className="grid grid-cols-2 gap-5 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-base">
+                                {/* Team Headers & Scores */}
+                                <div className="font-bold p-2 col-span-1">
+                                    {/* if championship and home team won show crown */}
+                                    {data.playoff_type === "championship" ?
+                                        
+                                        data.home_score > data.away_score ? 
+                                            <div>{data.home_team} - 👑</div> 
+                                        :   <div>{data.home_team}</div>
+
+                                        : 
+                                        <div>{data.home_team}</div>
+
+                                    }
+                                    {data.home_score > 0?
+                                        <div className="font-light">{data.home_score}</div>                                
+                                    :null}
+                                </div>
+                                <div className="font-bold p-2 col-span-1">
+                                    {/* if championship and away team won show crown */}
+                                    {data.playoff_type === "championship" ?
+                                        
+                                        data.home_score < data.away_score ? 
+                                            <div>{data.away_team} - 👑</div> 
+                                        :   <div>{data.away_team}</div>
+
+                                        : 
+                                        <div>
+                                            {data.away_team}
+                                        </div>
+
+                                    }
+                                    {data.away_score > 0 ? 
+                                        <div className="font-light">{data.away_score}</div>
+                                    :null} 
+                                </div>
+                                    
+                                <div id="col1" className="border-r border-green-600 pr-5">
+                                    {Array.isArray(data.home_team_lineup) ?
+                                        <Boxscore box_score = {data.home_team_lineup}></Boxscore>
+                                        : null
+                                    }
+                                
+                                </div>
+                                
+                                <div id="col2">
+                                {Array.isArray(data.away_team_lineup) ?
+                                    <Boxscore box_score={data.away_team_lineup} order={'rev'}></Boxscore>
+                                    :
+                                    null
+                                }
+                                </div>
+                            
                             </div>
-                         
                         </div>
-                     </div>
-                    : null}
-                   
+                        : null}
+                    
+                    </div>
+                    )):null}
                 </div>
-                )):null}
+                
         </div>
     );
 }
