@@ -15,8 +15,8 @@ function Boxscore(props){
             // depending of if left or right side
                 props.order ?
                 
-                <div className="flex flex-row text-center text-xs text-base sm:text-lg md:text-lg lg:text-2xl justify-between"> 
-                    <div className='flex flex-col'>
+                <div className="flex flex-row text-center text-xs text-base sm:text-base md:text-base lg:text-base justify-between truncate"> 
+                    <div className='flex flex-col '>
                         <div className='flex flex-col text-left font-bold text-s'>
                             <span>{player.points}</span>
                         </div>
@@ -24,8 +24,8 @@ function Boxscore(props){
                             <span>{player.projected_points}</span>
                         </div>
                     </div>
-                    <div className='flex flex-col text-right'>
-                        <span className='font-bold'>{player.name}</span>
+                    <div className='flex flex-col text-right overflow-x-hidden'>
+                        <span className='font-bold truncate'>{player.name}</span>
                         <span>{player.position}</span>
                     </div>
                     
@@ -33,9 +33,9 @@ function Boxscore(props){
                 
                 : 
                          
-                <div className="flex flex-row text-center text-base text-xs sm:text-lg md:text-lg lg:text-2xl justify-between"> 
-                <div className='flex flex-col text-left'>
-                    <span className='font-bold'>{player.name}</span>
+                <div className="flex flex-row text-center text-base text-xs sm:text-base md:text-base lg:text-base justify-between"> 
+                <div className='flex flex-col text-left m-w-0 overflow-x-hidden'>
+                    <span className='font-bold truncate'>{player.name}</span>
                     <span>{player.position}</span>
                 </div>                
                 <div className='flex flex-col'>
@@ -52,15 +52,6 @@ function Boxscore(props){
                 </div> 
 
             : null)
-
-            
-
-            
-
-            
-
-           
-            
         ))
     );
 }
