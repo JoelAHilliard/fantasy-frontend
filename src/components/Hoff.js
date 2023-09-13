@@ -4,15 +4,16 @@ function Hoff() {
 return (
     
 <div className="hoff">
-
+<div className="bold">
     <h1>Hoff's Matchups of the Week</h1>
+    </div>
     <ol className="ranking-list">
-        <li>Marsha vs. Becca</li>
-        <li>China vs. Phil</li>
-        <li>Phaucette vs. Jacob</li>
-        <li>Clog vs. Calvin</li>
-        <li>Mad dawg vs. Wes</li>
-        <li>Joel vs. Jayrod</li>
+        <li>Hoff vs. Jacob</li>
+        <li>calvin vs. Phaucette</li>
+        <li>Wes vs. Mad Dawg</li>
+        <li>Colin vs. Hunter</li>
+        <li>Joel vs. Ewic</li>
+        <li>Clog vs. Jay-rod</li>
     </ol>
 </div>
 

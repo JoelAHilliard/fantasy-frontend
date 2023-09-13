@@ -1,0 +1,26 @@
+.phaucette {
+    border: 2px solid black;
+    padding: 20px; /* Add padding to create space between border and content */
+    font-size: 20px;
+}
+
+/* Apply styles to the ranking list */
+.ranking-list {
+    list-style-type: decimal; /* Display numbers as ranking */
+    margin-left: 20px;
+}
+
+/* Additional styling for the list items */
+.ranking-list li {
+    margin: 10px 0; /* Add some space between list items */
+}
+
+/* global styles */
+body {
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+.bold {
+    font-weight: bold;
+}
