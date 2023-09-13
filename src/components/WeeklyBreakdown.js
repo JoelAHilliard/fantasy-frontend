@@ -53,7 +53,7 @@ function WeeklyBreakdown(){
                                     {matchup.home_score > 0 ?
                                         <div className='flex flex-col justify-left p-0'>
                                             <div className='font-bold text-base'>{matchup.home_score}</div>
-                                            <div>{matchup.home_projected.toFixed(2)}</div>
+                                            <div className='text-xs'>{matchup.home_projected.toFixed(2)}</div>
                                         </div>                            
                                     :null}
                                 </div>
@@ -70,7 +70,7 @@ function WeeklyBreakdown(){
                                     {matchup.away_score > 0 ?
                                     <div className='flex flex-col justify-left p-0'>
                                         <div className='font-bold text-base'>{matchup.away_score}</div>
-                                        <div>{matchup.away_projected.toFixed(2)}</div>
+                                        <div className='text-xs'>{matchup.away_projected.toFixed(2)}</div>
                                     </div> 
                                      
                                     :null} 
