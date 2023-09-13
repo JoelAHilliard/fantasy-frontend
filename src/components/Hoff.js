@@ -6,7 +6,7 @@ return (
 <div className="hoff">
 
     <h1>Hoff's Matchups of the Week</h1>
-    <ol class="ranking-list">
+    <ol className="ranking-list">
         <li>Marsha vs. Becca</li>
         <li>China vs. Phil</li>
         <li>Phaucette vs. Jacob</li>

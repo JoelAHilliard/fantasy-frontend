@@ -1,5 +1,5 @@
 function Boxscore(props){
-
+    console.log("HEre")
     const positions_order = ["QB", "RB", "WR", "TE","RB/WR/TE", "D/ST", "K"];
 
     if(!props.box_score){
@@ -7,7 +7,7 @@ function Boxscore(props){
     }
 
     const sortedBoxScore = props.box_score.sort((a, b) => positions_order.indexOf(a.position) - positions_order.indexOf(b.position));
-
+    console.log(sortedBoxScore)
     return (
         sortedBoxScore.map(player => (
 
