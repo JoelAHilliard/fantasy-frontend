@@ -41,7 +41,7 @@ function WeeklyBreakdown(){
                 <div className="flex flex-row overflow-x-scroll gap-2">
                     {data ? data['matchups'].map((matchup)=>{
                         return(
-                            <div key={matchup.matchupNum} className="grid grid-cols-2 gap-5 text-center rounded-lg border-b-4 bg-gray-200 border-green-600 shadow-lg px-2 text-xs text-base sm:text-sm md:text-sm lg:text-lg whitespace-nowrap min-w-fit py-4">
+                            <div key={matchup.matchupNum} className="grid grid-cols-2 gap-5 text-center rounded-lg border-b-4 bg-gray-200 border-green-600 shadow-lg px-2 text-xs text-base sm:text-sm md:text-sm lg:text-lg whitespace-nowrap min-w-fit py-4 truncate">
                                 {/* Team Headers & Scores */}
                                 <div className="col-span-1 text-right" id="home_team">
                                     
@@ -62,7 +62,7 @@ function WeeklyBreakdown(){
                                     {
                                         
                                         matchup.home_score < matchup.away_score ? 
-                                            <div className='font-semibold'>{matchup.away_team} - 👑</div> 
+                                            <div className='font-semibold'>👑 - {matchup.away_team}</div> 
                                         :   <div className='font-semibold'>{matchup.away_team}</div>
                                      
 
@@ -142,7 +142,7 @@ function WeeklyBreakdown(){
                     {data ? 
                         <div className='flex flex-rows items-center justify-between'>
                                 <div>
-                                    <p className='font-bold'>Highest Scorer - 🔥</p>
+                                    <p className='font-semibold whitespace-nowrap'>Highest Scorer - 🔥</p>
                                     <div className='flex flex-row gap-2'>
                                         <p>{data['misc_data'].top_scorer[0]}</p>
                                     </div>
@@ -158,7 +158,7 @@ function WeeklyBreakdown(){
                     {data ? 
                        <div className='flex flex-rows items-center justify-between'>
                             <div>
-                                <p className='font-bold'>Lowest Scorer 💩</p>
+                                <p className='font-semibold whitespace-nowrap'>Lowest Scorer -💩</p>
                                 <div className='flex flex-row gap-2'>
                                     <p>{data['misc_data'].lowest_scorer[0]}</p>
                                 </div>
