@@ -39,10 +39,9 @@ function Matchups(){
 
     const [week, setWeek] = useState(1);
 
-    const years = [2022,2021,2020,2019,2018,2017];
+    const years = [2023, 2022,2021,2020,2019,2018,2017];
 
-
-    const weeks = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+    const weeks = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
 
  
     return (   
@@ -125,7 +124,9 @@ function Matchups(){
                                     :   <div>{data.away_team}</div>
 
                                     : 
-                                    <div>{data.away_team}</div>
+                                    <div>
+                                        {data.away_team}
+                                    </div>
 
                                 }
                                 {data.away_score > 0 ? 

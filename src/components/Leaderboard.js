@@ -94,7 +94,7 @@ function Leaderboard(){
                     
                     return (
                         (key !== '_id' && key !== 'None' && player[category] !== undefined) ?
-                            <div key={key} className="ml-4 mr-4 py-2 grid grid-cols-2 gap-2 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-2xl">
+                            <div key={key} className="ml-4 mr-4 mt-2 py-2 grid grid-cols-2 gap-2 text-center border-b-4 bg-gray-200 border-green-600 rounded-lg px-3 text-xs text-base sm:text-lg md:text-lg lg:text-2xl shadow-lg">
                                 
                                 <div className="flex flex-row justify-start ml-5 gap-2"> 
                                     <p className="self-center">{index + 1}. </p>

@@ -20,4 +20,12 @@ export async function getLeaderboard()
     return leaderboard;
 
 }
+export async function getLTS()
+{
+    const response = await fetch(apiURL+"lts");
 
+    const leaderboard = response.json();
+
+    return leaderboard;
+
+}
