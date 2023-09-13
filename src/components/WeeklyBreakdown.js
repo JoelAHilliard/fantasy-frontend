@@ -109,7 +109,10 @@ function WeeklyBreakdown(){
                         <p className='font-bold'>Standings</p>
                         {data ? data['misc_data']['standings'].map((team,index)=>{
                             return(
-                                <span key={team}>{index+1 + ". " + team}</span>
+                                <div className='flex flex-row gap-2 items-center'>
+                                    <span key={team}>{index+1 + ". " + data['misc_data']['standings'][index][0]}</span>
+                                    <img alt="pfp" className='rounded-full' style={{"width":"20px","height":"20px"}} src={data['misc_data']['standings'][index][2]}></img>
+                                </div>
                             );
                         }) : <p>loading</p>}
                     </div>
@@ -123,7 +126,10 @@ function WeeklyBreakdown(){
                 })
                 .map((team,index)=>{
                     return(
-                        <span key={team}>{index+1 + ". " + team}</span>
+                        <div className='flex flex-row gap-2 items-center'>
+                            <span key={team}>{index+1 + ". " + data['misc_data']['standings'][index][0]}</span>
+                            <img alt="pfp" className='rounded-full' style={{"width":"20px","height":"20px"}} src={data['misc_data']['standings'][index][2]}></img>
+                        </div>
                     );
                 }) : <p>loading</p>}
                     </div>
