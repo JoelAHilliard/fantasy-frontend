@@ -43,7 +43,7 @@ function WeeklyBreakdown(){
                         return(
                             <div key={matchup.matchupNum} className="grid grid-cols-2 gap-5 text-center rounded-lg border-b-4 bg-gray-200 border-green-600 shadow-lg px-2 text-xs text-base sm:text-sm md:text-sm lg:text-lg whitespace-nowrap min-w-fit py-4">
                                 {/* Team Headers & Scores */}
-                                <div className="col-span-1" id="home_team">
+                                <div className="col-span-1 text-right" id="home_team">
                                     
                                     {
                                         matchup.home_score > matchup.away_score ? 
@@ -57,7 +57,7 @@ function WeeklyBreakdown(){
                                         </div>                            
                                     :null}
                                 </div>
-                                <div className="col-span-1" id="away_team">
+                                <div className="col-span-1 text-left" id="away_team">
                                     {/* if championship and away team won show crown */}
                                     {
                                         
