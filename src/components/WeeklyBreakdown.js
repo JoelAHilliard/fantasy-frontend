@@ -53,7 +53,7 @@ function WeeklyBreakdown(){
 
                                         : 
                                         <div className='font-semibold'>{matchup.home_team}
-                                            <img alt="logo" src={matchup.logo_url}></img>
+                                            <img alt="logo" src={matchup.home_team.logo_url}></img>
                                         </div>
 
                                     }
@@ -104,34 +104,39 @@ function WeeklyBreakdown(){
             </div>
 
             <div id="standings_power_rankings" className='bg-green-100 rounded border border-green-600 px-4'>
-                <div className="flex flex-row justify-left">
-                    <div id="standings" className='flex flex-col w-1/2 text-left'>
+                <div className="flex flex-row justify-left gap-1 truncate">
+                    <div id="standings" className='flex flex-col w-1/2 text-left gap-2'>
                         <p className='font-bold'>Standings</p>
                         {data ? data['misc_data']['standings'].map((team,index)=>{
                             return(
-                                <div className='flex flex-row gap-2 items-center'>
-                                    <span key={team}>{index+1 + ". " + data['misc_data']['standings'][index][0]}</span>
-                                    <img alt="pfp" className='rounded-full' style={{"width":"20px","height":"20px"}} src={data['misc_data']['standings'][index][2]}></img>
+                                <div className='flex flex-row gap-1 text-xs items-center whitespace-nowwrap overflow-x-hidden truncate' >
+                                    <p>{index+1 + ". "}</p>
+                                    <img alt="pfp" className='rounded-full' style={{"width":"20px","height":"20px"}} src={data['misc_data']['standings'][index][2]} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>
+                                    <span key={team}>{data['misc_data']['standings'][index][0]}</span>
                                 </div>
                             );
                         }) : <p>loading</p>}
                     </div>
-                    <div id='power_rankings' className='flex flex-col'>
-                <p className='font-bold'>Power Rankings</p>
-                {data ? Object.keys(data['power_rankings'][0])
-                .sort((teamA, teamB) => {
-                    const scoreA = data['power_rankings'][0][teamA].score;
-                    const scoreB = data['power_rankings'][0][teamB].score;
-                    return scoreB - scoreA; // for descending order; use scoreA - scoreB for ascending
-                })
-                .map((team,index)=>{
-                    return(
-                        <div className='flex flex-row gap-2 items-center'>
-                            <span key={team}>{index+1 + ". " + data['misc_data']['standings'][index][0]}</span>
-                            <img alt="pfp" className='rounded-full' style={{"width":"20px","height":"20px"}} src={data['misc_data']['standings'][index][2]}></img>
-                        </div>
-                    );
-                }) : <p>loading</p>}
+                    <div id='power_rankings' className='flex flex-col gap-2'>
+                        <p className='font-bold'>Power Rankings</p>
+                        {data ? Object.keys(data['power_rankings'][0])
+                        .sort((teamA, teamB) => {
+                            const scoreA = Number(data['power_rankings'][0][teamA].score);
+                            const scoreB = Number(data['power_rankings'][0][teamB].score);
+                        
+                            console.log(`Team A: ${teamA}, Score A: ${scoreA}`);
+                            console.log(`Team B: ${teamB}, Score B: ${scoreB}`);
+                        
+                            return scoreB - scoreA; 
+                        })
+                        .map((team,index)=>{
+                            return(
+                                <div className='flex flex-row gap-1 items-center text-xs truncate'>
+                                    <span key={team}>{index+1 + ". " + team}</span>
+                                    <img alt="pfp" className='rounded-full' style={{"width":"20px","height":"20px"}} src={data['power_rankings'][0][team].team_logo}></img>
+                                </div>
+                            );
+                        }) : <p>loading</p>}
                     </div>
                 </div>             
             </div>
