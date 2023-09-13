@@ -140,9 +140,9 @@ function WeeklyBreakdown(){
             <div id="top_low_scorers" className='flex flex-row w-full justify-left gap-2'>
                 <div className='w-1/2 bg-gray-200 border-b-4 border-green-600 rounded p-1'>
                     {data ? 
-                        <div className='flex flex-rows items-center justify-between'>
+                        <div className='flex flex-rows items-center justify-between text-sm'>
                                 <div>
-                                    <p className='font-semibold whitespace-nowrap'>Highest Scorer - 🔥</p>
+                                    <p className='font-semibold whitespace-nowrap'>Top Scorer - 🔥</p>
                                     <div className='flex flex-row gap-2'>
                                         <p>{data['misc_data'].top_scorer[0]}</p>
                                     </div>
@@ -156,9 +156,9 @@ function WeeklyBreakdown(){
                 </div>
                 <div className='w-1/2 bg-gray-200 border-b-4 border-green-600 rounded p-1'>
                     {data ? 
-                       <div className='flex flex-rows items-center justify-between'>
+                       <div className='flex flex-rows items-center justify-between text-sm'>
                             <div>
-                                <p className='font-semibold whitespace-nowrap'>Lowest Scorer -💩</p>
+                                <p className='font-semibold whitespace-nowrap'>Lowest Scorer - 💩</p>
                                 <div className='flex flex-row gap-2'>
                                     <p>{data['misc_data'].lowest_scorer[0]}</p>
                                 </div>
