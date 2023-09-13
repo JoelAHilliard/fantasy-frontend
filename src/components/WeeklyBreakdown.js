@@ -32,7 +32,7 @@ function WeeklyBreakdown(){
 
     return(
         <div className='flex flex-col gap-2'>
-            <div className="flex flex-col gap-2">
+            <div id="matchups" className="flex flex-col gap-2">
                 <div className='flex flex-col'>
                     <span className='font-bold'>Matchups</span>
                     <span className='font-light text-xs'>Week 1</span>
@@ -44,18 +44,11 @@ function WeeklyBreakdown(){
                             <div key={matchup.matchupNum} className="grid grid-cols-2 gap-5 text-center rounded-lg border-b-4 bg-gray-200 border-green-600 shadow-lg px-2 text-xs text-base sm:text-sm md:text-sm lg:text-lg whitespace-nowrap min-w-fit py-4">
                                 {/* Team Headers & Scores */}
                                 <div className="col-span-1">
-                                    {/* if championship and home team won show crown */}
-                                    {matchup.playoff_type === "championship" ?
-                                        
+                                    
+                                    {
                                         matchup.home_score > matchup.away_score ? 
-                                            <div>{matchup.home_team} - 👑</div> 
-                                        :   <div>{matchup.home_team}</div>
-
-                                        : 
-                                        <div className='font-semibold'>{matchup.home_team}
-                                            <img alt="logo" src={matchup.home_team.logo_url}></img>
-                                        </div>
-
+                                            <div className='font-semibold'>{matchup.home_team} - 👑</div> 
+                                        :   <div className='font-semibold'>{matchup.home_team}</div>
                                     }
                                     {matchup.home_score > 0 ?
                                         <div>{matchup.home_score}</div>                                
@@ -63,20 +56,20 @@ function WeeklyBreakdown(){
                                 </div>
                                 <div className="col-span-1">
                                     {/* if championship and away team won show crown */}
-                                    {matchup.playoff_type === "championship" ?
+                                    {
                                         
                                         matchup.home_score < matchup.away_score ? 
-                                            <div>{matchup.away_team} - 👑</div> 
-                                        :   <div>{matchup.away_team}</div>
-
-                                        : 
-                                        <div className='font-bold'>
-                                            {matchup.away_team}
-                                        </div>
+                                            <div className='font-semibold'>{matchup.away_team} - 👑</div> 
+                                        :   <div className='font-semibold'>{matchup.away_team}</div>
+                                     
 
                                     }
-                                    {matchup.away_score > 0 ? 
+                                    {matchup.away_score > 0 ?
+                                    <div className='flex flex-row justify-center gap-2'>
                                         <div>{matchup.away_score}</div>
+                                        <div>{matchup.away_projected.toFixed(2)}</div>
+                                    </div> 
+                                     
                                     :null} 
                                 </div>
                                     
@@ -103,13 +96,13 @@ function WeeklyBreakdown(){
                 </div>
             </div>
 
-            <div id="standings_power_rankings" className='bg-green-100 rounded border border-green-600 px-4'>
+            <div id="standings_power_rankings" className=''>
                 <div className="flex flex-row justify-left gap-1 truncate">
                     <div id="standings" className='flex flex-col w-1/2 text-left gap-2'>
                         <p className='font-bold'>Standings</p>
                         {data ? data['misc_data']['standings'].map((team,index)=>{
                             return(
-                                <div className='flex flex-row gap-1 text-xs items-center whitespace-nowwrap overflow-x-hidden truncate' >
+                                <div key={index} className='flex flex-row gap-1 text-xs items-center whitespace-nowwrap overflow-x-hidden truncate border-b-4 bg-gray-200 border-green-600 rounded-lg p-2' >
                                     <p>{index+1 + ". "}</p>
                                     <img alt="pfp" className='rounded-full' style={{"width":"20px","height":"20px"}} src={data['misc_data']['standings'][index][2]} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>
                                     <span key={team}>{data['misc_data']['standings'][index][0]}</span>
@@ -117,7 +110,7 @@ function WeeklyBreakdown(){
                             );
                         }) : <p>loading</p>}
                     </div>
-                    <div id='power_rankings' className='flex flex-col gap-2'>
+                    <div id='power_rankings' className='flex flex-col gap-2 w-1/2'>
                         <p className='font-bold'>Power Rankings</p>
                         {data ? Object.keys(data['power_rankings'][0])
                         .sort((teamA, teamB) => {
@@ -131,9 +124,9 @@ function WeeklyBreakdown(){
                         })
                         .map((team,index)=>{
                             return(
-                                <div className='flex flex-row gap-1 items-center text-xs truncate'>
-                                    <span key={team}>{index+1 + ". " + team}</span>
-                                    <img alt="pfp" className='rounded-full' style={{"width":"20px","height":"20px"}} src={data['power_rankings'][0][team].team_logo}></img>
+                                <div key={team} className='flex flex-row gap-1 items-center text-xs border-b-4 bg-gray-200 border-green-600 rounded-lg p-2 truncate'>
+                                    <span >{index+1 + ". " + team}</span>
+                                    <img alt="pfp" className='rounded-full' style={{"width":"20px","height":"20px"}} src={data['power_rankings'][0][team].team_logo} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>
                                 </div>
                             );
                         }) : <p>loading</p>}
@@ -141,24 +134,37 @@ function WeeklyBreakdown(){
                 </div>             
             </div>
 
-            <div id="top_low_scorers" className='flex flex-row w-full justify-left bg-green-100 border border-green-600 px-4 rounded'>
-                <div className='w-1/2'>
-                    <p className='font-bold'>Lowest Scorer</p>
-
+            <div id="top_low_scorers" className='flex flex-row w-full justify-left gap-2'>
+                <div className='w-1/2 bg-gray-200 border-b-4 border-green-600 rounded p-1'>
                     {data ? 
-                        <div className='flex flex-row gap-2'>
-                            <p>{data['misc_data'].lowest_scorer[0]}</p>
-                            <p>{data['misc_data'].lowest_scorer[1]}</p>
-                        </div>
-                    : null}
+                        <div className='flex flex-rows items-center justify-between'>
+                                <div>
+                                    <p className='font-bold'>Highest Scorer</p>
+                                    <div className='flex flex-row gap-2'>
+                                        <p>{data['misc_data'].top_scorer[0]}</p>
+                                    </div>
+                                </div>
+                                <div className='align-right'>
+                                    <p>{data['misc_data'].top_scorer[1]}</p>
+                                </div>
+                            </div>
+                        
+                        : null}
                 </div>
-                <div className='w-1/2'>
-                    <p className='font-bold'>Highest Scorer</p>
+                <div className='w-1/2 bg-gray-200 border-b-4 border-green-600 rounded p-1'>
                     {data ? 
-                        <div className='flex flex-row gap-2'>
-                            <p>{data['misc_data'].lowest_scorer[0]}</p>
-                            <p>{data['misc_data'].lowest_scorer[1]}</p>
+                       <div className='flex flex-rows items-center justify-between'>
+                            <div>
+                                <p className='font-bold'>Lowest Scorer</p>
+                                <div className='flex flex-row gap-2'>
+                                    <p>{data['misc_data'].lowest_scorer[0]}</p>
+                                </div>
+                            </div>
+                            <div className='align-right font-bold text-lg'>
+                                <p>{data['misc_data'].lowest_scorer[1]}</p>
+                            </div>
                         </div>
+                       
                     : null}
                 </div>
             </div>
