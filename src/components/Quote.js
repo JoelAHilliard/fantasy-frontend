@@ -5,7 +5,7 @@ function Quote() {
 
         <div className="px-4">
 
-            <h2>Todays Quote of the Day: Who clogged the faucette?</h2>
+            <h2>Todays Quote of the Day: Get up here and eat your chili dog!</h2>
 
         </div>
 

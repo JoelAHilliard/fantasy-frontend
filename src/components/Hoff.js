@@ -3,16 +3,17 @@ import "./Hoff.css"
 function Hoff() {
 return (
     
-<div className="hoff">
-
-    <h1>Hoff's Matchups of the Week</h1>
+<div className="hoff bg-gray-200 border-b-4 border-green-400 rounded-lg">
+    <div className="bold">
+        <h1>Hoff's Matchups of the Week</h1>
+    </div>
     <ol className="ranking-list">
-        <li>Marsha vs. Becca</li>
-        <li>China vs. Phil</li>
-        <li>Phaucette vs. Jacob</li>
-        <li>Clog vs. Calvin</li>
-        <li>Mad dawg vs. Wes</li>
-        <li>Joel vs. Jayrod</li>
+        <li>Hoff vs. Jacob</li>
+        <li>calvin vs. Phaucette</li>
+        <li>Wes vs. Mad Dawg</li>
+        <li>Colin vs. Hunter</li>
+        <li>Joel vs. Ewic</li>
+        <li>Clog vs. Jay-rod</li>
     </ol>
 </div>
 
