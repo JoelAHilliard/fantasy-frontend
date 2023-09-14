@@ -3,7 +3,7 @@ import "./Phaucette.css"
 function Phaucette() {
 return (
     
-<div className="phaucette">
+<div className="phaucette bg-gray-200 border-b-4 border-green-400 rounded-lg">
 <div className="bold">
     <h1>Phaucette's Weekly Rankings</h1>
     </div>

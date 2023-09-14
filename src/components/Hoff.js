@@ -3,9 +3,9 @@ import "./Hoff.css"
 function Hoff() {
 return (
     
-<div className="hoff">
-<div className="bold">
-    <h1>Hoff's Matchups of the Week</h1>
+<div className="hoff bg-gray-200 border-b-4 border-green-400 rounded-lg">
+    <div className="bold">
+        <h1>Hoff's Matchups of the Week</h1>
     </div>
     <ol className="ranking-list">
         <li>Hoff vs. Jacob</li>
