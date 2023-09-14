@@ -3,11 +3,11 @@ import "./Hoff.css"
 function Hoff() {
 return (
     
-<div className="hoff bg-gray-200 border-b-4 border-green-400 rounded-lg">
-    <div className="bold">
+<div className=" text-sm hoff bg-gray-200 border-b-4 border-green-400 rounded-lg">
+    <div className="bold text-base">
         <h1>Hoff's Matchups of the Week</h1>
     </div>
-    <ol className="ranking-list">
+    <ol className="ranking-list text-sm">
         <li>Hoff vs. Jacob</li>
         <li>calvin vs. Phaucette</li>
         <li>Wes vs. Mad Dawg</li>

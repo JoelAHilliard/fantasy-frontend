@@ -6,12 +6,11 @@
 /* Apply styles to the ranking list */
 .ranking-list {
     list-style-type: decimal; /* Display numbers as ranking */
-    margin-left: 20px;
 }
 
 /* Additional styling for the list items */
 .ranking-list li {
-    margin: 10px 0; /* Add some space between list items */
+    margin: 5px 0; /* Add some space between list items */
 }
 
 /* global styles */
