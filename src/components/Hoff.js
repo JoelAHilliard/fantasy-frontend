@@ -7,7 +7,7 @@ return (
     <div className="bold text-base">
         <h1>Hoff's Matchups of the Week</h1>
     </div>
-    <ol className="ranking-list text-sm">
+    <ol className="ranking-list text-sm ml-4">
         <li>Hoff vs. Jacob</li>
         <li>calvin vs. Phaucette</li>
         <li>Wes vs. Mad Dawg</li>
