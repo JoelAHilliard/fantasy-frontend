@@ -7,7 +7,7 @@ return (
 <div className="bold text-base">
     <h1>Phaucette's Weekly Rankings</h1>
     </div>
-    <ol className="ranking-list text-sm">
+    <ol className="ranking-list text-sm ml-4">
         <li>Mad Dawg</li>
         <li>Wes</li>
         <li>Joel</li>
