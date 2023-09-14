@@ -89,10 +89,9 @@ function Matchups(){
                 </div>
                 {/* if data available */}
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 px-4'>
-                    {!!data ? data.map(data =>(
-                    <div className=''>
-                        {data.week && data.week === week ? 
-                        <div className="" >
+                {!!data ? data.map(data => 
+                    data && data.week === week ? 
+                        <div className="">
                             {data.playoff_type ? 
                                 <div className="text-center font-bold">Week {data.week} - {data.playoff_type}</div>
                                 :
@@ -153,10 +152,9 @@ function Matchups(){
                             
                             </div>
                         </div>
-                        : null}
+                        : null
                     
-                    </div>
-                    )):null}
+                    ):null}
                 </div>
                 
         </div>
