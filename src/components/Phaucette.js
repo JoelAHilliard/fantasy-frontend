@@ -3,11 +3,11 @@ import "./Phaucette.css"
 function Phaucette() {
 return (
     
-<div className="phaucette bg-gray-200 border-b-4 border-green-400 rounded-lg">
-<div className="bold">
+<div className="text-sm phaucette bg-gray-200 border-b-4 border-green-400 rounded-lg">
+<div className="bold text-base">
     <h1>Phaucette's Weekly Rankings</h1>
     </div>
-    <ol className="ranking-list">
+    <ol className="ranking-list text-sm">
         <li>Mad Dawg</li>
         <li>Wes</li>
         <li>Joel</li>
