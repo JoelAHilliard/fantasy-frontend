@@ -1,4 +1,4 @@
-const apiURL = "https://fantasy-api-production.up.railway.app/"
+const apiURL = "https://fantasy-api-9upp.onrender.com/"
 // const apiURL = "http://127.0.0.1:5000/"
 
 
