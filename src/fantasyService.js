@@ -9,7 +9,6 @@ export async function getMatchups(year)
     const matchupData = response.json();
 
     return matchupData;
-
 }
 
 export async function getLeaderboard()
@@ -19,7 +18,6 @@ export async function getLeaderboard()
     const leaderboard = response.json();
 
     return leaderboard;
-
 }
 export async function getLTS()
 {
@@ -28,5 +26,4 @@ export async function getLTS()
     const leaderboard = response.json();
 
     return leaderboard;
-
 }
