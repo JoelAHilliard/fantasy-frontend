@@ -13,7 +13,7 @@ function WeeklyBreakdown(){
         getLTS()
 
         .then(responseData => {
-
+            console.log(responseData)
             setData(responseData);
 
         })
