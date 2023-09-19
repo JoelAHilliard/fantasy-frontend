@@ -22,9 +22,7 @@ function WeeklyBreakdown(){
         });
     }
 
-    function getHighestAndLowestScorers(){
-    }
-
+   
     useEffect(() => {
         getData();
      },[]);
