@@ -4,6 +4,7 @@ import { getLTS } from '../fantasyService';
 
 import Loading from '../assets/loading_circle.svg';
 // import Boxscore from './Boxscore';
+import PerfectRoster from "./PerfectRoster";
 
 
 function WeeklyBreakdown(){
@@ -13,7 +14,6 @@ function WeeklyBreakdown(){
         getLTS()
 
         .then(responseData => {
-            console.log(responseData)
             setData(responseData);
 
         })
@@ -27,11 +27,12 @@ function WeeklyBreakdown(){
 
     useEffect(() => {
         getData();
-        getHighestAndLowestScorers();
      },[]);
 
     return(
         <div className='flex flex-col gap-2'>
+            
+
             <div id="matchups" className="flex flex-col gap-2">
                 <div className='flex flex-col'>
                     <span className='font-bold'>Matchups</span>
@@ -98,6 +99,7 @@ function WeeklyBreakdown(){
                 
                 </div>
             </div>
+            {data ? <PerfectRoster data={data["perfect_roster"]}></PerfectRoster>: null}
 
             <div id="standings_power_rankings" className=''>
                 <div className="flex flex-row justify-left gap-1 truncate">
@@ -120,8 +122,6 @@ function WeeklyBreakdown(){
                             const scoreA = Number(data['power_rankings'][0][teamA].score);
                             const scoreB = Number(data['power_rankings'][0][teamB].score);
                         
-                            console.log(`Team A: ${teamA}, Score A: ${scoreA}`);
-                            console.log(`Team B: ${teamB}, Score B: ${scoreB}`);
                         
                             return scoreB - scoreA; 
                         })
