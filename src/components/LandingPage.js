@@ -8,6 +8,7 @@ function LandingPage(){
     return(
 
         <div className="p-4">
+          <WeeklyBreakdown></WeeklyBreakdown>
 
           <Quote></Quote>
           <div className="flex flex-row w-full gap-4">
@@ -15,7 +16,6 @@ function LandingPage(){
             <Phaucette></Phaucette>
           </div>
           
-          <WeeklyBreakdown></WeeklyBreakdown>
           <Poll></Poll>
 
         </div>
