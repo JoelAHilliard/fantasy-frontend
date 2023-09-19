@@ -15,7 +15,6 @@ function WeeklyBreakdown(){
 
         .then(responseData => {
             setData(responseData);
-
         })
         .catch(error => {
             console.error("Failed to get matchups:", error);
