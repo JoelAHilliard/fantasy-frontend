@@ -1,5 +1,4 @@
 function Boxscore(props){
-    console.log("HEre")
     const positions_order = ["QB", "RB", "WR", "TE","RB/WR/TE", "D/ST", "K"];
 
     if(!props.box_score){

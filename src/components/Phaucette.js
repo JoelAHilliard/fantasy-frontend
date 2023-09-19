@@ -1,5 +1,6 @@
 import "./Phaucette.css"
-
+import {IconContext} from 'react-icons';
+import {  BsFillPatchCheckFill} from 'react-icons/bs'
 function Phaucette() {
 return (
     
@@ -7,6 +8,10 @@ return (
 <div className="bold text-base">
     <h1>Phaucette's Weekly Rankings</h1>
     </div>
+    <IconContext.Provider value={{color:'green'}}>
+        <BsFillPatchCheckFill/>
+
+    </IconContext.Provider>
     <ol className="ranking-list text-sm ml-4">
         <li>Mad Dawg</li>
         <li>Wes</li>
