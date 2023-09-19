@@ -1,5 +1,5 @@
-const apiURL = "https://crypto-bun-api-production.up.railway.app/"
-// const apiURL = "http://127.0.0.1:5000/"
+// const apiURL = "https://crypto-bun-api-production.up.railway.app/"
+const apiURL = "http://localhost:30030/"
 
 
 export async function getMatchups(year)
