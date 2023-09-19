@@ -33,7 +33,7 @@ function WeeklyBreakdown(){
             <div id="matchups" className="flex flex-col gap-2">
                 <div className='flex flex-col'>
                     <span className='font-bold'>Matchups</span>
-                    <span className='font-light text-xs'>Week 1</span>
+                    <span className='font-light text-xs'>Week 2</span>
                 </div>
                
                 <div className="flex flex-row overflow-x-scroll gap-2">
