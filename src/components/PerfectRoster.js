@@ -1,9 +1,13 @@
 function PerfectRoster(props){
 
-    const keys = Object.keys(props["data"]);
-
+    const order = ["QB","RB","WR","TE","FLEX","D/ST","K"]
+    const sortedObj = {};
+    //sort data
+   
     let total = 0;
-    keys.map((key)=>{
+
+    // add up total
+    order.map((key)=>{
         if(key === "RB" || key === "WR")
         {
             props["data"][key].map((data)=>{
@@ -26,8 +30,6 @@ function PerfectRoster(props){
     function firstNameTruncate(name){
         let firstLast = name.split(" ");
 
-        console.log(firstLast);
-
         return firstLast[0][0] + ". " + firstLast[1];
 
     }
@@ -36,7 +38,7 @@ function PerfectRoster(props){
         <div className="border-b-4 border-green-600 rounded font-semibold bg-gray-200 p-4">
             <h1>Perfect Roster</h1>
          
-            {keys.map((key)=>{
+            {order.map((key)=>{
                 if(key === "RB" || key === "WR")
                 {
                    return props["data"][key].map((data)=>{
