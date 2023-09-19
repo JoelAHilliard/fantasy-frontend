@@ -8,9 +8,11 @@ function LandingPage(){
     return(
 
         <div className="p-4">
+          
+          <Quote></Quote>
+          <div className="m-4"></div>
           <WeeklyBreakdown></WeeklyBreakdown>
 
-          <Quote></Quote>
           <div className="flex flex-row w-full gap-4">
             <Hoff></Hoff>
             <Phaucette></Phaucette>
