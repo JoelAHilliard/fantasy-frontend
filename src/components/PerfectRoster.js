@@ -1,9 +1,6 @@
 function PerfectRoster(props){
 
     const order = ["QB","RB","WR","TE","FLEX","D/ST","K"]
-    const sortedObj = {};
-    //sort data
-   
     let total = 0;
 
     // add up total
