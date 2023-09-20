@@ -13,18 +13,19 @@ return (
 
     </IconContext.Provider>
     <ol className="ranking-list text-sm ml-4">
-        <li>Mad Dawg</li>
+       
         <li>Wes</li>
         <li>Joel</li>
         <li>Hunter</li>
+        <li>Mad Dawg</li>
         <li>Jacob</li>
-        <li>Eric</li>
-        <li>Calvin</li>
-        <li>Clog</li>
         <li>Colin</li>
-        <li>Hoff</li>
+        <li>Eric</li>
+        <li>Steven</li>
+        <li>Calvin</li>
         <li>Jayrod</li>
         <li>Faucette</li>
+        <li>Hoff</li>
     </ol>
 </div>
 

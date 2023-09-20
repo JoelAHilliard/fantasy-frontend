@@ -2,13 +2,13 @@
 body {
     font-family: Arial, sans-serif;
     color: black;
-    font: 8px;
+    font: 15px;
 
 }
 
 .quote {
-    border: 2px solid black;
     padding: 20px; /* Add padding to create space between border and content */
     font-size: 20px;
+    margin: 6px;
 
 }
