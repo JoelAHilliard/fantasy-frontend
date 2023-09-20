@@ -20,6 +20,10 @@ class Quote extends Component {
         "Hit squad tackling.",
         "I'm in the conversation to start both ways.",
         "Did it happen because you broke outside contain?",
+        "I got 2 words Sha Hall",
+        "Kader is allowed to be undiscipline because he is so discipline",
+        "You know who quits football?"
+
         // Add more quotes here
       ],
       currentQuote: "Loading...", // Initial message
@@ -28,7 +32,15 @@ class Quote extends Component {
 
   componentDidMount() {
     // Set an initial quote when the component mounts
-    this.getRandomQuote();
+    const storedQuote = localStorage.getItem('storedQuote');
+
+    if (storedQuote) {
+        // If a quote is stored, use it
+        this.setState({ currentQuote: storedQuote });
+      } else {
+        // If no quote is stored, get a random quote and store it
+        this.getRandomQuote();
+      }
 
     // Update the quote every 24 hours (in milliseconds)
     this.quoteInterval = setInterval(() => {
@@ -46,13 +58,20 @@ class Quote extends Component {
     const randomIndex = Math.floor(Math.random() * quotes.length);
     const randomQuote = quotes[randomIndex];
     this.setState({ currentQuote: randomQuote });
+
+        // Store the selected quote in local storage
+        localStorage.setItem('storedQuote', randomQuote);
+
+        // Set the quote in the component's state
+        this.setState({ currentQuote: randomQuote });
   }
+
 
   render() {
     const { currentQuote } = this.state;
 
     return (
-      <div className="text-sm hoff bg-gray-200 border-b-4 border-green-400 rounded-lg">
+      <div className="text-sm quote bg-gray-200 border-b-4 border-green-400 rounded-lg">
         <h2>Quote of the Day: {currentQuote}</h2>
       </div>
     );
