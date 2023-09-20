@@ -122,27 +122,40 @@ function WeeklyBreakdown(){
             {data ? <PerfectRoster data={data["perfect_roster"]}></PerfectRoster>: null}
 
             <div id="team_performamnces" className='w-full'>
-                <h1 className='font-bold'>Team Performances</h1>
+                <div>
+                <span className='font-bold'>Team Performances</span>
+                <span className='underline font-light text-xs'>proj. vs actual</span>
+                </div>
+               
                     { data ? data['matchups'].map((matchup) =>{
+                        console.log(matchup)
                         return(
                             <div key={matchup['home_score']}>
 
                             {/* <img src={matchup['away_team']}></img> */}
                             <div className='felx flex-row w-full justify-between'>
                                 <p className='font-light text-sm'>{matchup['away_team']}</p>
-                                <div className='flex flex-row gap-2'>
-                                    <span className='font-bold text-xs'>{matchup['away_score'].toFixed(2)}</span>
-                                    <span className='font-light text-xs'>{matchup['away_projected'].toFixed(2)}</span>
+                                <div className='flex flex-row gap-2 justify-between'>
+                                    <div className='flex flex-row gap-2'>
+                                        <span className='font-bold text-xs'>{matchup['away_score'].toFixed(2)}</span>
+                                        <span className='font-light text-xs'>{matchup['away_projected'].toFixed(2)}</span>
+                                    </div>
+                                    <span className='font-light text-xs'>{(matchup['away_score']/matchup['away_projected'] * 100).toFixed(0)}%</span>
                                 </div>                            
                             </div>
 
                             <PercentageBar dividend={matchup['away_score']} divisor={matchup['away_projected']}></PercentageBar>
                             <div className='felx flex-row w-full justify-between'>
                                 <p className='font-light text-sm'>{matchup['home_team']}</p>
+                                <div className='flex flex-row gap-2 justify-between'>
                                 <div className='flex flex-row gap-2'>
                                     <span className='font-bold text-xs'>{matchup['home_score'].toFixed(2)}</span>
                                     <span className='font-light text-xs'>{matchup['home_projected'].toFixed(2)}</span>
-                                </div>                            
+                                </div> 
+                                <span className='font-light text-xs'>{(matchup['home_score']/matchup['home_projected'] * 100).toFixed(0) }%</span>
+                                </div>
+                                
+
                             </div>
                             
                             <PercentageBar dividend={matchup['home_score']} divisor={matchup['home_projected']}></PercentageBar>
@@ -159,10 +172,13 @@ function WeeklyBreakdown(){
                                 <div key={index} className='flex flex-row gap-1 text-xs items-center whitespace-nowwrap overflow-x-hidden truncate border-b-4 bg-gray-200 border-green-600 rounded-lg p-2' >
                                     <p>{index+1 + ". "}</p>
                                     <img alt="pfp" className='rounded-full' style={{"width":"20px","height":"20px"}} src={data['misc_data']['standings'][index][2]} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>
-                                    <div className='flex flex-row gap-2'>
-                                        <span key={team}>{data['misc_data']['standings'][index][0]}</span>
+                                    <div className='flex flex-col'>
+                                        <div className='flex flex-row gap-2'>
+                                            <span key={team}>{data['misc_data']['standings'][index][0]}</span>
+                                        </div>
                                         <span className='font-bold' key={team}>{data['misc_data']['standings'][index][3]}</span>
                                     </div>
+                                    
                                     
                                 </div>
                             );
@@ -178,11 +194,18 @@ function WeeklyBreakdown(){
                         
                             return scoreB - scoreA; 
                         })
-                        .map((team,index)=>{
+                        .map((team,index,record)=>{
                             return(
                                 <div key={team} className='flex flex-row gap-1 items-center text-xs border-b-4 bg-gray-200 border-green-600 rounded-lg p-2 truncate'>
-                                    <span >{index+1 + ". " + team}</span>
-                                    <img alt="pfp" className='rounded-full' style={{"width":"20px","height":"20px"}} src={data['power_rankings'][0][team].team_logo} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>
+                                        <span>{index+1}. </span>
+                                        <img alt="pfp" className='rounded-full' style={{"width":"20px","height":"20px"}} src={data['power_rankings'][0][team].team_logo} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>
+                                    
+                                    <div className='flex flex-col'>
+                                        <div className='flex flex-row gap-2'>
+                                        </div>
+                                        <span>{team}</span>
+                                        <span className='font-bold'>{data['power_rankings'][0][team].record}</span>
+                                    </div>
                                 </div>
                             );
                         }) : <p>loading</p>}

@@ -6,10 +6,11 @@ const PercentageBar = ({ dividend, divisor }) => {
   const filledSegments = Math.round((percentage / 100) * totalSegments);
 
   return (
-    <div className="flex items-center border border-black w-52 rounded-full">
-      <div className="flex w-full h-5 rounded-full">
-        <div className="bg-green-500 h-full rounded-full" style={{ width: `${(filledSegments / totalSegments) * 100}%` }}></div>
-        <div className="bg-gray-200 h-full flex-grow rounded-full"></div>
+    
+    <div className="flex items-center border border-black w-75 rounded">
+      <div className="flex w-full h-5 rounded">
+        <div className="bg-green-500 h-full rounded-s" style={{ width: `${(filledSegments / totalSegments) * 100}%` }}></div>
+        <div className="bg-gray-300 h-full flex-grow rounded-e"></div>
       </div>
     </div>
   );
