@@ -122,9 +122,9 @@ function WeeklyBreakdown(){
             {data ? <PerfectRoster data={data["perfect_roster"]}></PerfectRoster>: null}
 
             <div id="team_performamnces" className='w-full'>
-                <div className='flex flex-col gap-2'>
+                <div className='flex flex-row gap-2 mb-2 items-center'>
                     <span className='font-bold'>Team Performances</span>
-                    <span className='underline font-light text-xs'>proj. vs actual</span>
+                    <span className='underline font-light text-xs'>actual vs proj.</span>
                 </div>
                
                     { data ? data['matchups'].map((matchup) =>{
