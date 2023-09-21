@@ -257,7 +257,7 @@ function WeeklyBreakdown(){
                 </div>
                         
             </div>
-        </div>:<img alt='loading' className='w-full w-10 mx-auto' src={Loading}></img>
+        </div>:<img alt='loading' className='w-1/4 mx-auto' src={Loading}></img>
         
        
     )
