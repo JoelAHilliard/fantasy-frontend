@@ -53,9 +53,9 @@ function WeeklyBreakdown(){
             
 
             <div id="matchups" className="flex flex-col gap-2">
-                <div className='flex flex-col'>
+                <div className='flex flex-row items-center gap-2 p-1 rounded bg-green-200 w-fit'>
                     <span className='font-bold'>Matchups</span>
-                    <span className='font-light text-xs'>Week 2</span>
+                    <span className='font-light text-xs underline'>Week 2</span>
                 </div>
                
                 <div className="flex flex-row overflow-x-scroll gap-2 w-50">
@@ -119,10 +119,11 @@ function WeeklyBreakdown(){
                 
                 </div>
             </div>
+            <h1 className='items-center p-1 rounded bg-green-200 w-fit font-bold'>Perfect Roster</h1>
             {data ? <PerfectRoster data={data["perfect_roster"]}></PerfectRoster>: null}
 
-            <div id="team_performamnces" className='w-full'>
-                <div className='flex flex-row gap-2 mb-2 items-center'>
+            <div id="team_performamnces" className='w-full '>
+                <div className='flex flex-row gap-2 mb-2 items-center p-1 rounded bg-green-200 w-fit'>
                     <span className='font-bold'>Team Performances</span>
                     <span className='underline font-light text-xs'>actual vs proj.</span>
                 </div>
@@ -169,7 +170,7 @@ function WeeklyBreakdown(){
             <div id="standings_power_rankings" className=''>
                 <div className="flex flex-row justify-left gap-1 truncate">
                     <div id="standings" className='flex flex-col w-1/2 text-left gap-2'>
-                        <p className='font-bold'>Standings</p>
+                        <p className='font-bold p-1 rounded bg-green-200 w-fit '>Standings</p>
                         {data ? data['misc_data']['standings'].map((team,index)=>{
                             return(
                                 <div key={index} className='flex flex-row gap-1 text-xs items-center whitespace-nowwrap overflow-x-hidden truncate border-b-4 bg-gray-200 border-green-600 rounded-lg p-2' >
@@ -188,7 +189,7 @@ function WeeklyBreakdown(){
                         }) : <p>loading</p>}
                     </div>
                     <div id='power_rankings' className='flex flex-col gap-2 w-1/2'>
-                        <p className='font-bold'>Power Rankings</p>
+                        <p className='font-bold p-1 rounded bg-green-200 w-fit'>Power Rankings</p>
                         {data ? Object.keys(data['power_rankings'][0])
                         .sort((teamA, teamB) => {
                             const scoreA = Number(data['power_rankings'][0][teamA].score);

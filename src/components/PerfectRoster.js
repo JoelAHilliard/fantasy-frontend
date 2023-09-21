@@ -33,8 +33,6 @@ function PerfectRoster(props){
 
     return(
         <div className="border-b-4 border-green-600 rounded font-semibold bg-gray-200 p-4">
-            <h1>Perfect Roster</h1>
-         
             {order.map((key)=>{
                 if(key === "RB" || key === "WR")
                 {
