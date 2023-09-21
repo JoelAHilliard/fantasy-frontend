@@ -19,14 +19,14 @@ return (
             <li>Joel</li>
             <li>Hunter</li>
             <li>Mad Dawg</li>
-            <li>Jacob</li>
+            <li>Phaucette</li>
             <li>Colin</li>
             <li>Eric</li>
-            <li>Steven</li>
-            <li>Calvin</li>
-            <li>Jayrod</li>
-            <li>Faucette</li>
             <li>Hoff</li>
+            <li>Jacob</li>
+            <li>Jayrod</li>
+            <li>Calvin</li>
+            <li>Steven</li>
         </ol>
     </div>
   
