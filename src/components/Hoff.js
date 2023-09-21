@@ -15,7 +15,7 @@ return (
         <li>1. Hoff vs. Joel</li>
         <li>2. Colin vs. Clog</li>
         <li>3. Faucette vs. Ethan</li>
-        <li>4. Colin vs. Hunter</li>
+        <li>4. Jayrod vs. Hunter</li>
         <li>5. Wes vs. Calvin</li>
         <li>6. Eric vs. Jacob</li>
     </ol>
