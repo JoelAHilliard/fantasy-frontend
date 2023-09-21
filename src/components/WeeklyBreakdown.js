@@ -59,10 +59,9 @@ function WeeklyBreakdown(){
                         <span className='font-light text-xs underline'>Week 2</span>
                     </div>
                     <div className='flex flex-row gap-2'>
-                        <div className="flex flex-col gap-2 w-fit justify-center">
+                        <div className="flex flex-col gap-2 w-full justify-center">
                             {data ? data['matchups'].map((matchup)=>{
-                                return(
-                                
+                                return(     
                                     <div key={matchup.matchupNum} className="grid grid-cols-2 gap-5 text-center rounded-lg border-b-4 bg-gray-200 border-green-600 shadow-lg px-2 text-xs text-base sm:text-sm md:text-sm lg:text-lg min-w-fit p-1 truncate">
                                         {/* Team Headers & Scores */}
                                         <div className="col-span-1 text-right" id="home_team">
