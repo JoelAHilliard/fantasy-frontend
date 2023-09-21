@@ -133,29 +133,32 @@ function WeeklyBreakdown(){
                             <div key={matchup['home_score']}>
 
                             {/* <img src={matchup['away_team']}></img> */}
-                            <div className='felx flex-row w-full justify-between'>
-                                <p className='font-bold text-sm'>{matchup['away_team']}</p>
-                                <div className='flex flex-row gap-2 justify-between'>
+                            <div className='flex flex-row w-full justify-between items-center'>
+                                <div>
+                                    <p className='font-bold text-base'>{matchup['away_team']}</p>
                                     <div className='flex flex-row gap-2'>
                                         <span className='font-bold text-xs'>{matchup['away_score'].toFixed(2)}</span>
                                         <span className='font-light text-xs'>{matchup['away_projected'].toFixed(2)}</span>
-                                    </div>
-                                    <span className='font-light text-xs'>{(matchup['away_score']/matchup['away_projected'] * 100).toFixed(0)}%</span>
-                                </div>                            
+                                    </div> 
+                                </div>
+                                <div className='flex flex-row gap-2 justify-between'>
+                                    <span className='text-sm text-green-700'>{(matchup['away_score']/matchup['away_projected'] * 100).toFixed(0) }%</span>
+                                </div> 
                             </div>
 
                             <PercentageBar dividend={matchup['away_score']} divisor={matchup['away_projected']}></PercentageBar>
-                            <div className='felx flex-row w-full justify-between'>
-                                <p className='font-bold text-sm'>{matchup['home_team']}</p>
-                                <div className='flex flex-row gap-2 justify-between'>
-                                <div className='flex flex-row gap-2'>
-                                    <span className='font-bold text-xs'>{matchup['home_score'].toFixed(2)}</span>
-                                    <span className='font-light text-xs'>{matchup['home_projected'].toFixed(2)}</span>
-                                </div> 
-                                <span className='font-light text-xs'>{(matchup['home_score']/matchup['home_projected'] * 100).toFixed(0) }%</span>
+                            
+                            <div className='flex flex-row w-full justify-between items-center'>
+                                <div>
+                                    <p className='font-bold text-base'>{matchup['home_team']}</p>
+                                    <div className='flex flex-row gap-2'>
+                                        <span className='font-bold text-xs'>{matchup['home_score'].toFixed(2)}</span>
+                                        <span className='font-light text-xs'>{matchup['home_projected'].toFixed(2)}</span>
+                                    </div> 
                                 </div>
-                                
-
+                                <div className='flex flex-row gap-2 justify-between'>
+                                    <span className='text-sm text-green-700'>{(matchup['home_score']/matchup['home_projected'] * 100).toFixed(0) }%</span>
+                                </div> 
                             </div>
                             
                             <PercentageBar dividend={matchup['home_score']} divisor={matchup['home_projected']}></PercentageBar>
