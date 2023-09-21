@@ -1,18 +1,16 @@
 .phaucette {
-    padding: 20px; /* Add padding to create space between border and content */
     font-size: 20px;
 }
 
 /* Apply styles to the ranking list */
 .ranking-list {
     list-style-type: decimal; /* Display numbers as ranking */
+    column-count: 2;
+    padding: 0;
 }
 
 /* Additional styling for the list items */
-.ranking-list li {
-    margin: 5px 0; /* Add some space between list items */
-}
-
+.ranking-list li {margin: 0;}
 /* global styles */
 body {
     font-family: Arial, sans-serif;
@@ -21,4 +19,13 @@ body {
 
 .bold {
     font-weight: bold;
+}
+.ranking-list {
+    column-count: 2;
+}
+
+.ranking-list li:nth-child(6)::after {
+    content: "";
+    display: block;
+    break-after: column;
 }

@@ -71,8 +71,11 @@ class Quote extends Component {
     const { currentQuote } = this.state;
 
     return (
-      <div className="text-sm quote bg-gray-200 border-b-4 border-green-400 rounded-lg">
-        <h2>Quote of the Day: {currentQuote}</h2>
+      <div>
+        <span className="p-1 rounded bg-green-200 w-fit font-bold">Quote of the Day</span>        
+        <div className="text-sm quote bg-gray-200 border-b-4 border-green-400 rounded-lg">
+          <h2>{currentQuote}</h2>
+        </div>
       </div>
     );
   }
