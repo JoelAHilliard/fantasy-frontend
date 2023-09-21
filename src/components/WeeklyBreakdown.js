@@ -122,9 +122,9 @@ function WeeklyBreakdown(){
             {data ? <PerfectRoster data={data["perfect_roster"]}></PerfectRoster>: null}
 
             <div id="team_performamnces" className='w-full'>
-                <div>
-                <span className='font-bold'>Team Performances</span>
-                <span className='underline font-light text-xs'>proj. vs actual</span>
+                <div className='flex flex-row gap-2 mb-2 items-center'>
+                    <span className='font-bold'>Team Performances</span>
+                    <span className='underline font-light text-xs'>actual vs proj.</span>
                 </div>
                
                     { data ? data['matchups'].map((matchup) =>{
@@ -134,7 +134,7 @@ function WeeklyBreakdown(){
 
                             {/* <img src={matchup['away_team']}></img> */}
                             <div className='felx flex-row w-full justify-between'>
-                                <p className='font-light text-sm'>{matchup['away_team']}</p>
+                                <p className='font-bold text-sm'>{matchup['away_team']}</p>
                                 <div className='flex flex-row gap-2 justify-between'>
                                     <div className='flex flex-row gap-2'>
                                         <span className='font-bold text-xs'>{matchup['away_score'].toFixed(2)}</span>
@@ -146,7 +146,7 @@ function WeeklyBreakdown(){
 
                             <PercentageBar dividend={matchup['away_score']} divisor={matchup['away_projected']}></PercentageBar>
                             <div className='felx flex-row w-full justify-between'>
-                                <p className='font-light text-sm'>{matchup['home_team']}</p>
+                                <p className='font-bold text-sm'>{matchup['home_team']}</p>
                                 <div className='flex flex-row gap-2 justify-between'>
                                 <div className='flex flex-row gap-2'>
                                     <span className='font-bold text-xs'>{matchup['home_score'].toFixed(2)}</span>
