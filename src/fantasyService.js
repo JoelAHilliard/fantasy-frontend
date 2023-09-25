@@ -1,4 +1,4 @@
-const apiURL = "https://crypto-bun-api-production.up.railway.app/"
+const apiURL = "https://nssyfantasyapi-production.up.railway.app/"
 // const apiURL = "http://localhost:30030/"
 
 
