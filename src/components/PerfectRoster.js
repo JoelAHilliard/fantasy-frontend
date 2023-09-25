@@ -145,7 +145,7 @@ function PerfectRoster(props){
                                         }} src={props["data"][key][6][1]}></img>
                                 </div>
 
-                                <p className="text-xs sm:text-base/2 text-right">{props["data"][key][6][0]}</p>
+                                <p className="text-xs sm:text-base/2 text-right whitespace-nowrap truncate">{props["data"][key][6][0]}</p>
                                     
                             </div>
                         </div>

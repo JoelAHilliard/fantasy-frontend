@@ -10,7 +10,69 @@ import Loading from '../assets/3-dots-move.svg'
 
 function WeeklyBreakdown(){
     const [data,setData] = useState(null);
+    
+    function perfectTeamRoster(team)
+    {
+        const order = ["QB","RB","WR","TE","FLEX","D/ST","K"]
 
+        let total_score = 0;
+
+        let sorted_team = {
+            "QB":[],
+            "RB":[],
+            "WR":[],
+            "TE":[],
+            "FLEX":[],
+            "D/ST":[],
+            "K":[]
+        };
+      
+
+        for (const key in order) {
+            for(let item in team)
+            {
+                if(team[item]["position"] === order[key])
+                {
+                    sorted_team[order[key]].push(team[item])
+                }
+            }
+            for (let key in sorted_team)
+            {
+                if(key !== "FLEX")
+                {
+                    sorted_team[key] = sorted_team[key].sort((a,b)=>{
+                        return b.points - a.points;
+                    })
+                }   
+            }
+        }
+        
+
+        if(sorted_team["RB"][2].points < sorted_team["WR"][2].points)
+        {
+            sorted_team["FLEX"] = [sorted_team["WR"][2]]
+        }
+        else{
+            sorted_team["FLEX"] = [sorted_team["RB"][2]]
+        }
+
+        for(let item in sorted_team)
+        {
+            if(item !== "RB" && item !== "WR")
+            {
+                total_score = total_score + sorted_team[item][0].points;
+            }
+            else
+            {
+                total_score = total_score + sorted_team[item][0].points;
+                total_score = total_score + sorted_team[item][1].points;
+            }
+        }
+
+        return total_score
+       
+    }
+    
     function getData(){
         getLTS()
 
@@ -35,6 +97,10 @@ function WeeklyBreakdown(){
                 }
                 responseData["matchups"][item]["away_projected"] = awayProj
                 responseData["matchups"][item]["home_projected"] = homeProj
+
+                responseData["matchups"][item]["away_perfect_score"] = perfectTeamRoster(responseData["matchups"][item]["away_team_lineup"])
+                responseData["matchups"][item]["home_perfect_score"] = perfectTeamRoster(responseData["matchups"][item]["home_team_lineup"])
+
             }
             setData(responseData);
 
@@ -128,7 +194,7 @@ function WeeklyBreakdown(){
                 <div id="team_performamnces" className='w-full'>
                     <div className='flex flex-row gap-2 mb-2 items-center p-1 rounded bg-green-200 w-fit'>
                         <span className='font-bold'>Team Performances</span>
-                        <span className='underline font-light text-xs'>actual vs proj.</span>
+                        <span className='underline font-light text-xs'>actual vs max</span>
                     </div>
                 
                         { data ? data['matchups']
@@ -142,30 +208,30 @@ function WeeklyBreakdown(){
                                         <p className='font-bold text-base'>{matchup['away_team']}</p>
                                         <div className='flex flex-row gap-2'>
                                             <span className='font-bold text-xs'>{matchup['away_score'].toFixed(2)}</span>
-                                            <span className='font-light text-xs'>{matchup['away_projected'].toFixed(2)}</span>
+                                            <span className='font-light text-xs'>{matchup['away_perfect_score'].toFixed(2)}</span>
                                         </div> 
                                     </div>
                                     <div className='flex flex-row gap-2 justify-between'>
-                                        <span className='text-sm text-green-700'>{(matchup['away_score']/matchup['away_projected'] * 100).toFixed(0) }%</span>
+                                        <span className='text-sm text-green-700'>{(matchup['away_score']/matchup['away_perfect_score'] * 100).toFixed(0) }%</span>
                                     </div> 
                                 </div>
 
-                                <PercentageBar dividend={matchup['away_score']} divisor={matchup['away_projected']}></PercentageBar>
+                                <PercentageBar dividend={matchup['away_score']} divisor={matchup['away_perfect_score']}></PercentageBar>
                                 
                                 <div className='flex flex-row w-full justify-between items-center'>
                                     <div>
                                         <p className='font-bold text-base'>{matchup['home_team']}</p>
                                         <div className='flex flex-row gap-2'>
                                             <span className='font-bold text-xs'>{matchup['home_score'].toFixed(2)}</span>
-                                            <span className='font-light text-xs'>{matchup['home_projected'].toFixed(2)}</span>
+                                            <span className='font-light text-xs'>{matchup['home_perfect_score'].toFixed(2)}</span>
                                         </div> 
                                     </div>
                                     <div className='flex flex-row gap-2 justify-between'>
-                                        <span className='text-sm text-green-700'>{(matchup['home_score']/matchup['home_projected'] * 100).toFixed(0) }%</span>
+                                        <span className='text-sm text-green-700'>{(matchup['home_score']/matchup['home_perfect_score'] * 100).toFixed(0) }%</span>
                                     </div> 
                                 </div>
                                 
-                                <PercentageBar dividend={matchup['home_score']} divisor={matchup['home_projected']}></PercentageBar>
+                                <PercentageBar dividend={matchup['home_score']} divisor={matchup['home_perfect_score']}></PercentageBar>
                                 </div>
                             );
                         }) : null }
