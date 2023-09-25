@@ -72,46 +72,44 @@ function WeeklyBreakdown(){
         return total_score
        
     }
-    
-    function getData(){
-        getLTS()
 
-        .then(responseData => {
-            for(let item in responseData["matchups"])
-            {
-                let homeProj = 0;
-                let awayProj = 0;
-                for (let player in responseData["matchups"][item]["away_team_lineup"])
-                {
-                    if(responseData["matchups"][item]["away_team_lineup"][player]["slot_position"] !== "BE")
-                    {
-                        awayProj = awayProj + responseData["matchups"][item]["away_team_lineup"][player]["projected_points"]
-                    }
-                }
-                for (let player in responseData["matchups"][item]["home_team_lineup"])
-                {
-                    if(responseData["matchups"][item]["home_team_lineup"][player]["slot_position"] !== "BE")
-                    {
-                        homeProj = homeProj + responseData["matchups"][item]["home_team_lineup"][player]["projected_points"]
-                    }
-                }
-                responseData["matchups"][item]["away_projected"] = awayProj
-                responseData["matchups"][item]["home_projected"] = homeProj
-
-                responseData["matchups"][item]["away_perfect_score"] = perfectTeamRoster(responseData["matchups"][item]["away_team_lineup"])
-                responseData["matchups"][item]["home_perfect_score"] = perfectTeamRoster(responseData["matchups"][item]["home_team_lineup"])
-
-            }
-            setData(responseData);
-
-        })
-        .catch(error => {
-            console.error("Failed to get matchups:", error);
-        });
-    }
-
-   
     useEffect(() => {
+        function getData(){
+            getLTS()
+    
+            .then(responseData => {
+                for(let item in responseData["matchups"])
+                {
+                    let homeProj = 0;
+                    let awayProj = 0;
+                    for (let player in responseData["matchups"][item]["away_team_lineup"])
+                    {
+                        if(responseData["matchups"][item]["away_team_lineup"][player]["slot_position"] !== "BE")
+                        {
+                            awayProj = awayProj + responseData["matchups"][item]["away_team_lineup"][player]["projected_points"]
+                        }
+                    }
+                    for (let player in responseData["matchups"][item]["home_team_lineup"])
+                    {
+                        if(responseData["matchups"][item]["home_team_lineup"][player]["slot_position"] !== "BE")
+                        {
+                            homeProj = homeProj + responseData["matchups"][item]["home_team_lineup"][player]["projected_points"]
+                        }
+                    }
+                    responseData["matchups"][item]["away_projected"] = awayProj
+                    responseData["matchups"][item]["home_projected"] = homeProj
+    
+                    responseData["matchups"][item]["away_perfect_score"] = perfectTeamRoster(responseData["matchups"][item]["away_team_lineup"])
+                    responseData["matchups"][item]["home_perfect_score"] = perfectTeamRoster(responseData["matchups"][item]["home_team_lineup"])
+    
+                }
+                setData(responseData);
+    
+            })
+            .catch(error => {
+                console.error("Failed to get matchups:", error);
+            });
+        }
         getData();
      },[]);
 
