@@ -257,7 +257,7 @@ function WeeklyBreakdown(){
                             }) : null}
                         </div>
                         <div id='power_rankings' className='flex flex-col gap-2 w-1/2'>
-                            <p className='font-bold p-1 rounded bg-green-200 flex items-center gap-2 w-fit'>Power Rankings <span className='underline text-xs font-light'>from ESPN</span></p>
+                            <p className='font-bold p-1 rounded bg-green-200 flex items-center gap-2 w-fit'>Power Rankings <span className='underline text-xs font-light'>espn</span></p>
                             {data ? Object.keys(data['power_rankings'][0])
                             .sort((teamA, teamB) => {
                                 const scoreA = Number(data['power_rankings'][0][teamA].score);
@@ -295,7 +295,7 @@ function WeeklyBreakdown(){
                                             <p>{data['misc_data'].top_scorer[0]}</p>
                                         </div>
                                     </div>
-                                    <div className='align-right font-bold text-lg'>
+                                    <div className='align-right font-bold text-sm'>
                                         <p>{data['misc_data'].top_scorer[1]}</p>
                                     </div>
                                 </div>
@@ -311,7 +311,7 @@ function WeeklyBreakdown(){
                                         <p>{data['misc_data'].lowest_scorer[0]}</p>
                                     </div>
                                 </div>
-                                <div className='align-right font-bold text-lg'>
+                                <div className='align-right font-bold text-sm'>
                                     <p>{data['misc_data'].lowest_scorer[1]}</p>
                                 </div>
                             </div>

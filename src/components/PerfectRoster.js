@@ -30,6 +30,11 @@ function PerfectRoster(props){
     function firstNameTruncate(name){
         let firstLast = name.split(" ");
 
+        if(firstLast[1] === "D/ST")
+        {
+            return firstLast[0]
+        }
+
         return firstLast[0][0] + ". " + firstLast[1];
 
     }
@@ -40,24 +45,25 @@ function PerfectRoster(props){
                 if(key === "RB" || key === "WR")
                 {
                    return props["data"][key].map((data)=>{
-                    return( <div key={key + data[4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center" >
+                    return( <div key={key + data[4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center py-1" style={{ gridTemplateColumns: '20% 45% 30%' }}>
                             
             
                     <div className="flex flex-row gap-2 items-top justify-between">
                         <p className="text-xs sm:text-sm text-green-700">{key}</p>
-                        <div>
-                            <p className="text-xs sm:text-base whitespace-nowrap truncate">{firstNameTruncate(data[0])}</p>
-                            <div className="flex flex-row items-center gap-1 justify-end">
-                                <img alt={data[4]} style={{"width":"25px"}} src={getLOGO(data[4])}></img>
-                                <p className="text-xs font-bold text-right">{data[4]}</p>
+                    </div>
+                    <div className="flex flex-row justify-between">
+                        <div className="flex flex-col ">
+                            <p className="text-sm sm:text-base whitespace-nowrap truncate">{firstNameTruncate(data[0])}</p>
+                            <div className="flex flex-row items-center gap-1 justify-start bg-green-200 rounded-full px-1 w-fit">
+                                <img alt={data[4]} style={{"width":"15px"}} src={getLOGO(data[4])}></img>
+                                
+                                <p className="text-xs font-bold text-left">{data[4]}</p>
                             </div>
                         </div>
-                       
-                    </div>
-                    
-                    <div id="points+projected_points text-right items-top">
-                        <p className="text-sm md:text-base text-center">{data[1]}</p>
-                        <p className="font-thin text-xs sm:text-xs text-center">{data[2]}</p>
+                        <div id="points+projected_points text-left items-top">
+                            <p className="text-sm md:text-base text-left">{data[1]}</p>
+                            <p className="font-thin text-xs sm:text-xs text-left">{data[2]}</p>
+                        </div>
                     </div>
             
                     <div>
@@ -83,32 +89,29 @@ function PerfectRoster(props){
                 else if(key !== "FLEX")
                 {
                     return(
-                        <div key = {key + props["data"][key][0][4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center">
+                        <div key = {key + props["data"][key][0][4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center py-1" style={{ gridTemplateColumns: '20% 45% 30%' }}>
                             
                     
                             <div className="flex flex-row gap-2 justify-between items-top">
                                 <p className="text-xs sm:text-sm text-green-700">{key}</p>
-                                <div>
-                                    <p className="text-xs sm:text-base whitespace-nowrap text-right">{firstNameTruncate(props["data"][key][0][0])}</p>
-                                <div className="flex flex-row items-center gap-1 justify-end">
-                                    <img alt={props["data"][key][0][4]} style={{"width":"25px"}} src={getLOGO(props["data"][key][0][4])}></img>
-                                    <p className="text-xs font-bold text-right">{props["data"][key][0][4]}</p>
-                                </div>
-
-
-
-
-
-                                    
-                                </div>
+                               
                                 
                             </div>
                             
-                            <div id="points+projected_points">
-                                <p className="text-sm md:text-base text-center">{props["data"][key][0][1]}</p>
-                                <p className="font-thin text-xs sm:text-xs text-center">{props["data"][key][0][2]}</p>
+                            <div className="flex flex-row justify-between">
+                                <div>
+                                    <p className="text-sm sm:text-base whitespace-nowrap text-left">{firstNameTruncate(props["data"][key][0][0])}</p>
+                                    <div className="flex flex-row items-center gap-1 justify-start bg-green-200 rounded-full px-1 w-fit">
+                                        <img alt={props["data"][key][0][4]} style={{"width":"15px"}} src={getLOGO(props["data"][key][0][4])}></img>
+                                        
+                                        <p className="text-xs font-bold text-right">{props["data"][key][0][4]}</p>
+                                    </div>   
+                                </div>
+                                <div id="points+projected_points">
+                                    <p className="text-sm md:text-base text-left">{props["data"][key][0][1]}</p>
+                                    <p className="font-thin text-xs sm:text-xs text-left">{props["data"][key][0][2]}</p>
+                                </div>
                             </div>
-                    
                             <div>
                                 <div>
                                     <div className="flex flex-row gap-2 justify-end">
@@ -131,28 +134,27 @@ function PerfectRoster(props){
                 else 
                 {
                     return(
-                        <div key={key+props["data"][4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center">
+                        <div key={key+props["data"][4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center py-1" style={{ gridTemplateColumns: '20% 45% 30%' }}>
                                 
                 
                         <div className="flex flex-row gap-2 justify-between">
                             <p className="text-xs sm:text-sm text-green-700">{key}</p>
+                                                     
+                        </div>
+                        
+                        <div className="flex flex-row justify-between">
                             <div>
-                                <p className="text-xs sm:text-base text-right whitespace-nowrap">{firstNameTruncate(props["data"][key][0])}</p>
-                                
-                                <div className="flex flex-row items-center gap-1 justify-end">
-                                    <img alt={props["data"][key][4]} style={{"width":"25px"}} src={getLOGO(props["data"][key][4])}></img>
-                                    <p className="text-xs font-bold text-right">{props["data"][key][4]}</p>
+                                <p className="text-sm sm:text-base text-left whitespace-nowrap">{firstNameTruncate(props["data"][key][0])}</p>
+                                <div className="flex flex-row items-center gap-1 justify-start bg-green-200 rounded-full px-1 w-fit">
+                                    <img alt={props["data"][key][4]} style={{"width":"15px"}} src={getLOGO(props["data"][key][4])}></img>
+                                    <p className="text-xs font-bold text-left">{props["data"][key][4]}</p>
                                 </div>
-                               
-                        
-                            </div>                            
+                            </div>   
+                            <div id="points+projected_points justify-between gap-2">
+                                <p className="text-sm md:text-base text-left">{props["data"][key][1]}</p>
+                                <p className="font-thin text-xs sm:text-xs text-left">{props["data"][key][2]}</p>
+                            </div>
                         </div>
-                        
-                        <div id="points+projected_points justify-between gap-2">
-                            <p className="text-sm md:text-base text-center">{props["data"][key][1]}</p>
-                            <p className="font-thin text-xs sm:text-xs text-center">{props["data"][key][2]}</p>
-                        </div>
-                
                         <div>
                             <div>
                                 <div className="flex flex-row gap-2 justify-end">
