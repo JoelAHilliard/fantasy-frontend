@@ -1,4 +1,7 @@
+import { getLOGO } from "../fantasyService";
+
 function PerfectRoster(props){
+    console.log(props)
 
     const order = ["QB","RB","WR","TE","FLEX","D/ST","K"]
     let total = 0;
@@ -44,7 +47,10 @@ function PerfectRoster(props){
                         <p className="text-xs sm:text-sm text-green-700">{key}</p>
                         <div>
                             <p className="text-xs sm:text-base whitespace-nowrap truncate">{firstNameTruncate(data[0])}</p>
-                            <p className="text-xs font-light text-right">{data[4]}</p>
+                            <div className="flex flex-row items-center gap-1 justify-end">
+                                <img alt={data[4]} style={{"width":"25px"}} src={getLOGO(data[4])}></img>
+                                <p className="text-xs font-bold text-right">{data[4]}</p>
+                            </div>
                         </div>
                        
                     </div>
@@ -84,7 +90,16 @@ function PerfectRoster(props){
                                 <p className="text-xs sm:text-sm text-green-700">{key}</p>
                                 <div>
                                     <p className="text-xs sm:text-base whitespace-nowrap text-right">{firstNameTruncate(props["data"][key][0][0])}</p>
-                                    <p className="text-xs font-light text-right">{props["data"][key][0][4]}</p>
+                                <div className="flex flex-row items-center gap-1 justify-end">
+                                    <img alt={props["data"][key][0][4]} style={{"width":"25px"}} src={getLOGO(props["data"][key][0][4])}></img>
+                                    <p className="text-xs font-bold text-right">{props["data"][key][0][4]}</p>
+                                </div>
+
+
+
+
+
+                                    
                                 </div>
                                 
                             </div>
@@ -115,7 +130,7 @@ function PerfectRoster(props){
                 }
                 else 
                 {
-                    return( 
+                    return(
                         <div key={key+props["data"][4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center">
                                 
                 
@@ -123,8 +138,13 @@ function PerfectRoster(props){
                             <p className="text-xs sm:text-sm text-green-700">{key}</p>
                             <div>
                                 <p className="text-xs sm:text-base text-right whitespace-nowrap">{firstNameTruncate(props["data"][key][0])}</p>
-                                <p className="text-xs font-light text-right">{props["data"][key][4]}</p>
-                            
+                                
+                                <div className="flex flex-row items-center gap-1 justify-end">
+                                    <img alt={props["data"][key][4]} style={{"width":"25px"}} src={getLOGO(props["data"][key][4])}></img>
+                                    <p className="text-xs font-bold text-right">{props["data"][key][4]}</p>
+                                </div>
+                               
+                        
                             </div>                            
                         </div>
                         

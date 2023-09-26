@@ -111,7 +111,7 @@ function WeeklyBreakdown(){
             });
         }
         getData();
-     },[]);
+    },[]);
 
     return(
         data ? <div>
@@ -235,7 +235,7 @@ function WeeklyBreakdown(){
                         }) : null }
                 </div>
 
-                <div id="standings_power_rankings" className=''>
+                <div id="standings_power_rankings" >
                     <div className="flex flex-row justify-left gap-1 truncate">
                         <div id="standings" className='flex flex-col w-1/2 text-left gap-2'>
                             <p className='font-bold p-1 rounded bg-green-200 w-fit '>Standings</p>
@@ -257,7 +257,7 @@ function WeeklyBreakdown(){
                             }) : null}
                         </div>
                         <div id='power_rankings' className='flex flex-col gap-2 w-1/2'>
-                            <p className='font-bold p-1 rounded bg-green-200 w-fit'>Power Rankings</p>
+                            <p className='font-bold p-1 rounded bg-green-200 flex items-center gap-2 w-fit'>Power Rankings <span className='underline text-xs font-light'>from ESPN</span></p>
                             {data ? Object.keys(data['power_rankings'][0])
                             .sort((teamA, teamB) => {
                                 const scoreA = Number(data['power_rankings'][0][teamA].score);
