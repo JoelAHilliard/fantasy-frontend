@@ -97,10 +97,12 @@ function Matchups(){
                                 :
                                 <div className="text-center font-bold">Week {data.week} - Matchup {data.matchupNum}</div>
                             }
-                            <div className="grid grid-cols-2 gap-5 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-base">
+                            <div className="grid grid-cols-2 gap-2 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-base">
                                 {/* Team Headers & Scores */}
-                                <div className="font-bold p-2 col-span-1">
+                                <div className="font-bold p-1 col-span-1 truncate">
                                     {/* if championship and home team won show crown */}
+                                    <img alt="logo" style={{"width":'25px',"height":"25px"}} className='mx-auto rounded-full' src={data.home_team_logo} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>
+
                                     {data.playoff_type === "championship" ?
                                         
                                         data.home_score > data.away_score ? 
@@ -115,10 +117,11 @@ function Matchups(){
                                         <div className="font-light">{data.home_score}</div>                                
                                     :null}
                                 </div>
-                                <div className="font-bold p-2 col-span-1">
+                                <div className="font-bold p-1 col-span-1 truncate">
                                     {/* if championship and away team won show crown */}
+                                    <img alt="logo" style={{"width":'25px',"height":"25px"}} className='mx-auto rounded-full' src={data.away_team_logo} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>
+
                                     {data.playoff_type === "championship" ?
-                                        
                                         data.home_score < data.away_score ? 
                                             <div>{data.away_team} - 👑</div> 
                                         :   <div>{data.away_team}</div>
@@ -154,7 +157,7 @@ function Matchups(){
                         </div>
                         : null
                     
-                    ):null}
+                ):null}
                 </div>
                 
         </div>

@@ -27,3 +27,7 @@ export async function getLTS()
 
     return leaderboard;
 }
+export function getLOGO(team_abbr)
+{
+    return "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nfl/500/"+team_abbr+".png&h=200&w=200&transparent=true"
+}
