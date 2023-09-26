@@ -128,16 +128,18 @@ function WeeklyBreakdown(){
                                 return(     
                                     <div key={matchup.matchupNum} className="grid grid-cols-2 gap-5 text-center rounded-lg border-b-4 bg-gray-200 border-green-600 shadow-lg px-2 text-xs text-base sm:text-sm md:text-sm lg:text-lg min-w-fit p-1 truncate">
                                         {/* Team Headers & Scores */}
-                                        <div className="col-span-1 text-right" id="home_team">
+                                        <div className="col-span-1 text-right truncate" id="home_team">
                                             
                                             {
                                                 matchup.home_score > matchup.away_score ? 
-                                                    <div className='font-semibold'>{matchup.home_team} - 👑</div> 
+                                                    <div className='font-semibold flex flex-col'>{matchup.home_team}</div> 
                                                 :   <div className='font-semibold'>{matchup.home_team}</div>
                                             }
-                                            {matchup.home_score > 0 ?
+                                                {matchup.home_score > 0 ?
                                                 <div className='flex flex-col justify-left p-0'>
-                                                    <div className='font-bold text-base'>{matchup.home_score}</div>
+                                                    {matchup.home_score > matchup.away_score ? 
+                                                    <div className='font-semibold flex flex-row justify-end gap-1'><span>👑</span>{matchup.home_score} </div> 
+                                                :   <div className='font-semibold'>{matchup.home_score}</div>}
                                                     <div className='text-xs'>{matchup.home_projected.toFixed(2)}</div>
                                                 </div>                            
                                             :null}
@@ -147,14 +149,16 @@ function WeeklyBreakdown(){
                                             {
                                                 
                                                 matchup.home_score < matchup.away_score ? 
-                                                    <div className='font-semibold'>👑 - {matchup.away_team}</div> 
+                                                    <div className='font-semibold'>{matchup.away_team}</div> 
                                                 :   <div className='font-semibold'>{matchup.away_team}</div>
                                             
 
                                             }
                                             {matchup.away_score > 0 ?
                                             <div className='flex flex-col justify-left p-0'>
-                                                <div className='font-bold text-base'>{matchup.away_score}</div>
+                                                {matchup.home_score < matchup.away_score ? 
+                                                    <div className='font-semibold'>{matchup.away_score} 👑</div> 
+                                                :   <div className='font-semibold'>{matchup.away_score}</div>}
                                                 <div className='text-xs'>{matchup.away_projected.toFixed(2)}</div>
                                             </div> 
                                             
@@ -186,6 +190,7 @@ function WeeklyBreakdown(){
                     </div>
 
                 </div>
+
                 <h1 className='items-center p-1 rounded bg-green-200 w-fit font-bold'>Perfect Roster</h1>
                 {data ? <PerfectRoster data={data["perfect_roster"]}></PerfectRoster>: null}
 
