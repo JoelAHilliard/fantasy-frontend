@@ -116,11 +116,14 @@ function PerfectRoster(props){
                                     <div className="flex flex-row gap-2 justify-end">
                                         <p className="font-light text-xs sm:text-xs">Owner</p>
 
-                                        <img alt="pfp" style={{
+                                        <img alt="pfp" 
+                                            style={{
                                                 "height":"20px",
                                                 "width":"20px",
                                                 "borderRadius":"20px"
-                                            }} src={props["data"][key][0][6][1]}></img>
+                                            }} 
+                                            src={props["data"][key][0][6][1]}>
+                                        </img>
                                     </div>
                                     <p className="text-xs sm:text-base/2 text-right truncate">{props["data"][key][0][6][0]}</p>
                                 </div>
