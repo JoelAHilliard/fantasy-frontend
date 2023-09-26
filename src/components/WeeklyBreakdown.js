@@ -208,10 +208,13 @@ function WeeklyBreakdown(){
                                 {/* <img src={matchup['away_team']}></img> */}
                                 <div className='flex flex-row w-full justify-between items-center'>
                                     <div>
-                                        <p className='font-bold text-base'>{matchup['away_team']}</p>
-                                        <div className='flex flex-row gap-2'>
-                                            <span className='font-bold text-xs'>{matchup['away_score'].toFixed(2)}</span>
-                                            <span className='font-light text-xs'>{matchup['away_perfect_score'].toFixed(2)}</span>
+                                        <div className='flex flex-row gap-2 items-center mb-1'>
+                                            <img alt={"pfp"} style={{"height":"20px","width":"20px"}} className='rounded-full' src={matchup["away_team_logo"]} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}/>
+                                            <p className='font-bold text-base'>{matchup['away_team']}</p>
+                                        </div>
+                                         <div className='flex font-light flex-row gap-2 bg-green-200 w-fit rounded-full px-1 items-center mb-1'>
+                                            <span className='font-bold text-sm'>{matchup['away_score'].toFixed(2)}</span>
+                                            <span className='font-normal text-xs'>{matchup['away_perfect_score'].toFixed(2)}</span>
                                         </div> 
                                     </div>
                                     <div className='flex flex-row gap-2 justify-between'>
@@ -223,9 +226,12 @@ function WeeklyBreakdown(){
                                 
                                 <div className='flex flex-row w-full justify-between items-center'>
                                     <div>
-                                        <p className='font-bold text-base'>{matchup['home_team']}</p>
-                                        <div className='flex flex-row gap-2'>
-                                            <span className='font-bold text-xs'>{matchup['home_score'].toFixed(2)}</span>
+                                        <div className='flex flex-row gap-2 items-center'>
+                                                <img alt='pfp' style={{"height":"20px","width":"20px"}} className='rounded-full' src={matchup["home_team_logo"]} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}/>
+                                                <p className='font-bold text-base'>{matchup['home_team']}</p>
+                                        </div>
+                                        <div className='flex flex-row gap-2 bg-green-200 items-center w-fit rounded-full px-1 mb-1'>
+                                            <span className='font-bold text-sm'>{matchup['home_score'].toFixed(2)}</span>
                                             <span className='font-light text-xs'>{matchup['home_perfect_score'].toFixed(2)}</span>
                                         </div> 
                                     </div>
