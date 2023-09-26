@@ -91,7 +91,7 @@ function PerfectRoster(props){
                                 <div>
                                     <p className="text-xs sm:text-base whitespace-nowrap text-right">{firstNameTruncate(props["data"][key][0][0])}</p>
                                 <div className="flex flex-row items-center gap-1 justify-end">
-                                    <img alt={props["data"][key][0][4]} style={{"width":"25px"}} src={getLOGO(props["data"][key][0][4])}></img>
+                                    <img alt={props["data"][key][0][4]} style={{"width":"15px"}} src={getLOGO(props["data"][key][0][4])}></img>
                                     <p className="text-xs font-bold text-right">{props["data"][key][0][4]}</p>
                                 </div>
 
