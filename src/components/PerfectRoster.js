@@ -56,13 +56,12 @@ function PerfectRoster(props){
                             <p className="text-sm sm:text-base whitespace-nowrap truncate">{firstNameTruncate(data[0])}</p>
                             <div className="flex flex-row items-center gap-1 justify-start bg-green-200 rounded-full px-1 w-fit">
                                 <img alt={data[4]} style={{"width":"15px"}} src={getLOGO(data[4])}></img>
-                                
                                 <p className="text-xs font-bold text-left">{data[4]}</p>
                             </div>
                         </div>
                         <div id="points+projected_points text-left items-top">
-                            <p className="text-sm md:text-base text-left">{data[1]}</p>
-                            <p className="font-thin text-xs sm:text-xs text-left">{data[2]}</p>
+                            <p className="text-sm md:text-base text-right">{data[1]}</p>
+                            <p className="font-thin text-xs sm:text-xs text-right">{data[2]}</p>
                         </div>
                     </div>
             
@@ -108,8 +107,8 @@ function PerfectRoster(props){
                                     </div>   
                                 </div>
                                 <div id="points+projected_points">
-                                    <p className="text-sm md:text-base text-left">{props["data"][key][0][1]}</p>
-                                    <p className="font-thin text-xs sm:text-xs text-left">{props["data"][key][0][2]}</p>
+                                    <p className="text-sm md:text-base text-right">{props["data"][key][0][1]}</p>
+                                    <p className="font-thin text-xs sm:text-xs text-right">{props["data"][key][0][2]}</p>
                                 </div>
                             </div>
                             <div>
