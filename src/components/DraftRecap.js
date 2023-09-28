@@ -1,6 +1,6 @@
 import { useState  } from "react";
 import { getDraftData } from "../fantasyService";
-import { VictoryLine, VictoryChart, VictoryAxis, VictoryVoronoiContainer, VictoryTooltip } from 'victory';
+import { VictoryLine, VictoryChart,VictoryLegend, VictoryAxis, VictoryVoronoiContainer, VictoryTooltip } from 'victory';
 
 import { FaSortDown } from 'react-icons/fa';
 
@@ -15,9 +15,15 @@ const DraftRecap = () =>  {
 
     const [teams,setTeams] = useState(null);
 
-    const [teamsDom,setTeamsDom] = useState(null);
+    const [teamsFilter,setTeamsFilter] = useState(null);
 
     const [menu,setMenu] = useState(false);
+
+    const [lowLine,setlowLine] = useState(null);
+    const [lowLineNoQBs,setlowLineNoQBs] = useState(null);
+    
+    const [highLine,sethighLine] = useState(null);
+    const [highLineNoQBs,sethighLineNoQBs] = useState(null);
 
     const [yearMenu,setYearMenu] = useState(false);
 
@@ -45,24 +51,81 @@ const DraftRecap = () =>  {
         "#B2FF33", // Another shade of green
         "#33B2FF"  // Another shade of blue
     ];
+
     const getNonQBs = (data) => {
         let tempData = {};
         
         Object.keys(data).forEach(team => {
             tempData[team] = data[team].filter(player => player.player.position !== 'QB');
+
         });
-        
+
         return tempData;
     };
+
+    const getHighAndLowLines = (data) => {
+        let draftPicks = {
+            "1":[],
+            "2":[],
+            "3":[],
+            "4":[],
+            "5":[],
+            "6":[],
+            "7":[],
+            "8":[],
+            "9":[],
+            "10":[],
+            "11":[],
+            "12":[],
+            "13":[],
+            "14":[],
+            "15":[],
+            "16":[],
+        }
+        let lowLine = []
+        let highLine = []
+
+        for (let pick in data)
+        {
+            for(let player in data[pick])
+            {
+                draftPicks[data[pick][Number(player)].x].push(data[pick][Number(player)])
+            }
+        }
+
+        let sortedByPoints = {}
+        Object.keys(draftPicks).forEach((round)=>{
+            sortedByPoints[round] = draftPicks[round].sort((a,b) => b.y-a.y)
+            // sortedByPoints[round][sortedByPoints[round].length-1]["showLabel"] = false;
+            // sortedByPoints[round][0]["showLabel"] = false;
+            lowLine.push(sortedByPoints[round][sortedByPoints[round].length-1])
+            highLine.push(sortedByPoints[round][0])
+        })
+        return [lowLine,highLine]
+    }
+    
     function getData(year){
         getDraftData(year)
 
         .then(responseData => {
-            setData(responseData[0]["data"]);
             let keys = Object.keys(responseData[0]["data"])
+
+            setData(responseData[0]["data"]);
+            
             setTeams(keys);
-            setTeamsDom(keys);
-            setNoQbs(getNonQBs(data));
+            
+            setTeamsFilter(keys)
+
+            let nonQbData = getNonQBs(responseData[0]["data"])
+            setNoQbs(nonQbData);
+            
+            let res = getHighAndLowLines(responseData[0]["data"])
+            setlowLine(res[0])
+            sethighLine(res[1])
+
+            let resNoQbs = getHighAndLowLines(nonQbData);
+            setlowLineNoQBs(resNoQbs[0])
+            sethighLineNoQBs(resNoQbs[1])
         })
         .catch(error => {
             console.error("Failed to get matchups:", error);
@@ -71,7 +134,7 @@ const DraftRecap = () =>  {
 
     function changeActiveTeam(team)
     {
-        setTeamsDom([team]);
+        setTeamsFilter([team]);
         setMenu(false);
         setMenuText(team);
     }
@@ -82,9 +145,8 @@ const DraftRecap = () =>  {
         setYearMenuText(year);
     }
 
-
     return(
-        <div className="">
+        <div>
             <div className="flex flex-row justify-between mt-2 px-4">
                 <div className="flex flex-col gap-2 md:flex-row w-full">
                     <div id="menus" className="flex flex-row gap-1">
@@ -115,7 +177,7 @@ const DraftRecap = () =>  {
                         </div>
                     </div>
                     <div className="flex flex-row gap-1 justify-between">
-                        <div onClick={()=>{setTeamsDom(teams); setMenuText("select team")}} className="bg-red-600 rounded p-1 w-fit text-white px-2 cursor-pointer">
+                        <div onClick={()=>{setTeamsFilter(teams); setMenuText("select team")}} className="bg-red-600 rounded p-1 w-fit text-white px-2 cursor-pointer">
                             reset
                         </div>
                         <div className="flex items-center space-x-2 px-4 mt-2">
@@ -136,16 +198,23 @@ const DraftRecap = () =>  {
                         standalone={true}
                         containerComponent = {
                             <VictoryVoronoiContainer
-                            labels={({ datum }) => `${datum.player.name}\n Points Scored: ${datum.y}  \n Round Selected ${datum.x}`}
+                            labels={({ datum }) => {
+                                if (datum.showLabel !== false) {  // Add your condition here
+                                    return `${datum.player.name}\n Points Scored: ${datum.y}  \n Round Selected ${datum.x}`;
+                                }
+                                return null;
+                                }}
                             labelComponent={
                                 <VictoryTooltip
                                     cornerRadius={0}
                                     padding={0}
+                                    style={{fontSize: 10, margin:0}}
                                 />
                             }
                         
                             />
                         }>
+                        
                         <VictoryAxis lsabel={"round drafted"}/>
                         <VictoryAxis 
                         
@@ -156,41 +225,100 @@ const DraftRecap = () =>  {
                                 stroke:"clear",
                                 axisLabel: { padding: 40 }  // Increase or adjust the padding as needed
                             }}
-                            label={"points scored"} 
+                            labels={"points scored"} 
                             dependentAxis 
                         />
-                        {teamsDom && teamsDom.map((team,index)=>{
+                        {dataNoQbs && teamsFilter.map((team,index)=>{
                             return(
-                                <VictoryLine
+                            <VictoryLine
                                     key={team}
                                     data={dataNoQbs[team]}
                                     x="x"
                                     y="y"
                                     player="player"
+                                    showLabel="true"
+
                                     style={{
-                                    data: { stroke: colors[index] },
+                                    data: { stroke: colors[index] , strokeWidth:1.5},
                                     }}
                             />)
                         })}
+                         {lowLineNoQBs &&
+                        
+                            <VictoryLine   
+                                key={lowLineNoQBs}
+                                data={lowLineNoQBs.map(point => ({ ...point, showLabel: false }))} 
+                                x="x"
+                                y="y"
+                                player="player"
+                                showLabel="false"
+
+                                style={{
+                                    data: { stroke: 'black', strokeDasharray:"5,5", strokeWidth:1},
+                                }}
+                                >
+                            </VictoryLine>}
+                        
+                        {highLineNoQBs && 
+                        <VictoryLine   
+                            key={highLineNoQBs}
+                            data={highLineNoQBs.map(point => ({ ...point, showLabel: false }))} 
+                            x="x"
+                            y="y"
+                            showLabel="false"
+                            player="player"
+                            style={{
+                                data: { stroke: 'black', strokeDasharray:"5,5", strokeWidth:1},
+                            }}
+                            
+                            >
+                        </VictoryLine>}
                     </VictoryChart>
+                    <VictoryLegend 
+                            title={"Teams"}
+                            centerTitle
+                            x={10} 
+                            y={0}  // Adjust this value as needed to position the legend below the chart
+                            orientation="horizontal"
+                            gutter={20}
+                            itemsPerRow={2}
+                            symbolSpacer={6}
+                            style={{
+                                margin:"auto", 
+                                title: { fontSize: 10 }, 
+                                labels: { fontSize: 14 },  // Adjust the font size here
+                                data: { strokeWidth: 0.5 } // Adjust the stroke width here
+                            }}
+                            data={teams.map((team)=>
+                                {
+                                    return({"name":team,"symbol":{"fill":colors[teams.indexOf(team)],"width":8,"height":8}})
+                                }
+                            )
+                        }
+                        />
                 </div>
             }
             {!checked && data &&
                 <div className="px-4 mx-auto"> 
-                    <VictoryChart                      
-                        width={500}
-                        standalone={true}
-                        containerComponent = {
-                            <VictoryVoronoiContainer
-                            labels={({ datum }) => `Points Scored: ${datum.y} \n${datum.player.name} \n Round Selected ${datum.x}`}
-                            labelComponent={
-                                <VictoryTooltip
-                                    cornerRadius={0}
+                        <VictoryChart  
+                            width={500}
+                            standalone={true}
+                            containerComponent = {
+                                <VictoryVoronoiContainer
+                                    labels={({ datum }) => {
+                                        if (datum.showLabel !== false) {  // Add your condition here
+                                            return `${datum.player.name}\n Points Scored: ${datum.y}  \n Round Selected ${datum.x}`;
+                                        }
+                                        return null;
+                                        }}
+                                    labelComponent={
+                                        <VictoryTooltip
+                                            cornerRadius={0}
+                                        />
+                                    }   
                                 />
-                            }
-                        
-                            />
-                        }>
+                                }>
+                       
                         <VictoryAxis lsabel={"round drafted"}/>
                         <VictoryAxis 
                         
@@ -201,10 +329,10 @@ const DraftRecap = () =>  {
                                 stroke:"clear",
                                 axisLabel: { padding: 40 }  // Increase or adjust the padding as needed
                             }}
-                            label={"points scored"} 
+                            labels={"points scored"} 
                             dependentAxis 
                         />
-                        {teamsDom && teamsDom.map((team,index)=>{
+                        {teamsFilter && teamsFilter.map((team,index)=>{
                             return(
                                 <VictoryLine
                                     key={team}
@@ -212,16 +340,60 @@ const DraftRecap = () =>  {
                                     x="x"
                                     y="y"
                                     player="player"
+                                    showLabel="true"
                                     style={{
-                                    data: { stroke: colors[index] },
+                                    data: { stroke: colors[index], strokeWidth:1.5 },
                                     }}
                             />)
                         })}
+                        {lowLine &&
+                        
+                        <VictoryLine   
+                            key={lowLine}
+                            data={lowLine.map(point => ({ ...point, showLabel: false }))} 
+                            player="player"
+
+                            style={{
+                                data: { stroke: 'black', strokeDasharray:"5,5", strokeWidth:1},
+                            }}
+
+                            >
+                        </VictoryLine>}
+                        
+                            {highLine && <VictoryLine   
+                                key={highLine}
+                                data={highLine.map(point => ({ ...point, showLabel: false }))} 
+                                player="player"
+                                style={{
+                                    data: { stroke: 'black', strokeDasharray:"5,5", strokeWidth:1},
+                                }}
+                                >
+                        </VictoryLine>}
                     </VictoryChart>
-                </div>
-            }
-            
-            
+                    <VictoryLegend 
+                    title={"Teams"}
+                    centerTitle
+                        x={10} 
+                        y={0}  // Adjust this value as needed to position the legend below the chart
+                        orientation="horizontal"
+                        gutter={20}
+                        itemsPerRow={2}
+                        symbolSpacer={6}
+                        style={{
+                            margin:"auto", 
+                            title: { fontSize: 10 }, 
+                            labels: { fontSize: 14 },  // Adjust the font size here
+                            data: { strokeWidth: 0.5 } // Adjust the stroke width here
+                        }}
+                        data={teams.map((team)=>
+                            {
+                                return({"name":team,"symbol":{"fill":colors[teams.indexOf(team)],"width":8,"height":8}})
+                            }
+                        )
+                        }
+                        />
+            </div>
+            }   
         </div>
     );
 }
