@@ -1,4 +1,4 @@
-import { useState ,useEffect } from "react";
+import { useState  } from "react";
 import { getDraftData } from "../fantasyService";
 import { VictoryLine, VictoryChart, VictoryAxis, VictoryVoronoiContainer, VictoryTooltip } from 'victory';
 
