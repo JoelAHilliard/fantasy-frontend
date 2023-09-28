@@ -214,19 +214,7 @@ const DraftRecap = () =>  {
                         
                             />
                         }>
-                        <VictoryLegend 
-                            x={0} 
-                            y={0}  // Adjust this value as needed to position the legend below the chart
-                            orientation="horizontal"
-                            gutter={20}
-                            style={{ border: { stroke: "black" }, title: {fontSize: 10 } }}
-                            data={teams.map((team)=>
-                                    {
-                                        return({"name":team,"symbol":{"fill":colors[teams.indexOf(team)],"width":8,"height":8}})
-                                    }
-                                )
-                            }
-                        />
+                        
                         <VictoryAxis lsabel={"round drafted"}/>
                         <VictoryAxis 
                         
@@ -286,6 +274,28 @@ const DraftRecap = () =>  {
                             >
                         </VictoryLine>}
                     </VictoryChart>
+                    <VictoryLegend 
+                            title={"Teams"}
+                            centerTitle
+                            x={10} 
+                            y={0}  // Adjust this value as needed to position the legend below the chart
+                            orientation="horizontal"
+                            gutter={20}
+                            itemsPerRow={2}
+                            symbolSpacer={6}
+                            style={{
+                                margin:"auto", 
+                                title: { fontSize: 10 }, 
+                                labels: { fontSize: 14 },  // Adjust the font size here
+                                data: { strokeWidth: 0.5 } // Adjust the stroke width here
+                            }}
+                            data={teams.map((team)=>
+                                {
+                                    return({"name":team,"symbol":{"fill":colors[teams.indexOf(team)],"width":8,"height":8}})
+                                }
+                            )
+                        }
+                        />
                 </div>
             }
             {!checked && data &&
@@ -361,24 +371,25 @@ const DraftRecap = () =>  {
                         </VictoryLine>}
                     </VictoryChart>
                     <VictoryLegend 
-                        padding={{top:5}}
-                            x={0} 
-                            y={0}  // Adjust this value as needed to position the legend below the chart
-                            orientation="horizontal"
-                            gutter={20}
-                            itemsPerRow={2}
-                            symbolSpacer={6}
-                            style={{
-                                margin:"auto", 
-                                title: { fontSize: 10 }, 
-                                labels: { fontSize: 11 },  // Adjust the font size here
-                                data: { strokeWidth: 0.5 } // Adjust the stroke width here
-                            }}
-                            data={teams.map((team)=>
-                                {
-                                    return({"name":team,"symbol":{"fill":colors[teams.indexOf(team)],"width":8,"height":8}})
-                                }
-                            )
+                    title={"Teams"}
+                    centerTitle
+                        x={10} 
+                        y={0}  // Adjust this value as needed to position the legend below the chart
+                        orientation="horizontal"
+                        gutter={20}
+                        itemsPerRow={2}
+                        symbolSpacer={6}
+                        style={{
+                            margin:"auto", 
+                            title: { fontSize: 10 }, 
+                            labels: { fontSize: 14 },  // Adjust the font size here
+                            data: { strokeWidth: 0.5 } // Adjust the stroke width here
+                        }}
+                        data={teams.map((team)=>
+                            {
+                                return({"name":team,"symbol":{"fill":colors[teams.indexOf(team)],"width":8,"height":8}})
+                            }
+                        )
                         }
                         />
             </div>
