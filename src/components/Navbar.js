@@ -4,6 +4,7 @@ import { React,useState } from 'react';
 import Matchups from './Matchups';
 import LandingPage from './LandingPage';
 import Leaderboard from './Leaderboard';
+import DraftRecap from './DraftRecap';
 
 function Navbar(){
     // const [darkMode, setDarkMode] = useState(false);
@@ -58,6 +59,7 @@ function Navbar(){
                         <Route path="/" exact element={<LandingPage/>} />
                         <Route path="/matchups" exact element={<Matchups/>} />
                         <Route path="/leaderboard" exact element={<Leaderboard></Leaderboard>} />
+                        <Route path="/draft" exact element={<DraftRecap></DraftRecap>} />
                     </Routes>
                 </div>
             
