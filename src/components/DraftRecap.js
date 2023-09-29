@@ -146,7 +146,7 @@ const DraftRecap = () =>  {
     }
 
     return(
-        <div>
+        <div style={{"overflow":"visible"}}>
             <div className="flex flex-row justify-between mt-2 px-4">
                 <div className="flex flex-col gap-2 md:flex-row w-full">
                     <div id="menus" className="flex flex-row gap-1">
@@ -177,14 +177,16 @@ const DraftRecap = () =>  {
                         </div>
                     </div>
                     <div className="flex flex-row gap-1 justify-between">
-                        <div onClick={()=>{setTeamsFilter(teams); setMenuText("select team")}} className="bg-red-600 rounded p-1 w-fit text-white px-2 cursor-pointer">
+                        <div onClick={()=>{setTeamsFilter(teams); setMenuText("select team");}} className="bg-red-600 rounded p-1 w-fit text-white px-2 cursor-pointer">
                             reset
                         </div>
                         <div className="flex items-center space-x-2 px-4 mt-2">
                             <input 
                             checked={checked}
                             onChange={e => setIsChecked(e.target.checked)}
-                            type="checkbox" id="exclude-qbs" className="form-checkbox h-5 w-5 text-green-500" />
+                            type="checkbox" 
+                            id="exclude-qbs" 
+                            className="form-checkbox h-5 w-5 text-green-500" />
                             <label id="exclude-qbs" className="text-gray-700 cursor-pointer">Exclude QBs</label>
                         </div>
                     </div>
@@ -193,6 +195,7 @@ const DraftRecap = () =>  {
 
             {checked && data &&
                 <div className="px-4 mx-auto"> 
+                <span>test</span>
                     <VictoryChart                      
                         width={500}
                         standalone={true}
@@ -200,15 +203,19 @@ const DraftRecap = () =>  {
                             <VictoryVoronoiContainer
                             labels={({ datum }) => {
                                 if (datum.showLabel !== false) {  // Add your condition here
-                                    return `${datum.player.name}\n Points Scored: ${datum.y}  \n Round Selected ${datum.x}`;
+                                    return `${datum.player.name}\n Points Scored: ${datum.y}  \n Round Selected: ${datum.x}`;
                                 }
                                 return null;
-                                }}
+                            }}
                             labelComponent={
                                 <VictoryTooltip
-                                    cornerRadius={0}
-                                    padding={0}
-                                    style={{fontSize: 10, margin:0}}
+                                    constrainToVisibleArea
+                                    cornerRadius={(window.innerWidth <= 480) ? 5 : 0}  // Conditional corner radius
+                                    padding={(window.innerWidth <= 480) ? 5 : 0}  // Conditional padding
+                                    style={{
+                                        fontSize: (window.innerWidth <= 480) ? "15px" : "8px",  // Conditional font size
+                                        margin:0
+                                    }}
                                 />
                             }
                         
@@ -299,24 +306,31 @@ const DraftRecap = () =>  {
                 </div>
             }
             {!checked && data &&
-                <div className="px-4 mx-auto"> 
+                <div className="px-4 mx-auto" style={{"overflow":"visible"}}> 
                         <VictoryChart  
                             width={500}
                             standalone={true}
                             containerComponent = {
                                 <VictoryVoronoiContainer
-                                    labels={({ datum }) => {
-                                        if (datum.showLabel !== false) {  // Add your condition here
-                                            return `${datum.player.name}\n Points Scored: ${datum.y}  \n Round Selected ${datum.x}`;
-                                        }
-                                        return null;
-                                        }}
-                                    labelComponent={
-                                        <VictoryTooltip
-                                            cornerRadius={0}
-                                        />
-                                    }   
+                            labels={({ datum }) => {
+                                if (datum.showLabel !== false) {  // Add your condition here
+                                    return `${datum.player.name}\n Points Scored: ${datum.y}  \n Round Selected: ${datum.x}`;
+                                }
+                                return null;
+                            }}
+                            labelComponent={
+                                <VictoryTooltip
+                                    constrainToVisibleArea
+                                    cornerRadius={(window.innerWidth <= 480) ? 5 : 0}  // Conditional corner radius
+                                    padding={(window.innerWidth <= 480) ? 5 : 0}  // Conditional padding
+                                    style={{
+                                        fontSize: (window.innerWidth <= 480) ? "15px" : "8px",  // Conditional font size
+                                        margin:0
+                                    }}
                                 />
+                            }
+                        
+                            />
                                 }>
                        
                         <VictoryAxis lsabel={"round drafted"}/>

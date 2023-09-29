@@ -48,6 +48,7 @@ function Navbar(){
                             {/* Link items */}
                             <div className={`${menu ? 'flex flex-col' : 'hidden'} w-full md:w-auto md:flex md:items-right md:space-x-2 mt-2 md:mt-0`}>
                                 <Link onClick={()=>setMenu(false)} to="/matchups" className="block hover:bg-green-700 px-2 py-1 rounded transform active:scale-95 font-bold whitespace-nowrap">Historical Matchups</Link>
+                                <Link onClick={()=>setMenu(false)} to="/draft" className="block hover:bg-green-700 px-2 py-1 rounded transform active:scale-95 font-bold whitespace-nowrap">Draft</Link>
                                 <Link onClick={()=>setMenu(false)} to="/leaderboard" className="block md:mt-0 hover:bg-green-700 px-2 py-1 rounded transform active:scale-95 font-bold">Leaderboard</Link>
                             </div>
                         </div>
