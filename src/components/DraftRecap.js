@@ -195,7 +195,6 @@ const DraftRecap = () =>  {
 
             {checked && data &&
                 <div className="px-4 mx-auto"> 
-                <span>test</span>
                     <VictoryChart                      
                         width={500}
                         standalone={true}
