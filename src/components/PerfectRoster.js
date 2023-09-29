@@ -1,4 +1,4 @@
-import { getLOGO } from "../fantasyService";
+import { getHeadshot, getLOGO } from "../fantasyService";
 
 function PerfectRoster(props){
     console.log(props)
@@ -45,7 +45,7 @@ function PerfectRoster(props){
                 if(key === "RB" || key === "WR")
                 {
                    return props["data"][key].map((data)=>{
-                    return( <div key={key + data[4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center py-1" style={{ gridTemplateColumns: '20% 45% 30%' }}>
+                    return( <div key={key + data[4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center py-1" style={{ gridTemplateColumns: '15% 50% 30%' }}>
                             
             
                     <div className="flex flex-row gap-2 items-top justify-between">
@@ -53,7 +53,7 @@ function PerfectRoster(props){
                     </div>
                     <div className="flex flex-row justify-between">
                         <div className="flex flex-col ">
-                            <p className="text-sm sm:text-base whitespace-nowrap truncate">{firstNameTruncate(data[0])}</p>
+                            <p className="text-sm sm:text-base whitespace-nowrap truncate flex flex-row gap-1"><img alt={props["data"][key][0][4]} style={{"width":'25px'}} src={getHeadshot(data[7])}></img>{firstNameTruncate(data[0])}</p>
                             <div className="flex flex-row items-center gap-1 justify-start bg-green-200 rounded-full px-1 w-fit">
                                 <img alt={data[4]} style={{"width":"15px"}} src={getLOGO(data[4])}></img>
                                 <p className="text-xs font-bold text-left">{data[4]}</p>
@@ -88,7 +88,7 @@ function PerfectRoster(props){
                 else if(key !== "FLEX")
                 {
                     return(
-                        <div key = {key + props["data"][key][0][4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center py-1" style={{ gridTemplateColumns: '20% 45% 30%' }}>
+                        <div key = {key + props["data"][key][0][4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center py-1" style={{ gridTemplateColumns: '15% 50% 30%' }}>
                             
                     
                             <div className="flex flex-row gap-2 justify-between items-top">
@@ -99,7 +99,7 @@ function PerfectRoster(props){
                             
                             <div className="flex flex-row justify-between">
                                 <div>
-                                    <p className="text-sm sm:text-base whitespace-nowrap text-left">{firstNameTruncate(props["data"][key][0][0])}</p>
+                                    {key !== "D/ST" ? <p className="text-sm sm:text-base whitespace-nowrap text-left flex flex-row gap-1"><img alt={props["data"][key][0][4]} style={{"width":'25px'}} src={getHeadshot(props["data"][key][0][7])}></img>{firstNameTruncate(props["data"][key][0][0])}</p>: <p className="text-sm sm:text-base whitespace-nowrap text-left flex flex-row gap-1">{firstNameTruncate(props["data"][key][0][0])}</p>}
                                     <div className="flex flex-row items-center gap-1 justify-start bg-green-200 rounded-full px-1 w-fit">
                                         <img alt={props["data"][key][0][4]} style={{"width":"15px"}} src={getLOGO(props["data"][key][0][4])}></img>
                                         
@@ -136,7 +136,7 @@ function PerfectRoster(props){
                 else 
                 {
                     return(
-                        <div key={key+props["data"][4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center py-1" style={{ gridTemplateColumns: '20% 45% 30%' }}>
+                        <div key={key+props["data"][4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center py-1" style={{ gridTemplateColumns: '15% 50% 30%' }}>
                                 
                 
                         <div className="flex flex-row gap-2 justify-between">
@@ -146,7 +146,7 @@ function PerfectRoster(props){
                         
                         <div className="flex flex-row justify-between">
                             <div>
-                                <p className="text-sm sm:text-base text-left whitespace-nowrap">{firstNameTruncate(props["data"][key][0])}</p>
+                                <p className="text-sm sm:text-base text-left whitespace-nowrap flex flex-row gap-1"><img alt={props["data"][key][0][4]} style={{"width":'25px'}} src={getHeadshot(props["data"][key][7])}></img>{firstNameTruncate(props["data"][key][0])}</p>
                                 <div className="flex flex-row items-center gap-1 justify-start bg-green-200 rounded-full px-1 w-fit">
                                     <img alt={props["data"][key][4]} style={{"width":"15px"}} src={getLOGO(props["data"][key][4])}></img>
                                     <p className="text-xs font-bold text-left">{props["data"][key][4]}</p>
