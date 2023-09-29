@@ -10,6 +10,7 @@ import Loading from '../assets/3-dots-move.svg'
 
 function WeeklyBreakdown(){
     const [data,setData] = useState(null);
+    const [boxScores,setboxScores] = useState(null);
     
     function perfectTeamRoster(team)
     {
@@ -73,11 +74,14 @@ function WeeklyBreakdown(){
        
     }
 
+   
     useEffect(() => {
         function getData(){
             getLTS()
     
             .then(responseData => {
+                let allMatchups = []
+                
                 for(let item in responseData["matchups"])
                 {
                     let homeProj = 0;
@@ -101,10 +105,23 @@ function WeeklyBreakdown(){
     
                     responseData["matchups"][item]["away_perfect_score"] = perfectTeamRoster(responseData["matchups"][item]["away_team_lineup"])
                     responseData["matchups"][item]["home_perfect_score"] = perfectTeamRoster(responseData["matchups"][item]["home_team_lineup"])
-    
+
+                    allMatchups.push({
+                        "score":responseData["matchups"][item]["away_score"],
+                        "perfect_score":responseData["matchups"][item]["away_perfect_score"],
+                        "team_logo":responseData["matchups"][item]["away_team_logo"],
+                        "team_name":responseData["matchups"][item]["away_team"]
+                    })
+                    allMatchups.push({
+                        "score":responseData["matchups"][item]["home_score"],
+                        "perfect_score":responseData["matchups"][item]["home_perfect_score"],
+                        "team_logo":responseData["matchups"][item]["home_team_logo"],
+                        "team_name":responseData["matchups"][item]["home_team"]
+                    })
                 }
+
+                setboxScores(allMatchups);
                 setData(responseData);
-    
             })
             .catch(error => {
                 console.error("Failed to get matchups:", error);
@@ -199,49 +216,36 @@ function WeeklyBreakdown(){
                         <span className='font-bold'>Team Performances</span>
                         <span className='underline font-light text-xs'>actual vs max</span>
                     </div>
-                
-                        { data ? data['matchups']
+                        { boxScores ? boxScores
+                        .sort((a,b) =>{
+                            return (b["score"]/b["perfect_score"]) - (a["score"]/a["perfect_score"])
+                        })
                          .map((matchup) =>{
                             return(
-                                <div key={matchup['home_score']}>
+                                <div>
+                                    <div key={matchup['team_name']}>
 
                                 {/* <img src={matchup['away_team']}></img> */}
-                                <div className='flex flex-row w-full justify-between items-center'>
-                                    <div>
-                                        <div className='flex flex-row gap-2 items-center mb-1'>
-                                            <img alt={"pfp"} style={{"height":"20px","width":"20px"}} className='rounded-full' src={matchup["away_team_logo"]} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}/>
-                                            <p className='font-bold text-base'>{matchup['away_team']}</p>
+                                    <div className='flex flex-row w-full justify-between items-center'>
+                                        <div>
+                                            <div className='flex flex-row gap-2 items-center mb-1'>
+                                                <img alt={"pfp"} style={{"height":"20px","width":"20px"}} className='rounded-full' src={matchup["team_logo"]} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}/>
+                                                <p className='font-bold text-base'>{matchup['team_name']}</p>
+                                            </div>
+                                            <div className='flex font-light flex-row gap-2 bg-green-200 w-fit rounded-full px-1 items-center mb-1'>
+                                                <span className='font-bold text-sm'>{matchup['score'].toFixed(2)}</span>
+                                                <span className='font-normal text-xs'>{matchup['perfect_score'].toFixed(2)}</span>
+                                            </div> 
                                         </div>
-                                         <div className='flex font-light flex-row gap-2 bg-green-200 w-fit rounded-full px-1 items-center mb-1'>
-                                            <span className='font-bold text-sm'>{matchup['away_score'].toFixed(2)}</span>
-                                            <span className='font-normal text-xs'>{matchup['away_perfect_score'].toFixed(2)}</span>
+                                        <div className='flex flex-row gap-2 justify-between'>
+                                            <span className='text-sm text-green-700'>{(matchup['score']/matchup['perfect_score'] * 100).toFixed(0) }%</span>
                                         </div> 
                                     </div>
-                                    <div className='flex flex-row gap-2 justify-between'>
-                                        <span className='text-sm text-green-700'>{(matchup['away_score']/matchup['away_perfect_score'] * 100).toFixed(0) }%</span>
-                                    </div> 
-                                </div>
 
-                                <PercentageBar dividend={matchup['away_score']} divisor={matchup['away_perfect_score']}></PercentageBar>
+                                    <PercentageBar dividend={matchup['score']} divisor={matchup['perfect_score']}></PercentageBar>
                                 
-                                <div className='flex flex-row w-full justify-between items-center'>
-                                    <div>
-                                        <div className='flex flex-row gap-2 items-center'>
-                                                <img alt='pfp' style={{"height":"20px","width":"20px"}} className='rounded-full' src={matchup["home_team_logo"]} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}/>
-                                                <p className='font-bold text-base'>{matchup['home_team']}</p>
-                                        </div>
-                                        <div className='flex flex-row gap-2 bg-green-200 items-center w-fit rounded-full px-1 mb-1'>
-                                            <span className='font-bold text-sm'>{matchup['home_score'].toFixed(2)}</span>
-                                            <span className='font-light text-xs'>{matchup['home_perfect_score'].toFixed(2)}</span>
-                                        </div> 
                                     </div>
-                                    <div className='flex flex-row gap-2 justify-between'>
-                                        <span className='text-sm text-green-700'>{(matchup['home_score']/matchup['home_perfect_score'] * 100).toFixed(0) }%</span>
-                                    </div> 
-                                </div>
-                                
-                                <PercentageBar dividend={matchup['home_score']} divisor={matchup['home_perfect_score']}></PercentageBar>
-                                </div>
+                                </div>  
                             );
                         }) : null }
                 </div>
