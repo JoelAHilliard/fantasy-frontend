@@ -1,5 +1,4 @@
-import { getHeadshot } from "../fantasyService";
-
+import { getHeadshot, getLOGO } from "../fantasyService";
 function TeamRoster(players){
     return(
         <div className="">
@@ -14,16 +13,19 @@ function TeamRoster(players){
             <img src={getHeadshot(player.playerId)} alt={player.name} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }} className="w-full h-48 object-cover mb-4"/>
             
             <div className="p-4">
-              <h2 className="text-xl font-bold mb-2">{player.position} - {player.name}</h2>
-              <p>{player.proTeam}</p>
-              <p>Total Points: {player.total_points}</p>
-              <p>Projected Total Points: {player.projected_total_points}</p>
-              <p>Ownership: {player.percent_owned.toFixed(2)}%</p>
-              <p>Started: {player.percent_started.toFixed(2)}%</p>
-              <p>Position Rank: {player.pos_rank}</p>
+              <h2 className="text-xl font-bold mb-2">{player.name}</h2>
+              <div className="flex flex-row items-center gap-1 justify-start bg-green-200 rounded-full px-1 w-fit">
+                <img alt={player.proTeam} style={{"width":"15px"}} src={getLOGO(player.proTeam)}></img>
+                <p className="text-sm font-bold text-right">{player.proTeam}</p>
+              </div>   
+              <p>Total Points: <span className="font-bold">{player.total_points}</span></p>
+              <p>Projected Total Points: <span className="font-bold">{player.projected_total_points}</span></p>
+              <p>Ownership: <span className="font-bold">{player.percent_owned.toFixed(2)}%</span></p>
+              <p>Started: <span className="font-bold">{player.percent_started.toFixed(2)}%</span></p>
+              <p>Position Rank: <span className="font-bold">{player.pos_rank}</span></p>
               <p className="mt-2 flex gap-2">
                 Injury Status: 
-                <span className={player.injured ? 'text-red-500' : 'text-green-500'}>
+                <span className={player.injured ? 'text-red-500 font-bold' : 'text-green-500 font-bold'}>
                   {player.injuryStatus}
                 </span>
               </p>
