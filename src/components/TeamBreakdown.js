@@ -5,10 +5,12 @@ function TeamBreakdown({team}) {
  
 console.log(team)
   return (
-    <div>
-        <div class="p-2">
+    <div className="mx-8 mt-3 rounded shadow-lg shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+        <div class=" p-2">
             <div class="flex items-center space-x-4">
-                <img src={team["logo_url"]} alt="Team Logo" class="w-24 h-24 rounded-full border border-black"/>
+                <img src={team["logo_url"]} alt="Team Logo" class="w-24 h-24 rounded-full border border-black" 
+                    onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}
+                />
                 <div>
                     {team["streak_type"] === 'WIN' ? 
                         <div>
