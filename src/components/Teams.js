@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTeams } from "../fantasyService";
 import TeamBreakdown from "./TeamBreakdown";
-import { FaSortDown } from 'react-icons/fa';
 
 function Teams(){
     
@@ -41,27 +40,25 @@ function Teams(){
    
 
     return(
-        team ? <div className="px-8 py-2">
-             <div className='flex flex-row gap-5 align-center justify-between '>
-                    <button onClick={() => setIsOpen(!isOpen)} className="inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-green-700 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 whitespace-nowrap">
-                        {team["team_name"]}
-                        <FaSortDown></FaSortDown>
-                    </button>
-                    {/* <h1 className="text-right font-bold text-xs text-base sm:text-xs md:text-xl lg:text-2xl">{category}</h1> */}
-                </div>
-            {isOpen && (
-            <div  className="flex flex-col w-full rounded-md shadow-lg bg-green-50 ring-1 ring-black ring-opacity-5 z-100">
-                <div className="flex flex-col mt-1" style={{'position':'absolute'}} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+        team ? 
+        <div className="py-2">
+             
+            <div className="flex flex-row w-full rounded-md bg-green-50 ring-black ring-opacity-5 w-full">
+                <div className="flex flex-row mt-1 gap-2 overflow-y-scroll"  role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                     {teams && Object.keys(teams).map(team => (
-                        <div key={team} onClick={()=>{setTeam(teams[team]); setIsOpen(!isOpen)}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">{teams[team]["team_name"]}</div>
+                        <div style={{"minWidth":"120px"}} key={team} onClick={()=>{setTeam(teams[team]); setIsOpen(!isOpen)}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-white border border-green-600 text-center cursor-pointer whitespace-nowrap rounded-full min-w-40 overflow-x-hidden" role="menuitem">
+                            <img
+                            alt="pfp"
+                            onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}
+                            style={{'height':'20px', 'width':'20px'}} className="rounded-full" src={teams[team]["logo_url"]}/>
+                            {teams[team]["team_name"]}
+                        </div>
                     ))}
                 </div>
             </div>
-        )}
         
-        <TeamBreakdown team={team}></TeamBreakdown>
+            <TeamBreakdown team={team}></TeamBreakdown>
         
-
         </div>
         :
         <p className="p-8">loading</p>
