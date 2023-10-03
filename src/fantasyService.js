@@ -1,5 +1,5 @@
-// const apiURL = "https://nssyfantasyapi-production.up.railway.app/"
-const apiURL = "http://localhost:30030/"
+const apiURL = "https://nssyfantasyapi-production.up.railway.app/"
+// const apiURL = "http://localhost:30030/"
 
 
 export async function getMatchups(year)
