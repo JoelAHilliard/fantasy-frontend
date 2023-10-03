@@ -49,12 +49,12 @@ console.log(team)
                 </div>
                 <div class="p-4 bg-white rounded shadow border-b border-green-300">
                     <p class="font-bold">points against</p>
-                    <p>{team['points_against']}</p>
+                    <p>{team['points_against'].toFixed(2)}</p>
                 </div>
 
                 <div class="p-4 bg-white rounded shadow border-b border-green-300">
                     <p class="font-bold">points for</p>
-                    <p>{team['points_for']}</p>
+                    <p>{team['points_for'].toFixed(2)}</p>
                 </div>
                 <div class="p-4 bg-white rounded shadow border-b border-green-300">
                     <p class="font-bold">standings rank</p>
