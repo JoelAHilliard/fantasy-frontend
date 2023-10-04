@@ -1,10 +1,11 @@
-const apiURL = "https://nssyfantasyapi-production.up.railway.app/"
-// const apiURL = "http://localhost:30030/"
+// const apiURL = "https://nssyfantasyapi-production.up.railway.app/"
+const apiURL = "http://localhost:30030/"
 
-
+const LEAGUEID = process.env.REACT_APP_LEAGUEID || 30030;
+console.log(process.env)
 export async function getMatchups(year)
 {
-    const response = await fetch(apiURL+"matchups?year="+year);
+    const response = await fetch(apiURL+"matchups?year="+year+"&league_id="+LEAGUEID);
 
     const matchupData = response.json();
 
@@ -12,7 +13,7 @@ export async function getMatchups(year)
 }
 export async function getTeams()
 {
-    const response = await fetch(apiURL+"getTeams");
+    const response = await fetch(apiURL+"getTeams?league_id="+LEAGUEID);
 
     const matchupData = response.json();
 
@@ -20,7 +21,7 @@ export async function getTeams()
 }
 export async function getLeaderboard()
 {
-    const response = await fetch(apiURL+"leaderboard");
+    const response = await fetch(apiURL+"leaderboard?league_id="+LEAGUEID);
 
     const leaderboard = response.json();
 
@@ -28,7 +29,7 @@ export async function getLeaderboard()
 }
 export async function getLTS()
 {
-    const response = await fetch(apiURL+"lts");
+    const response = await fetch(apiURL+"lts?league_id="+LEAGUEID);
 
     const leaderboard = response.json();
 
@@ -37,7 +38,7 @@ export async function getLTS()
 
 export async function getDraftData(year)
 {
-    const response = await fetch(apiURL+"getDraftData?year="+year);
+    const response = await fetch(apiURL+"getDraftData?year="+year+"?league_id="+LEAGUEID);
 
     const leaderboard = response.json();
 
