@@ -15,18 +15,19 @@ return (
     
         <ol className="ranking-list text-sm ml-4" >
         
-            <li>Wes</li>
-            <li>Joel</li>
             <li>Hunter</li>
-            <li>Mad Dawg</li>
-            <li>Phaucette</li>
+            <li>Faucette</li>
+            <li>Joel</li>
+            <li>Wes</li>
             <li>Colin</li>
-            <li>Eric</li>
             <li>Hoff</li>
+            <li>Eric</li>
+            <li>Ethan</li>
             <li>Jacob</li>
+            <li>Steven</li>
             <li>Jayrod</li>
             <li>Calvin</li>
-            <li>Steven</li>
+            
         </ol>
     </div>
   
