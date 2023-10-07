@@ -14,7 +14,7 @@ function Leaderboard(){
     const [category,setCategory] = useState("select category");
 
     //,"playoff_wins","playoff_losses","championship_appearances","playoff_appearances","championship_wins"
-    const categories = ["wins","losses","trades","drops","avg_points_per_year","acquisitions","points_against_alltime","points_for_alltime"]
+    const categories = ["wins","losses","trades","drops","avg_points_per_year","acquisitions","points_against_alltime","points_for_alltime","playoff_wins","playoff_losses","championship_wins","championship_losses"]
 
     function getData(category){
         if(data){
@@ -30,9 +30,8 @@ function Leaderboard(){
         getLeaderboard()
 
         .then(responseData => {
-
+            console.log(responseData)
             for (const key in responseData[0]) {
-                
                 if(key !== "_id"){
                     responseData[0][key]['avg_points_per_year'] = responseData[0][key]['points_for_alltime']/responseData[0][key]['years_played']
                 }
@@ -40,7 +39,7 @@ function Leaderboard(){
 
 
             setData(responseData[0]);
-
+            console.log(responseData)
             setLoading(false);
         })
         .catch(error => {
@@ -95,20 +94,32 @@ function Leaderboard(){
                     
                     return (
                         (key !== '_id' && key !== 'None' && player[category] !== undefined) ?
-                            <div key={key} className="ml-4 mr-4 mt-2 py-2 grid grid-cols-2 gap-2 text-center border-b-4 bg-gray-200 border-green-600 rounded-lg px-3 text-xs text-base sm:text-lg md:text-lg lg:text-2xl shadow-lg">
-                                
-                                <div className="flex flex-row justify-start ml-5 gap-2"> 
-                                    <p className="self-center">{index + 1}. </p>
-                                    <p className="self-center whitespace-nowrap">{player['team_name']}</p>
-                                    <img className="h-6 w-6 rounded-full sm:w-8 sm:h-8 self-center"
-                                     alt="url"
-                                     src={player['logo_url']? player['logo_url']:"https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG"}
-                                     onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}/>
+                        <div key={key} className="flex items-center p-2 bg-gray-200 border-b-4 border-green-600 rounded-lg shadow-lg gap-2 mb-2">
+                            <div className="flex items-center gap-2">
+                                <p className="text-lg sm:text-lg lg:text-xl">{index + 1}.</p>
+                                <img
+                                    className="w-10 h-10 rounded-full"
+                                    alt="Team Logo"
+                                    src={player['logo_url'] || "https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG"}
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG";
+                                    }}
+                                />
+                                <div className="flex flex-col text-left">
+                                    <p className="text-sm sm:text-base md:text-lg lg:text-xl">{player['team_name']}</p>
+                                    <span className="text-xs text-gray-600 underline bg-green-200 w-fit rounded-full px-1">years played: {player['years_played']}</span>
                                 </div>
-                                {isNumber && (category === "points_for_alltime" || category === "points_against_alltime" || category === "avg_points_per_year") ?
-                                <p className="self-center">{player[category].toFixed(2)}</p>
-                                : <p className="self-center">{player[category]}</p>}
                             </div>
+                        
+                            <p className="text-sm sm:text-base md:text-lg lg:text-xl self-center ml-auto mr-1 font-bold sm:mr-5">
+                                {isNumber && ["points_for_alltime", "points_against_alltime", "avg_points_per_year"].includes(category) 
+                                    ? player[category].toFixed(2) 
+                                    : player[category]
+                                }
+                            </p>
+                        </div>
+                    
                             :
                             null
                         );
