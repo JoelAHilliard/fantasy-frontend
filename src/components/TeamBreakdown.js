@@ -123,7 +123,7 @@ return (
                 </div>
                 <div className="p-4 bg-white rounded shadow">
                     <p className="text-sm font-bold flex flex-row justify-between">points for
-                        <span className="text-xs flex items-center underline">{team["historical_stats"]["points_againstRank"]}</span>
+                        <span className="text-xs flex items-center underline">{team["historical_stats"]["points_forRank"]}</span>
                     </p>
                     <p>{team["historical_stats"]["points_for"].toFixed(2)}</p>
                 </div>
