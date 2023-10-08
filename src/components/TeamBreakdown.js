@@ -3,8 +3,8 @@ import TeamRoster from "./TeamRoster";
 function TeamBreakdown({team}) {
 
 return (
-    <div className="mx-8 mt-3 rounded shadow-lg shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
-        <div className=" p-2">
+    <div className="mx-2 mt-3 rounded shadow-lg shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+        <div className="p-2">
             <div className="flex items-center space-x-4">
                 <img src={team["logo_url"]} alt="Team Logo" className="w-24 h-24 rounded-full border border-black" 
                     onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}
