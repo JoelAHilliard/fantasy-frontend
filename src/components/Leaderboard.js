@@ -30,7 +30,6 @@ function Leaderboard(){
         getLeaderboard()
 
         .then(responseData => {
-            console.log(responseData)
             for (const key in responseData[0]) {
                 if(key !== "_id"){
                     responseData[0][key]['avg_points_per_year'] = responseData[0][key]['points_for_alltime']/responseData[0][key]['years_played']
@@ -39,7 +38,6 @@ function Leaderboard(){
 
 
             setData(responseData[0]);
-            console.log(responseData)
             setLoading(false);
         })
         .catch(error => {
