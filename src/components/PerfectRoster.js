@@ -1,7 +1,6 @@
 import { getHeadshot, getLOGO } from "../fantasyService";
 
 function PerfectRoster(props){
-    console.log(props)
 
     const order = ["QB","RB","WR","TE","FLEX","D/ST","K"]
     let total = 0;

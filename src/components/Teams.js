@@ -13,22 +13,10 @@ function Teams(){
 
     useEffect(() => {
         function getData(){
-            let teams_data = {};
             getTeams()
             .then(responseData => {
-                for (const item in responseData)
-                {
-                    if(responseData[item]["year"] === 2023)
-                    {
-                        for(const team in responseData[item]["teams"])
-                        {
-                            teams_data[responseData[item]["teams"][team]["team_name"]] = responseData[item]["teams"][team]
-                        }
-                    }
-                }
-                setTeams(teams_data);
-                let team_names = Object.keys(teams_data)
-                setTeam(teams_data[team_names[1]])
+                setTeams(responseData);
+                setTeam(responseData[0])
             })
             .catch(error => {
                 console.error("Failed to get matchups:", error);
@@ -40,7 +28,7 @@ function Teams(){
    
 
     return(
-        team ? 
+        teams ? 
         <div className="py-2">
              
             <div className="flex flex-row w-full rounded-md bg-green-50 ring-black ring-opacity-5 w-full">

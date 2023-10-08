@@ -2,120 +2,154 @@ import TeamRoster from "./TeamRoster";
 
 function TeamBreakdown({team}) {
 
- 
-console.log(team)
-  return (
+return (
     <div className="mx-8 mt-3 rounded shadow-lg shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
-        <div class=" p-2">
-            <div class="flex items-center space-x-4">
-                <img src={team["logo_url"]} alt="Team Logo" class="w-24 h-24 rounded-full border border-black" 
+        <div className=" p-2">
+            <div className="flex items-center space-x-4">
+                <img src={team["logo_url"]} alt="Team Logo" className="w-24 h-24 rounded-full border border-black" 
                     onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}
                 />
                 <div>
                     {team["streak_type"] === 'WIN' ? 
                         <div>
-                            <span class="text-2xl font-bold flex flex-col w-fit gap-2">{team["team_name"]} <span className="text-xl bg-green-200 text-green-700 rounded-full px-2 w-fit">{team["streak_type"]} {team["streak_length"]}</span></span>
-                            <p class="text-lg">division: {team["division_name"]}</p>
-                            <p class="text-lg">{team["team_abbrev"]}</p>
+                            <span className="text-2xl font-bold flex flex-col w-fit gap-2">{team["team_name"]} <span className="text-xl bg-green-200 text-green-700 rounded-full px-2 w-fit">{team["streak_type"]} {team["streak_length"]}</span></span>
+                            <p className="text-lg">division: {team["division_name"]}</p>
+                            <p className="text-lg">{team["team_abbrev"]}</p>
                         </div>
                     :
                     <div>
-                        <span class="text-2xl font-bold flex flex-col w-fit gap-2">{team["team_name"]} <span className="text-xl bg-red-200 text-red-700 rounded-full px-2 w-fit">{team["streak_type"]} {team["streak_length"]}</span></span>
-                        <p class="text-lg">division: {team["division_name"]}</p>
-                        <p class="text-lg">{team["team_abbrev"]}</p>
+                        <span className="text-2xl font-bold flex flex-col w-fit gap-2">{team["team_name"]} <span className="text-xl bg-red-200 text-red-700 rounded-full px-2 w-fit">{team["streak_type"]} {team["streak_length"]}</span></span>
+                        <p className="text-lg">division: {team["division_name"]}</p>
+                        <p className="text-lg">{team["team_abbrev"]}</p>
                     </div>
                 }
                 </div>
             </div>
         </div>
 
-        <div class="p-2" id="current+stats">
-            <h2 class="text-2xl font-bold mb-4 bg-green-200 rounded w-fit px-2">Current Year Stats</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="p-4 bg-white rounded shadow border-b border-green-300">
-                    <p class="font-bold">wins</p>
+        <div className="p-2" id="current+stats">
+            <h2 className="text-2xl font-bold mb-4 bg-green-200 rounded w-fit px-2">Current Year Stats</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="p-4 bg-white rounded shadow border-b border-green-300">
+                    <p className="font-bold flex flex-row justify-between">wins
+                        <span className="font-light underline text-xs flex justify-center items-center">{team['winsRank']}</span>
+                    </p>
                     <p>{team['wins']}</p>
                 </div>
-                <div class="p-4 bg-white rounded shadow border-b border-green-300">
-                    <p class="font-bold">losses</p>
+                <div className="p-4 bg-white rounded shadow border-b border-green-300">
+                    <p className="font-bold flex flex-row justify-between">losses 
+                        <span className="font-light underline flex justify-center items-center text-xs">{team['lossesRank']}</span>
+                    </p>
                     <p>{team['losses']}</p>
                 </div>
-                <div class="p-4 bg-white rounded shadow border-b border-green-300">
-                    <p class="font-bold">projected draft rank</p>
-                    <p>{team['draft_projected_rank']}</p>
+                <div className="p-4 bg-white rounded shadow border-b border-green-300">
+                    <p className="font-bold flex flex-row justify-between">projected draft rank
+                    </p>
+                    <p>{team['draft_projected_rank']}
+                    </p>
                 </div>
                
-                <div class="p-4 bg-white rounded shadow border-b border-green-300">
-                    <p class="font-bold">playoff percent</p>
+                <div className="p-4 bg-white rounded shadow border-b border-green-300">
+                    <p className="font-bold flex flex-row justify-between">playoff percent
+                        <span className="font-light underline flex justify-center items-center text-xs">{team['playoff_pctRank']}</span>
+                    </p>
                     <p>{team['playoff_pct'].toFixed(2)}</p>
                 </div>
-                <div class="p-4 bg-white rounded shadow border-b border-green-300">
-                    <p class="font-bold">points against</p>
+                <div className="p-4 bg-white rounded shadow border-b border-green-300">
+                    <p className="font-bold flex flex-row justify-between">points against
+                        <span className="font-light underline flex justify-center items-center text-xs">{team['points_againstRank']}</span>
+                    </p>
                     <p>{team['points_against'].toFixed(2)}</p>
                 </div>
 
-                <div class="p-4 bg-white rounded shadow border-b border-green-300">
-                    <p class="font-bold">points for</p>
+                <div className="p-4 bg-white rounded shadow border-b border-green-300">
+                    <p className="font-bold flex flex-row justify-between">points for
+                        <span className="font-light underline flex justify-center items-center text-xs">{team['points_forRank']}</span>
+                    </p>
                     <p>{team['points_for'].toFixed(2)}</p>
                 </div>
-                <div class="p-4 bg-white rounded shadow border-b border-green-300">
-                    <p class="font-bold">standings rank</p>
+                <div className="p-4 bg-white rounded shadow border-b border-green-300">
+                    <p className="font-bold">standings rank</p>
                     <p>{team['standing']}</p>
                 </div>
-                <div class="p-4 bg-white rounded shadow border-b border-green-300">
-                    <p class="font-bold">trades</p>
+                <div className="p-4 bg-white rounded shadow border-b border-green-300">
+                    <p className="font-bold flex flex-row justify-between">trades
+                        <span className="flex items-center font-light  text-xs underline">{team['tradesRank']}</span>
+                    </p>
+                    
                     <p>{team['trades']}</p>
                 </div>
-                <div class="p-4 bg-white rounded shadow border-b border-green-300">
-                    <p class="font-bold">acquisitions</p>
+                <div className="p-4 bg-white rounded shadow border-b border-green-300">
+                    <p className="font-bold flex flex-row justify-between">acquisitions
+                        <span className="flex font-light items-center text-xs underline">{team['acquisitionsRank']}</span>
+                    </p>
                     <p>{team['acquisitions']}</p>
                 </div>
             </div>
         </div>
 
-        {/* <div class="p-8" id="historical+stats">
-        <h2 class="text-2xl font-bold mb-4">All-time Stats</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div class="p-4 bg-white rounded shadow">
-                <p class="font-bold">Stat 1</p>
-                <p>Value 1</p>
-            </div>
-            <div class="p-4 bg-white rounded shadow">
-                <p class="font-bold">Stat 2</p>
-                <p>Value 2</p>
-            </div>
-            <div class="p-4 bg-white rounded shadow">
-                <p class="font-bold">Stat 3</p>
-                <p>Value 3</p>
-            </div>
-            <div class="p-4 bg-white rounded shadow">
-                <p class="font-bold">Stat 4</p>
-                <p>Value 4</p>
-            </div>
-            <div class="p-4 bg-white rounded shadow">
-                <p class="font-bold">Stat 5</p>
-                <p>Value 5</p>
-            </div>
-            <div class="p-4 bg-white rounded shadow">
-                <p class="font-bold">Stat 6</p>
-                <p>Value 6</p>
-            </div>
-            <div class="p-4 bg-white rounded shadow">
-                <p class="font-bold">Stat 7</p>
-                <p>Value 7</p>
-            </div>
-            <div class="p-4 bg-white rounded shadow">
-                <p class="font-bold">Stat 8</p>
-                <p>Value 8</p>
-            </div>
-            <div class="p-4 bg-white rounded shadow">
-                <p class="font-bold">Stat 9</p>
-                <p>Value 9</p>
+        <div className="p-2" id="historical+stats">
+            <h2 className="text-2xl font-bold mb-4 bg-green-200 w-fit rounded px-1">All-time Stats</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="p-4 bg-white rounded shadow">
+                    <p className="font-bold flex flex-row justify-between">playoff wins      
+                        <span className="text-xs flex items-center underline ">{team["historical_stats"]["playoff_winsRank"]}</span>
+                    </p>
+                    <p>{team["historical_stats"]["playoff_wins"]}</p>
+                </div>
+                <div className="p-4 bg-white rounded shadow">
+                    <p className="font-bold flex flex-row justify-between">playoff_losses      
+                        <span className="text-xs flex items-center underline ">{team["historical_stats"]["playoff_lossesRank"]}</span>
+                    </p>
+                    <p>{team["historical_stats"]["playoff_losses"]}</p>
+                </div>
+                <div className="p-4 bg-white rounded shadow">
+                    <p className="font-bold flex flex-row justify-between">wins
+                        <span className="text-xs flex items-center underline ">{team["historical_stats"]["winsRank"]}</span>
+                    </p>
+                    <p>{team["historical_stats"]["wins"]}</p>
+                </div>
+                <div className="p-4 bg-white rounded shadow">
+                    <p className="font-bold flex flex-row justify-between">losses
+                        <span className="text-xs flex items-center underline ">{team["historical_stats"]["lossesRank"]}</span>
+                    </p>
+                    <p>{team["historical_stats"]["losses"]}</p>
+                </div>
+                <div className="p-4 bg-white rounded shadow">
+                    <p className="font-bold flex flex-row justify-between">poinst against
+                        <span className="text-xs flex items-center underline">{team["historical_stats"]["points_againstRank"]}</span>
+                    </p>
+                    <p>{team["historical_stats"]["points_against"].toFixed(2)}</p>
+                </div>
+                <div className="p-4 bg-white rounded shadow">
+                    <p className="font-bold flex flex-row justify-between">points for
+                        <span className="text-xs flex items-center underline">{team["historical_stats"]["points_againstRank"]}</span>
+                    </p>
+                    <p>{team["historical_stats"]["points_for"].toFixed(2)}</p>
+                </div>
+                <div className="p-4 bg-white rounded shadow">
+                    <p className="font-bold flex flex-row justify-between">playoff appearances
+                        <span className="text-xs flex items-center underline ">{team["historical_stats"]["playoff_appearancesRank"]}</span>
+                    </p>
+                    <p>{team["historical_stats"]["playoff_appearances"]}</p>
+                </div>
+                <div className="p-4 bg-white rounded shadow">
+                    <p className="font-bold flex flex-row justify-between">championship wins
+                        <span className="text-xs flex items-center underline">{team["historical_stats"]["championship_winsRank"]}</span>
+                    </p>
+                    <p>{team["historical_stats"]["championship_wins"]}</p>
+                </div>
+                <div className="p-4 bg-white rounded shadow">
+                    <p className="font-bold flex flex-row justify-between">championship losses
+                        <span className="text-xs flex items-center underline">{team["historical_stats"]["championship_winsRank"]}</span>
+                    </p>
+                    <p>{team["historical_stats"]["championship_losses"]}
+                    </p>
+                </div>
             </div>
         </div>
-        </div> */}
         <div className="p-2">
-            <h2 class="text-2xl font-bold mb-4 bg-green-200 rounded w-fit px-2">Current Roster</h2>
+            <h2 className="text-2xl font-bold mb-4 bg-green-200 rounded w-fit px-2">Current Roster</h2>
             <TeamRoster players={team['roster']}></TeamRoster>
         </div>
 
