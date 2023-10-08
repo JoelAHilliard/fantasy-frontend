@@ -129,19 +129,19 @@ return (
                 </div>
                 <div className="p-4 bg-white rounded shadow">
                     <p className=" text-sm font-bold flex flex-row justify-between">playoff appearances
-                        <span className="text-xs flex items-center underline ">{team["historical_stats"]["playoff_appearancesRank"]}</span>
+                        <span className="text-xs flex items-center underline whitespace-nowrap">{team["historical_stats"]["playoff_appearancesRank"]}</span>
                     </p>
                     <p>{team["historical_stats"]["playoff_appearances"]}</p>
                 </div>
                 <div className="p-4 bg-white rounded shadow">
                     <p className="text-sm font-bold flex flex-row justify-between">championship wins
-                        <span className="text-xs flex items-center underline">{team["historical_stats"]["championship_winsRank"]}</span>
+                        <span className="text-xs flex items-center underline whitespace-nowrap">{team["historical_stats"]["championship_winsRank"]}</span>
                     </p>
                     <p>{team["historical_stats"]["championship_wins"]}</p>
                 </div>
                 <div className="p-4 bg-white rounded shadow">
                     <p className="text-sm font-bold flex flex-row justify-between">championship losses
-                        <span className="text-xs flex items-center underline">{team["historical_stats"]["championship_winsRank"]}</span>
+                        <span className="text-xs flex items-center underline whitespace-nowrap">{team["historical_stats"]["championship_lossesRank"]}</span>
                     </p>
                     <p>{team["historical_stats"]["championship_losses"]}
                     </p>
