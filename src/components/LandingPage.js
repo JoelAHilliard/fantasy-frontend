@@ -3,6 +3,7 @@ import Quote from "./Quote"
 import Poll from './Poll'
 import WeeklyBreakdown from "./WeeklyBreakdown";
 import Phaucette from "./Phaucette";
+import Cocawewa from "./Cocawewa";
 
 function LandingPage(){
     return(
@@ -16,6 +17,7 @@ function LandingPage(){
           <div className="flex flex-row w-full gap-4 mt-4 mb-4">
             <Hoff></Hoff>
             <Phaucette></Phaucette>
+            <Cocawewa></Cocawewa>
           </div>
           <WeeklyBreakdown></WeeklyBreakdown>
 
