@@ -14,7 +14,7 @@ function LandingPage(){
 
           <div className="m-4"></div>
           <span className="p-1 rounded bg-green-200 w-fit font-bold">LTS Rankings</span>
-          <div className="flex flex-row w-full gap-4 mt-4 mb-4">
+          <div className="flex flex-row w-full gap-4 mt-4 mb-4 overflow-x-scroll">
             <Hoff></Hoff>
             <Phaucette></Phaucette>
             <Cocawewa></Cocawewa>
