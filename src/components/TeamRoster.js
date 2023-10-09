@@ -1,4 +1,5 @@
 import { getHeadshot, getLOGO } from "../fantasyService";
+
 function TeamRoster(players){
     return(
         <div className="">
@@ -13,11 +14,13 @@ function TeamRoster(players){
             <img src={getHeadshot(player.playerId)} alt={player.name} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }} className="w-full h-48 object-cover mb-4"/>
             
             <div className="p-4">
-              <h2 className="text-xl font-bold mb-2">{player.name}</h2>
-              <div className="flex flex-row items-center gap-1 justify-start bg-green-200 rounded-full px-1 w-fit">
-                <img alt={player.proTeam} style={{"width":"15px"}} src={getLOGO(player.proTeam)}></img>
-                <p className="text-sm font-bold text-right">{player.proTeam}</p>
-              </div>   
+              <div className="flex flex-row justify-between">
+                <h2 className="text-xl font-bold mb-2">{player.name}</h2>
+                <div className="flex flex-row items-center gap-1 justify-start bg-green-200 rounded px-1 py-0 w-fit">
+                  <img alt={player.proTeam} style={{"width":"15px"}} src={getLOGO(player.proTeam)}></img>
+                  <p className="text-sm font-bold text-right">{player.proTeam}</p>
+                </div>  
+              </div> 
               <p>Total Points: <span className="font-bold">{player.total_points}</span></p>
               <p>Projected Total Points: <span className="font-bold">{player.projected_total_points}</span></p>
               <p>Ownership: <span className="font-bold">{player.percent_owned.toFixed(2)}%</span></p>
