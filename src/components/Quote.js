@@ -22,7 +22,8 @@ class Quote extends Component {
         "Did it happen because you broke outside contain?",
         "I got 2 words Sha Hall",
         "Kader is allowed to be undiscipline because he is so discipline",
-        "You know who quits football?"
+        "You know who quits football?",
+        "If that was my daughter, I'd kill em.",
 
         // Add more quotes here
       ],
@@ -48,6 +49,7 @@ class Quote extends Component {
     }, 24 * 60 * 60 * 1000);
   }
 
+  
   componentWillUnmount() {
     // Clear the interval when the component is unmounted
     clearInterval(this.quoteInterval);
@@ -71,20 +73,12 @@ class Quote extends Component {
     const { currentQuote } = this.state;
 
     return (
-      <div>
-        <span className="p-1 rounded bg-green-200 w-fit font-bold">Quote of the Day</span>        
-        <div className="text-sm quote bg-gray-200 border-b-4 border-green-400 rounded-lg">
-          <h2>{currentQuote}</h2>
-        </div>
+      <div className="text-sm quote bg-gray-200 border-b-4 border-green-400 rounded-lg">
+        <h2>Quote of the Day: {currentQuote}</h2>
       </div>
     );
+
   }
 }
 
 export default Quote;
-
-
-
-
-
-
