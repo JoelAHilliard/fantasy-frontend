@@ -43,6 +43,15 @@ export async function getDraftData(year)
 
     return leaderboard;
 }
+
+export async function getVersus(curr_team_id,opposing_team_id)
+{
+    const response = await fetch(apiURL+"getVersusData?league_id="+LEAGUEID+'&my_team_id='+String(curr_team_id)+"&challenger_id="+String(opposing_team_id));
+
+    const versusData = response.json();
+
+    return versusData;
+}
 export function getLOGO(team_abbr)
 {
     return "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nfl/500/"+team_abbr+".png&h=200&w=200&transparent=true"

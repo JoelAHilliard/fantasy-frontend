@@ -44,8 +44,7 @@ function Teams(){
                     ))}
                 </div>
             </div>
-        
-            <TeamBreakdown team={team}></TeamBreakdown>
+            <TeamBreakdown team={team} teams={teams}></TeamBreakdown>
         
         </div>
         :

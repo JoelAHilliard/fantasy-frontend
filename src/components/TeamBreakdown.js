@@ -1,8 +1,8 @@
 import TeamRoster from "./TeamRoster";
+import Showdowns from "./Showdowns";
 
-function TeamBreakdown({team}) {
-
-return (
+function TeamBreakdown({team,teams}) {
+    return (
     <div className="mx-2 mt-3 rounded shadow-lg shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
         <div className="p-2">
             <div className="flex items-center space-x-4">
@@ -121,32 +121,38 @@ return (
                 </div>
                 <div className="p-4 bg-white rounded shadow">
                     <p className=" text-sm font-bold flex flex-row justify-between">playoff appearances
-                        <span className="text-xs flex items-center underline whitespace-nowrap bg-slate-200 w-fit rounded px-1">{team["historical_stats"]["playoff_appearancesRank"]}</span>
+                        <span className="text-xs flex items-center underline whitespace-nowrap bg-slate-200 w-fit rounded px-1 h-fit py-1">{team["historical_stats"]["playoff_appearancesRank"]}</span>
                     </p>
                     <p>{team["historical_stats"]["playoff_appearances"]}</p>
                 </div>
                 <div className="p-4 bg-white rounded shadow">
                     <p className="text-sm font-bold flex flex-row justify-between">championship wins
-                        <span className="text-xs flex items-center underline whitespace-nowrap bg-slate-200 w-fit rounded px-1">{team["historical_stats"]["championship_winsRank"]}</span>
+                        <span className="text-xs flex items-center underline whitespace-nowrap bg-slate-200 w-fit rounded px-1 h-fit py-1">{team["historical_stats"]["championship_winsRank"]}</span>
                     </p>
                     <p>{team["historical_stats"]["championship_wins"]}</p>
                 </div>
                 <div className="p-4 bg-white rounded shadow">
                     <p className="text-sm font-bold flex flex-row justify-between">championship losses
-                        <span className="text-xs flex items-center underline whitespace-nowrap bg-slate-200 w-fit rounded px-1">{team["historical_stats"]["championship_lossesRank"]}</span>
+                        <span className="text-xs flex items-center underline whitespace-nowrap bg-slate-200 w-fit rounded px-1 h-fit py-1">{team["historical_stats"]["championship_lossesRank"]}</span>
                     </p>
                     <p>{team["historical_stats"]["championship_losses"]}
                     </p>
                 </div>
             </div>
         </div>
+
+        <div className="p-2">
+            <h2 className="text-2xl font-bold mb-4 bg-green-200 w-fit rounded px-1">Showdowns</h2>
+            <Showdowns curr_team={team} teams={teams}></Showdowns>
+        </div>
+
         <div className="p-2">
             <h2 className="text-2xl font-bold mb-4 bg-green-200 rounded w-fit px-2">Current Roster</h2>
             <TeamRoster players={team['roster']}></TeamRoster>
         </div>
 
     </div>
-  );
+    );
 }
 
 export default TeamBreakdown;
