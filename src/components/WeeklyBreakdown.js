@@ -139,72 +139,65 @@ function WeeklyBreakdown(){
                         <span className='font-bold'>Matchups</span>
                         <span className='font-light text-xs underline'>Week 5</span>
                     </div>
-                    <div className='flex flex-row gap-2'>
-                        <div className="flex flex-col gap-2 w-full justify-center">
-                            {data ? data['matchups'].map((matchup)=>{
-                                return(     
-                                    <div key={matchup.matchupNum} className="grid grid-cols-2 gap-5 text-center rounded-lg border-b-4 bg-gray-200 border-green-600 shadow-lg px-2 text-xs text-base sm:text-sm md:text-sm lg:text-lg min-w-fit p-1 truncate">
-                                        {/* Team Headers & Scores */}
-                                        <div className="col-span-1 text-right truncate" id="home_team">
-                                            
-                                            {
-                                                matchup.home_score > matchup.away_score ? 
-                                                    <div className='font-semibold flex flex-col'>{matchup.home_team}</div> 
-                                                :   <div className='font-semibold'>{matchup.home_team}</div>
-                                            }
-                                                {matchup.home_score > 0 ?
-                                                <div className='flex flex-col justify-left p-0'>
-                                                    {matchup.home_score > matchup.away_score ? 
-                                                    <div className='font-semibold flex flex-row justify-end gap-1'><span>👑</span>{matchup.home_score} </div> 
-                                                :   <div className='font-semibold'>{matchup.home_score}</div>}
-                                                    <div className='text-xs'>{matchup.home_projected.toFixed(2)}</div>
-                                                </div>                            
-                                            :null}
-                                        </div>
-                                        <div className="col-span-1 text-left" id="away_team">
-                                            {/* if championship and away team won show crown */}
-                                            {
-                                                
-                                                matchup.home_score < matchup.away_score ? 
-                                                    <div className='font-semibold'>{matchup.away_team}</div> 
-                                                :   <div className='font-semibold'>{matchup.away_team}</div>
-                                            
-
-                                            }
-                                            {matchup.away_score > 0 ?
-                                            <div className='flex flex-col justify-left p-0'>
-                                                {matchup.home_score < matchup.away_score ? 
-                                                    <div className='font-semibold'>{matchup.away_score} 👑</div> 
-                                                :   <div className='font-semibold'>{matchup.away_score}</div>}
-                                                <div className='text-xs'>{matchup.away_projected.toFixed(2)}</div>
-                                            </div> 
-                                            
-                                            :null} 
-                                        </div>
-                                            
-                                        {/* <div id="col1" className="border-r border-green-600 pr-5">
-                                            {Array.isArray(matchup.home_team_lineup) ?
-                                                <Boxscore box_score = {matchup.home_team_lineup}></Boxscore>
-                                                : null
-                                            }
-                                        
-                                        </div>
-                                        
-                                        <div id="col2">
-                                        {Array.isArray(matchup.away_team_lineup) ?
-                                            <Boxscore box_score={matchup.away_team_lineup} order={'rev'}></Boxscore>
-                                            :
-                                            null
-                                        }
-                                        </div> */}
+                    <div className='flex flex-col p-2'>
+                        <div className='flex flex-col gap-2 w-full justify-center'>
+                            {data ? data['matchups'].map((matchup) => (
+                                <div key={matchup.matchupNum} className='grid items-center bg-white p-2 rounded-lg shadow-lg grid-cols-1 md:grid-cols-3'>
                                     
+                                    {/* Home Team */}
+                                    <div className='flex flex-col items-center md:items-end gap-1 px-1'>
+                                        <div className={matchup.home_score > matchup.away_score ? 'font-bold text-green-500 whitespace-nowrap' : 'font-bold whitespace-nowrap'} 
+                                            title={matchup.home_team} style={{fontSize: '1rem' }}>
+                                            {matchup.home_team}
+                                        </div>
+
+                                        {matchup.home_score > 0 && (
+                                            <div className='flex flex-row gap-1 items-center md:items-end gap-1'>
+                                                <div className='font-semibold' style={{ fontSize: '0.8rem' }}>
+                                                    {matchup.home_score > matchup.away_score && <span className='ml-1 text-yellow-400'>👑 </span>}
+                                                    {matchup.home_score}
+                                                    
+                                                </div>
+                                                <div className='text-xs text-gray-500'>
+                                                    {matchup.home_projected.toFixed(2)}
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
-                                );
-                            }) : <img alt="loading" style={{"width":"50px"}} src={Loading}></img>}
-                        
+
+                                    {/* VS Separator */}
+                                    <div className='flex font-semibold items-center text-center justify-center my-1 md:my-0 h-fit w-full px-2 text-white rounded' style={{ fontSize: '0.8rem' }}>
+                                        <span className='w-fit bg-green-600 px-2 rounded'>VS</span>
+                                    </div>
+
+                                    {/* Away Team */}
+                                    <div className='flex flex-col items-center md:items-start gap-1 px-1 mt-1 md:mt-0'>
+                                        <div className={matchup.away_score > matchup.home_score ? 'font-bold text-green-500 whitespace-nowrap' : 'font-bold whitespace-nowrap'} 
+                                            title={matchup.away_team} style={{fontSize: '1rem' }}>
+                                            {matchup.away_team}
+                                        </div>
+
+                                        {matchup.away_score > 0 && (
+                                            <div className='flex flex-row gap-1 items-center md:items-start gap-1'>
+                                                <div className='font-semibold' style={{ fontSize: '0.8rem' }}>
+                                                    {matchup.away_score > matchup.home_score && <span className='mr-1 text-yellow-400'>👑</span>}
+                                                    {matchup.away_score}
+                                                </div>
+                                                <div className='text-xs text-gray-500'>
+                                                    {matchup.away_projected.toFixed(2)}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            )) : <img alt="loading" style={{ "width": "50px" }} src={Loading} />}
                         </div>
-                        
                     </div>
+
+
+
+
+
 
                 </div>
 
