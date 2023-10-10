@@ -43,53 +43,55 @@ function Matchups(){
 
     const weeks = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
 
+    const positions_order = ["QB", "RB", "RB","WR","WR", "TE","FLEX", "D/ST", "K"];
  
     return (   
-        <div className='mt-2'>
-                {/* week and year buttons */}
-                <div className="relative inline-flex flex-col text-left justify-center ml-2 px-2">
-                <div className='flex flex-row gap-5'>
-                <button onClick={() => setIsOpen(!isOpen)} className="w-full inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-green-700 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 whitespace-nowrap">
-                    {year === "" ? "select year" : "year "+ year}
+            <div className='mt-2'>
+                    {/* week and year buttons */}
+                    <div className="relative inline-flex flex-col text-left justify-center ml-2 px-2">
+                    <div className='flex flex-row gap-5'>
+                    <button onClick={() => setIsOpen(!isOpen)} className="w-full inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-green-700 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 whitespace-nowrap">
+                        {year === "" ? "select year" : "year "+ year}
 
-                    <FaSortDown></FaSortDown>
-                </button>
-                <button disabled={!data} onClick={() => setIsWeekOpen(!isWeekOpen)} className="w-full inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-green-700 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 whitespace-nowrap disabled:cursor-not-allowed disabled:bg-green-700/50">
-                    {week === "" ? "select week" : "week "+ week}
-                    <FaSortDown></FaSortDown>
-                </button>
-                {loading ? <img alt="loading" style={{'width':'20px'}} src={Loading}></img>:null}
+                        <FaSortDown></FaSortDown>
+                    </button>
+                    <button disabled={!data} onClick={() => setIsWeekOpen(!isWeekOpen)} className="w-full inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-green-700 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 whitespace-nowrap disabled:cursor-not-allowed disabled:bg-green-700/50">
+                        {week === "" ? "select week" : "week "+ week}
+                        <FaSortDown></FaSortDown>
+                    </button>
+                    {loading ? <img alt="loading" style={{'width':'20px'}} src={Loading}></img>:null}
 
-            </div>
+                </div>
       
-            {/* year items */}
-            {isOpen && (
-                <div  className="flex flex-col w-full rounded-md shadow-lg bg-green-50 ring-1 ring-black ring-opacity-5 z-100">
-                    <div className="flex flex-col mt-1" style={{'position':'absolute','width':'40%'}} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                        {years.map(year => (
-                        <div key={year} onClick={()=>{getData(year);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">{year}</div>
-                        ))}
+                {/* year items */}
+                {isOpen && (
+                    <div  className="flex flex-col w-full rounded-md shadow-lg bg-green-50 ring-1 ring-black ring-opacity-5 z-100">
+                        <div className="flex flex-col mt-1" style={{'position':'absolute','width':'40%'}} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                            {years.map(year => (
+                            <div key={year} onClick={()=>{getData(year);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">{year}</div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
 
-            {/* week items */}
-            {isWeekOpen && (
-                <div className="flex flex-col rounded-md shadow-lg bg-green-50 ring-1 ring-black ring-opacity-5 z-100">
-                    <div className="flex flex-col mt-1" style={{'position':'absolute','width':'40%','alignSelf':'end'}} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                        {/* dynamic as num of games changed */}
-                        {data[0].year === 2017 ? weeks.slice(0,15).map(week => (
-                            <div key={week} onClick={()=>{setWeek(week); setIsWeekOpen(!isWeekOpen);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">Week {week}</div>
-                        )):  weeks.map(week => (
-                            <div key={week}  onClick={()=>{setWeek(week); setIsWeekOpen(!isWeekOpen);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">Week {week}</div>
-                        ))}  
+                {/* week items */}
+                {isWeekOpen && (
+                    <div className="flex flex-col rounded-md shadow-lg bg-green-50 ring-1 ring-black ring-opacity-5 z-100">
+                        <div className="flex flex-col mt-1" style={{'position':'absolute','width':'40%','alignSelf':'end'}} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                            {/* dynamic as num of games changed */}
+                            {data[0].year === 2017 ? weeks.slice(0,15).map(week => (
+                                <div key={week} onClick={()=>{setWeek(week); setIsWeekOpen(!isWeekOpen);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">Week {week}</div>
+                            )):  weeks.map(week => (
+                                <div key={week}  onClick={()=>{setWeek(week); setIsWeekOpen(!isWeekOpen);}} className="px-4 py-2 text-sm text-green-700 hover:bg-green-400 hover:text-green-900 bg-green-200 text-center cursor-pointer" role="menuitem">Week {week}</div>
+                            ))}  
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
                 </div>
                 {/* if data available */}
+               
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 px-4'>
-                {!!data ? data.map(data => 
+                {!!data ? data.sort((a,b) => {return a.matchupNum - b.matchupNum}).map(data => 
                     data && data.week === week ? 
                         <div className="">
                             {data.playoff_type ? 
@@ -97,9 +99,9 @@ function Matchups(){
                                 :
                                 <div className="text-center font-bold">Week {data.week} - Matchup {data.matchupNum}</div>
                             }
-                            <div className="grid grid-cols-2 gap-2 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-base">
+                            <div className="py-2 gap-2 text-center bg-green-100 rounded-lg border border-green-600 px-3 text-xs text-base sm:text-lg md:text-lg lg:text-base " style={{display: 'grid', gridTemplateColumns: '45% 10% 45%', gap: '4px'}}>
                                 {/* Team Headers & Scores */}
-                                <div className="font-bold p-1 col-span-1 truncate">
+                                <div id="col1" className="font-bold p-1 col-span-1 truncate">
                                     {/* if championship and home team won show crown */}
                                     <img alt="logo" style={{"width":'25px',"height":"25px"}} className='mx-auto rounded-full' src={data.home_team_logo} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>
 
@@ -117,7 +119,9 @@ function Matchups(){
                                         <div className="font-light">{data.home_score}</div>                                
                                     :null}
                                 </div>
-                                <div className="font-bold p-1 col-span-1 truncate">
+                                <div></div>
+                                
+                                <div id="col2" className="font-bold p-1 col-span-1 truncate">
                                     {/* if championship and away team won show crown */}
                                     <img alt="logo" style={{"width":'25px',"height":"25px"}} className='mx-auto rounded-full' src={data.away_team_logo} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>
 
@@ -136,15 +140,19 @@ function Matchups(){
                                         <div className="font-light">{data.away_score}</div>
                                     :null} 
                                 </div>
-                                    
-                                <div id="col1" className="border-r border-green-600 pr-5">
+                                
+                                <div id="col1">
                                     {Array.isArray(data.home_team_lineup) ?
                                         <Boxscore box_score = {data.home_team_lineup}></Boxscore>
                                         : null
                                     }
                                 
                                 </div>
-                                
+                                <div>
+                                    {positions_order.map((pos) => {
+                                        return(<p className='py-1 h-[45px] underline sm:h-[49px] flex text-center w-full justify-center items-center font-bold text-xs'>{pos}</p>)
+                                    })}
+                                </div>
                                 <div id="col2">
                                 {Array.isArray(data.away_team_lineup) ?
                                     <Boxscore box_score={data.away_team_lineup} order={'rev'}></Boxscore>
