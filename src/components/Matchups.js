@@ -151,7 +151,7 @@ function Matchups(){
                                 <div>
                                     {positions_order.map((pos) => {
                                         return(<div className='text-white py-1 h-[45px] underline sm:h-[49px] flex text-center w-full justify-center items-center font-bold text-[9px] sm:text-base'>
-                                            <span className='bg-green-700 px-2 rounded'>{pos}</span>
+                                            <span className='bg-green-700 px-1 rounded'>{pos}</span>
                                         
                                         </div>)
                                     })}
