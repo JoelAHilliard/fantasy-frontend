@@ -39,7 +39,7 @@ function Boxscore(props){
                             <div className="justify-end bg-green-400 px-1 rounded w-fit justify-end" style={{"marginLeft":"auto"}}>
                                 <div className="flex flex-row gap-1 ml-a" >
                                     <span className='text-xs font-light truncate'>{player.proTeam}</span>
-                                    <img alt="logo" style={{"width":"15px"}} src={getLOGO(player.proTeam)}></img>
+                                    <img alt="logo" style={{"width":"15px","height":'15px'}} src={getLOGO(player.proTeam)}></img>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,7 @@ function Boxscore(props){
                         <div className="justify-start bg-green-400 px-1 rounded w-fit ">
                             <div className="flex flex-row gap-1 justify-end">
                                 <span className='text-xs font-light truncate'>{player.proTeam}</span>
-                                <img alt="logo" style={{"width":"15px"}} src={getLOGO(player.proTeam)}></img>
+                                <img alt="logo" style={{"width":"15px","height":'15px'}} src={getLOGO(player.proTeam)}></img>
                             </div>
                         </div>
                     </div>                
