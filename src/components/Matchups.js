@@ -43,7 +43,7 @@ function Matchups(){
 
     const weeks = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
 
-    const positions_order = ["QB", "RB", "RB","WR","WR", "TE","FLEX", "D/ST", "K"];
+    const positions_order = ["QB", "RB", "RB","WR","WR", "FLEX","TE", "D/ST", "K"];
  
     return (   
             <div className='mt-2'>
