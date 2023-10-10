@@ -91,7 +91,7 @@ function Matchups(){
                 {/* if data available */}
                
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 px-4'>
-                {!!data ? data.map(data => 
+                {!!data ? data.sort((a,b) => {return a.matchupNum - b.matchupNum}).map(data => 
                     data && data.week === week ? 
                         <div className="">
                             {data.playoff_type ? 
