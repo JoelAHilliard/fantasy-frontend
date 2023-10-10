@@ -150,7 +150,7 @@ function Matchups(){
                                 </div>
                                 <div>
                                     {positions_order.map((pos) => {
-                                        return(<p className='py-1 h-[45px] underline sm:h-[49px] flex text-center w-full justify-center items-center font-bold text-xs'>{pos}</p>)
+                                        return(<p className='py-1 h-[45px] underline sm:h-[49px] flex text-center w-full justify-center items-center font-bold text-[9px] sm:text-base'>{pos}</p>)
                                     })}
                                 </div>
                                 <div id="col2">
