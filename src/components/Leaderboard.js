@@ -55,7 +55,7 @@ function Leaderboard(){
     
 
     return(
-        <div style={{'flexGrow':'1'}} className="dark:bg-slate-800">
+        <div style={{'flexGrow':'1'}} className="dark:bg-slate-800 ">
             <div className="relative inline-flex flex-col text-left justify-center px-4 mt-2 mb-4 w-full ">
                 <div className='flex flex-row gap-5 align-center justify-between '>
                     <button onClick={() => setIsOpen(!isOpen)} className="inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-green-700 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 whitespace-nowrap">
@@ -92,7 +92,7 @@ function Leaderboard(){
                     
                     return (
                         (key !== '_id' && key !== 'None' && player[category] !== undefined) ?
-                        <div key={key} className="flex items-center p-2 bg-gray-200 border-b-4 border-green-600 rounded-lg shadow-lg gap-2 mb-2">
+                        <div key={key} className="flex items-center p-2 bg-gray-200 border-b-4 border-green-600 rounded-lg shadow-lg gap-2 mb-2 mx-4">
                             <div className="flex items-center gap-2">
                                 <p className="text-lg sm:text-lg lg:text-xl">{index + 1}.</p>
                                 <img
