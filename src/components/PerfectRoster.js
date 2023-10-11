@@ -33,6 +33,10 @@ function PerfectRoster(props){
         {
             return firstLast[0]
         }
+        if(firstLast.length > 2){
+            let lastName = firstLast[1] + " " + firstLast[2]
+            firstLast[1] = lastName;
+        }
 
         return firstLast[0][0] + ". " + firstLast[1];
 
