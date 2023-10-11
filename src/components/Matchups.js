@@ -43,7 +43,7 @@ function Matchups(){
 
     const weeks = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
 
-    const positions_order = ["QB", "RB", "RB","WR","WR", "FLEX","TE", "D/ST", "K"];
+    const positions_order = ["QB", "RB", "RB","WR","WR","TE", "FLEX", "D/ST", "K"];
  
     return (   
             <div className='mt-2'>
@@ -88,6 +88,8 @@ function Matchups(){
                     </div>
                 )}
                 </div>
+
+
                 {/* if data available */}
                
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 px-4'>
@@ -148,6 +150,7 @@ function Matchups(){
                                     }
                                 
                                 </div>
+
                                 <div>
                                     {positions_order.map((pos) => {
                                         return(<div className='text-white py-1 h-[45px] underline sm:h-[49px] flex text-center w-full justify-center items-center font-bold text-[9px] sm:text-base'>
@@ -156,6 +159,7 @@ function Matchups(){
                                         </div>)
                                     })}
                                 </div>
+
                                 <div id="col2">
                                 {Array.isArray(data.away_team_lineup) ?
                                     <Boxscore box_score={data.away_team_lineup} order={'rev'}></Boxscore>
