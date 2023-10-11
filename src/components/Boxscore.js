@@ -29,7 +29,7 @@ function Boxscore(props){
     
     return (
         sortedBoxScore.map(player => (
-            <div >
+            <div key={player.name}>
                 {(player.slot_position !== "BE" && player.slot_position !== "IR" ?
                     // depending of if left or right side
                     props.order ?

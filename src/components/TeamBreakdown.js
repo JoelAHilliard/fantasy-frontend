@@ -10,8 +10,7 @@ function TeamBreakdown({team,teams}) {
                     onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}
                 />
                     <div>
-                        <span className="text-2xl font-bold flex flex-col w-fit gap-2">{team["team_name"]} <span className={team["streak_type"] ? "text-xl bg-green-200 text-green-700 rounded-full px-2 w-fit" : "text-xl bg-red-200 text-red-700 rounded-full px-2 w-fit"}>
-                            
+                        <span className="text-2xl font-bold flex flex-col w-fit gap-2">{team["team_name"]} <span className={team["streak_type"] === "WIN" ? "text-xl bg-green-200 text-green-700 rounded-full px-2 w-fit" : "text-xl bg-red-200 text-red-700 rounded-full px-2 w-fit"}>
                             {team["streak_type"]} {team["streak_length"]}</span></span>
                         <p className="text-lg">division: {team["division_name"]}</p>
                         <p className="text-lg">{team["team_abbrev"]}</p>
