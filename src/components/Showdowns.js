@@ -1,13 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getVersus } from "../fantasyService";
 import Loading from '../assets/3-dots-move.svg'
 
 
 function Showdowns(props) {
+
+    const curr_team_id = props.curr_team['team_id'];
+
+    useEffect(() => {
+        // Reset state when props.curr_team['team_id'] changes
+        setData(null);
+        setLoading(null);
+        setSelectedTeam('default');
+    }, [curr_team_id]);
+    
     
     const [loading,setLoading] = useState(null);
 
     const [data,setData] = useState(null);
+
+    const [selectedTeam,setSelectedTeam] = useState('null');
+
 
     const changeOpposingTeam = async (event) => {
         setData(null)
@@ -99,8 +112,14 @@ function Showdowns(props) {
         
         <div className="p-2 text-sm phaucette bg-gray-150 rounded-lg relative flex flex-col">
             <span className="">{props.curr_team["team_name"]} vs 
-                <select className="mt-2" onChange={changeOpposingTeam}>
-                    <option selected disabled>Select team</option>
+                    <select 
+                        className="mt-2" 
+                        value={selectedTeam} 
+                        onChange={(event) => {
+                            setSelectedTeam(event.target.value);
+                            changeOpposingTeam(event);
+                        }}>
+                    <option value='default' selected disabled>Select team</option>
                     {
                         props.teams.map((team) => {
                             if(team["team_id"] === props.curr_team["team_id"]) return null;
