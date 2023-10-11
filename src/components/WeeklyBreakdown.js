@@ -323,7 +323,7 @@ function WeeklyBreakdown(){
                     </div>             
                 </div>
 
-                <div id="top_low_scorers" className='flex flex-row w-full justify-left gap-2'>
+                {/* <div id="top_low_scorers" className='flex flex-row w-full justify-left gap-2'>
                     <div className='w-1/2 bg-gray-200 border-b-4 border-green-600 rounded p-1'>
                         {data ? 
                             <div className='flex flex-rows items-center justify-between text-sm'>
@@ -356,7 +356,7 @@ function WeeklyBreakdown(){
                         
                         : null}
                     </div>
-                </div>
+                </div> */}
                         
             </div>
         </div>:<img alt='loading' className='w-1/4 mx-auto' src={Loading}></img>
