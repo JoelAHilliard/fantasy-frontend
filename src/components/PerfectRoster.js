@@ -48,6 +48,7 @@ function PerfectRoster(props){
                 if(key === "RB" || key === "WR")
                 {
                    return props["data"][key].map((data)=>{
+                    console.log(data[6][2])
                     return( <div key={key + data[4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center py-1" style={{ gridTemplateColumns: '15% 50% 30%' }}>
                             
             
@@ -56,10 +57,20 @@ function PerfectRoster(props){
                     </div>
                     <div className="flex flex-row justify-between">
                         <div className="flex flex-col ">
-                            <p className="text-sm sm:text-base whitespace-nowrap truncate flex flex-row gap-1"><img alt={props["data"][key][0][4]} style={{"width":'25px'}} src={getHeadshot(data[7])}></img>{firstNameTruncate(data[0])}</p>
-                            <div className="flex flex-row items-center gap-1 justify-start bg-green-200 rounded-full px-1 w-fit">
-                                <img alt={data[4]} style={{"width":"15px"}} src={getLOGO(data[4])}></img>
-                                <p className="text-xs font-bold text-left">{data[4]}</p>
+                            <p className="text-sm sm:text-base whitespace-nowrap truncate flex flex-row gap-1 items-center"><img alt={props["data"][key][0][4]} style={{"width":'25px'}} src={getHeadshot(data[7])}></img>{firstNameTruncate(data[0])} </p>
+                            <div className="flex flex-row items-center gap-1 justify-start ">
+                                
+                                <div className="flex flex-row bg-green-200 rounded-full px-1 w-fit">
+                                    <img alt={data[4]} style={{"width":"15px"}} src={getLOGO(data[4])}></img>
+                                    <p className="text-xs font-bold text-left">{data[4]}</p>
+                                </div>
+
+                                {data[6][2] === "BE" ? 
+                                    <div className="whitespace-nowrap font-xs py-0 flex flex-row items-center w-fit bg-orange-200 rounded-full px-1 h-fit" style={{"fontSize":"10px", "lineHeight": "1", "padding": "2px 0"}}>
+                                        <p className="m-0 px-1">bench warmer</p>
+                                    </div>
+                                : null}
+
                             </div>
                         </div>
                         <div id="points+projected_points text-left items-top">
