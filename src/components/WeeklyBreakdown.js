@@ -11,6 +11,9 @@ import Loading from '../assets/3-dots-move.svg'
 function WeeklyBreakdown(){
     const [data,setData] = useState(null);
     const [boxScores,setboxScores] = useState(null);
+
+    const [topScore,setTopScore]= useState(0);
+    const [lowScore,setLowScore]= useState(0);
     
     function perfectTeamRoster(team)
     {
@@ -81,11 +84,37 @@ function WeeklyBreakdown(){
     
             .then(responseData => {
                 let allMatchups = []
-                
+                let topScore = 0;
+                let lowestScore = 99999;
+                for(let item in responseData["matchups"])
+                {
+                    
+                    if(responseData["matchups"][item]["away_score"] > topScore)
+                    {
+                        topScore = responseData["matchups"][item]["away_score"]
+                    }
+                    if(responseData["matchups"][item]["home_score"] > topScore)
+                    {
+                        topScore = responseData["matchups"][item]["home_score"]
+                    }
+                    if(responseData["matchups"][item]["away_score"] < lowestScore)
+                    {
+                        lowestScore = responseData["matchups"][item]["away_score"]
+                    }
+                    if(responseData["matchups"][item]["home_score"] < lowestScore)
+                    {
+                        lowestScore = responseData["matchups"][item]["home_score"]
+                    }
+                }
+
+                setTopScore(topScore);
+                setLowScore(lowestScore);
                 for(let item in responseData["matchups"])
                 {
                     let homeProj = 0;
                     let awayProj = 0;
+                    console.log(responseData["matchups"][item])
+                
                     for (let player in responseData["matchups"][item]["away_team_lineup"])
                     {
                         if(responseData["matchups"][item]["away_team_lineup"][player]["slot_position"] !== "BE")
@@ -146,9 +175,9 @@ function WeeklyBreakdown(){
                                     
                                     {/* Home Team */}
                                     <div className='flex flex-col items-center md:items-end gap-1 px-1'>
-                                        <div className={matchup.home_score > matchup.away_score ? 'font-bold text-green-500 whitespace-nowrap' : 'font-bold whitespace-nowrap'} 
+                                        <div className={matchup.home_score > matchup.away_score ? 'font-bold text-green-500 whitespace-nowrap flex flex-col items-center' : 'font-bold whitespace-nowrap flex flex-col items-center'} 
                                             title={matchup.home_team} style={{fontSize: '1rem' }}>
-                                            {matchup.home_team}
+                                                {topScore === matchup.home_score ? <span className='text-xs bg-green-200 rounded-full px-1 text-center text-white-600'>top scorer</span>:null} {lowScore === matchup.home_score ? <span className='text-xs bg-red-200 rounded-full px-1 text-red-600'>underperformer</span>:null} <span>{matchup.home_team}</span> 
                                         </div>
 
                                         {matchup.home_score > 0 && (
@@ -172,9 +201,9 @@ function WeeklyBreakdown(){
 
                                     {/* Away Team */}
                                     <div className='flex flex-col items-center md:items-start gap-1 px-1 mt-1 md:mt-0'>
-                                        <div className={matchup.away_score > matchup.home_score ? 'font-bold text-green-500 whitespace-nowrap' : 'font-bold whitespace-nowrap'} 
+                                        <div className={matchup.away_score > matchup.home_score ? 'font-bold text-green-500 whitespace-nowrap flex flex-col items-center' : 'font-bold whitespace-nowrap flex flex-col items-center'} 
                                             title={matchup.away_team} style={{fontSize: '1rem' }}>
-                                            {matchup.away_team}
+                                            {topScore === matchup.away_score ? <span className='text-xs bg-green-200 rounded-full px-1 text-center text-white-600'>top scorer</span>:null} {lowScore === matchup.away_score ? <span className='text-xs bg-red-200 rounded-full px-1 text-red-600'>underperformer</span>:null} <span>{matchup.away_team}</span> 
                                         </div>
 
                                         {matchup.away_score > 0 && (
@@ -202,6 +231,7 @@ function WeeklyBreakdown(){
                 </div>
 
                 <h1 className='items-center p-1 rounded bg-green-200 w-fit font-bold'>Perfect Roster</h1>
+                
                 {data ? <PerfectRoster data={data["perfect_roster"]}></PerfectRoster>: null}
 
                 <div id="team_performamnces" className='w-full'>
@@ -293,7 +323,7 @@ function WeeklyBreakdown(){
                     </div>             
                 </div>
 
-                <div id="top_low_scorers" className='flex flex-row w-full justify-left gap-2'>
+                {/* <div id="top_low_scorers" className='flex flex-row w-full justify-left gap-2'>
                     <div className='w-1/2 bg-gray-200 border-b-4 border-green-600 rounded p-1'>
                         {data ? 
                             <div className='flex flex-rows items-center justify-between text-sm'>
@@ -326,7 +356,7 @@ function WeeklyBreakdown(){
                         
                         : null}
                     </div>
-                </div>
+                </div> */}
                         
             </div>
         </div>:<img alt='loading' className='w-1/4 mx-auto' src={Loading}></img>
