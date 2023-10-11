@@ -29,7 +29,7 @@ function Boxscore(props){
                     // depending of if left or right side
                     props.order ?
                     
-                    <div className="flex flex-row text-center text-sm text-base sm:text-base md:text-base lg:text-base justify-between truncate border-b py-1 border-green-600"> 
+                    <div className="flex flex-row text-center text-sm text-base sm:text-base md:text-base lg:text-base justify-between truncate border-b py-1 border-green-600 gap-2"> 
                         <div className='flex flex-col'>
                             <div className='flex flex-col text-left font-bold'>
                                 <span>{player.points}</span>
@@ -52,7 +52,7 @@ function Boxscore(props){
                     
                     : 
                             
-                    <div className="flex flex-row text-center text-base text-sm sm:text-base md:text-base lg:text-base justify-between py-1 border-b border-green-600"> 
+                    <div className="flex flex-row text-center text-base text-sm sm:text-base md:text-base lg:text-base justify-between py-1 border-b border-green-600 gap-2"> 
                     <div className='flex flex-col text-left m-w-0 overflow-x-hidden'>
                         <span className='font-bold truncate'>{firstNameTruncate(player.name)}</span>
                         <div className="justify-start bg-green-400 px-1 rounded w-fit ">
