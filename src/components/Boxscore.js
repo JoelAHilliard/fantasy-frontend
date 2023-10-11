@@ -1,11 +1,12 @@
 import { getLOGO } from "../fantasyService";
 
 function Boxscore(props){
-    const positions_order = ["QB", "RB", "WR", "TE","RB/WR/TE", "D/ST", "K"];
+    const positions_order = ["QB", "RB", "WR", "TE", "RB/WR/TE", "D/ST", "K"];
 
     if(!props.box_score){
         return (<p>no data</p>)
     }
+
     function firstNameTruncate(name){
         let firstLast = name.split(" ");
 
@@ -21,7 +22,11 @@ function Boxscore(props){
         return firstLast[0][0] + ". " + firstLast[1];
 
     }
-    const sortedBoxScore = props.box_score.sort((a, b) => positions_order.indexOf(a.position) - positions_order.indexOf(b.position));
+
+    const sortedBoxScore = props.box_score.sort((a, b) => {
+       return positions_order.indexOf(a.slot_position) - positions_order.indexOf(b.slot_position)
+    });
+    
     return (
         sortedBoxScore.map(player => (
             <div >
