@@ -3,12 +3,12 @@ import { IconContext } from "react-icons";
 import "./Hoff.css"
 function Cocawewa() {
     const matchup_rankings = [
-        "Hunter vs. Joel",
-        "Hoff vs. Clog",
-        "Faucette vs. Calvin",
-        "Ethan vs. Wes",
-        "Eric vs. Colin",
-        "Jayrod vs. Jacob",
+        "Maddog vs. Faucette",
+        "Ewic vs. Clog",
+        "Wes vs. Calvin",
+        "Hunter vs. Hoff",
+        "Jayrod vs. Joel",
+        "Colin vs. Jacob",
     ]
 
 return (
