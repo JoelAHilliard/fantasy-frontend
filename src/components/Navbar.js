@@ -6,6 +6,7 @@ import LandingPage from './LandingPage';
 import Leaderboard from './Leaderboard';
 import Teams from './Teams';
 import Constitution from './Constitution';
+import NavBarTitle from '../fantasyService';
 
 function Navbar(){
     // const [darkMode, setDarkMode] = useState(false);
@@ -32,8 +33,7 @@ function Navbar(){
                         <div className="flex items-center justify-between flex-wrap text-m">
                             <div className="flex items-center justify-between flex-1">
                                 <Link to="/" className="text-xl font-bold">
-                                    <h1>LTS Stats</h1>
-                                    <span className='text-xs text-center'>beta</span>
+                                    <h1>{NavBarTitle}</h1>
                                 </Link>
 
                                 {/* Hamburger Menu Icon for mobile */}

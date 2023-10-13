@@ -2,6 +2,11 @@ const apiURL = "https://fantasyapi-production.up.railway.app/"
 // const apiURL = "http://localhost:30030/"
 
 const LEAGUEID = process.env.REACT_APP_LEAGUEID || 30030;
+
+const NavBarTitle = process.env.REACT_APP_APP_TITLE || "Fantasy Stats";
+
+export default NavBarTitle;
+
 export async function getMatchups(year)
 {
     const response = await fetch(apiURL+"matchups?year="+year+"&league_id="+LEAGUEID);
