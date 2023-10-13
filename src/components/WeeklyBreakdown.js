@@ -113,7 +113,6 @@ function WeeklyBreakdown(){
                 {
                     let homeProj = 0;
                     let awayProj = 0;
-                    console.log(responseData["matchups"][item])
                 
                     for (let player in responseData["matchups"][item]["away_team_lineup"])
                     {
