@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getVersus } from "../fantasyService";
 import Loading from '../assets/3-dots-move.svg'
 import TeamMiniMatchup from "./TeamMiniMatchup";
-import { animated,useTransition, useSpring } from 'react-spring';
+import { animated,useTransition } from 'react-spring';
 
 function Showdowns(props) {
 
@@ -106,10 +106,10 @@ function Showdowns(props) {
                                 <div className="mt-4">
                                     <div>
                                         <h1 className="text-xl font-bold mb-4">Recent Matchups</h1>
-                                        <select defaultValue={"sort by"} >
+                                        {/* <select defaultValue={"sort by"} >
                                             <option value={"latest"}>ascending</option>
                                             <option value={"latest"}>descending</option>
-                                        </select>
+                                        </select> */}
                                     </div>
                                     <div>
                                         {data.sort((a,b) =>{ return b.year - a.year}).map((matchup) => {
