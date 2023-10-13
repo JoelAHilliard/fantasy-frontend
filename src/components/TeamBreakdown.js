@@ -18,7 +18,7 @@ function TeamBreakdown({team,teams}) {
             </div>
         </div>
 
-        <div className="p-2" id="current+stats">
+        <div className="p-2 z-200" id="current+stats">
             <h2 className="text-2xl font-bold mb-4 bg-green-200 rounded w-fit px-2">Current Year Stats</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 <div className="p-4 bg-white rounded shadow border-b border-green-300">
@@ -79,7 +79,7 @@ function TeamBreakdown({team,teams}) {
             </div>
         </div>
 
-        <div className="p-2" id="historical+stats">
+        <div className="p-2 z-200" id="historical+stats">
             <h2 className="text-2xl font-bold mb-4 bg-green-200 w-fit rounded px-1">All-time Stats</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 <div className="p-4 bg-white rounded shadow">

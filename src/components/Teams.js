@@ -32,17 +32,17 @@ function Teams(){
         <div className="">
              
             <div className="flex flex-row w-full rounded-md bg-green-50 ring-black ring-opacity-5 w-full">
-            <style jsx>
-          {`
-          .no-scrollbar::-webkit-scrollbar {
-          display: none;
-          }
-          .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-          }
-          `}
-          </style>
+            <style jsx="true">
+                {`
+                .no-scrollbar::-webkit-scrollbar {
+                display: none;
+                }
+                .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+                }
+                `}
+                </style>
                 <div className="flex flex-row gap-2 overflow-y-scroll no-scrollbar border relative"  role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                 <div className="absolute top-0 bottom-0 left-0 pointer-events-none z-10">
                     <div className="h-full w-6 bg-gradient-to-r from-white to-transparent"></div>
