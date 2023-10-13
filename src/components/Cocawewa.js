@@ -2,13 +2,14 @@ import { BsFillPatchCheckFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import "./Hoff.css"
 function Cocawewa() {
+
     const matchup_rankings = [
-        "Maddog vs. Faucette",
-        "Ewic vs. Clog",
-        "Wes vs. Calvin",
-        "Hunter vs. Hoff",
-        "Jayrod vs. Joel",
-        "Colin vs. Jacob",
+        "Team Mathis vs. Team hardly",
+        "WYMWM vs. maar maar binks",
+        "gmmdh vs. love ertz",
+        "bass to muth vs cha cha cheetah",
+        "savage saloon vs. the winds of shit",
+        "CDAHSM vs. yippie kiyay mother tucker",
     ]
 
 return (
