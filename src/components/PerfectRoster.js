@@ -48,7 +48,6 @@ function PerfectRoster(props){
                 if(key === "RB" || key === "WR")
                 {
                    return props["data"][key].map((data)=>{
-                    console.log(data[6][2])
                     return( <div key={key + data[4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center py-1" style={{ gridTemplateColumns: '15% 50% 30%' }}>
                             
             

@@ -5,13 +5,19 @@ function TeamMiniMatchup({matchup, curr_team_id}) {
         <div className="bg-white p-4 rounded-lg shadow-lg my-4 mx-auto max-w-md">
             <div className="flex justify-between items-center mb-4">
                 <div className="text-lg font-bold flex justify-between w-full">
-                     <span className='flex items-center gap-2 text-base'>{matchup.year}, Week {matchup.week} {matchup['matchup_type'] === "WINNERS_BRACKET" ? <span className='text-xs w-fit bg-orange-200 rounded-full px-2 text-orange-400'>playoff game</span> : null}</span>
-
+                    <div>
+                     <span className='flex items-center gap-2 text-base'>{matchup.year}, Week {matchup.week}</span>
+                     <div className='flex gap-1'>
+                        {matchup['matchup_type'] === "WINNERS_BRACKET" ? <span className='text-xs w-fit bg-orange-200 rounded-full px-2 text-orange-400'>playoffs</span> : null}
+                        {Math.abs(matchup['away_score'] - matchup['home_score']) < 7.5 ? <span className='text-xs w-fit bg-emerald-200 rounded-full px-2 text-emerald-400'>close game</span> : null}
+                     </div>
+                    </div>
+                    
 
                      {matchup['away_team_id'] === curr_team_id ?
-                        matchup['away_score'] > matchup['home_score'] ? <span className='text-green-500 w-fit bg-green-200 rounded-full px-2'>W</span> :<span className='text-red-500 w-fit bg-red-200 rounded-full px-2'>L</span>
+                        matchup['away_score'] > matchup['home_score'] ? <span className='text-green-500 w-fit bg-green-200 rounded-full px-2 h-fit'>W</span> :<span className='text-red-500 w-fit bg-red-200 rounded-full px-2 h-fit'>L</span>
                         :
-                        matchup['away_score'] < matchup['home_score'] ? <span className='text-green-500 w-fit bg-green-200 rounded-full px-2'>W</span> :<span className='text-red-500 w-fit bg-red-200 rounded-full px-2'>L</span>
+                        matchup['away_score'] < matchup['home_score'] ? <span className='text-green-500 w-fit bg-green-200 rounded-full px-2 h-fit'>W</span> :<span className='text-red-500 w-fit bg-red-200 rounded-full px-2 h-fit'>L</span>
                         }
                 </div>
             </div>
