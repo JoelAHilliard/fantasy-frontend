@@ -8,6 +8,8 @@ import Loading from '../assets/loading_circle.svg';
 import { FaSortDown } from 'react-icons/fa';
 import Boxscore from './Boxscore';
 
+
+import RefImg from '../assets/ref.png'
 function Matchups(){
 
     function getData(year){
@@ -105,7 +107,7 @@ function Matchups(){
                                 {/* Team Headers & Scores */}
                                 <div id="col1" className="font-bold p-1 col-span-1 truncate">
                                     {/* if championship and home team won show crown */}
-                                    <img alt="logo" style={{"width":'25px',"height":"25px"}} className='mx-auto rounded-full' src={data.home_team_logo} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>
+                                    {data.year >= 2019 &&<img alt="logo" style={{"width":'25px',"height":"25px"}} className='mx-auto rounded-full' src={data.home_team_logo} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>}
 
                                     {data.playoff_type === "championship" ?
                                         
@@ -125,7 +127,7 @@ function Matchups(){
                                 
                                 <div id="col2" className="font-bold p-1 col-span-1 truncate">
                                     {/* if championship and away team won show crown */}
-                                    <img alt="logo" style={{"width":'25px',"height":"25px"}} className='mx-auto rounded-full' src={data.away_team_logo} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>
+                                    {data.year >= 2019 && <img alt="logo" style={{"width":'25px',"height":"25px"}} className='mx-auto rounded-full' src={data.away_team_logo} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}></img>}
 
                                     {data.playoff_type === "championship" ?
                                         data.home_score < data.away_score ? 
@@ -152,12 +154,19 @@ function Matchups(){
                                 </div>
 
                                 <div>
-                                    {positions_order.map((pos) => {
+                                    {data.year > 2018 && positions_order.map((pos) => {
                                         return(<div className='text-white py-1 h-[45px] underline sm:h-[49px] flex text-center w-full justify-center items-center font-bold text-[10px] sm:text-sm sm:py-1'>
                                             <span className='bg-green-700 px-1 rounded'>{pos}</span>
                                         
                                         </div>)
                                     })}
+                                    {data.year < 2019 &&
+                                        <div className='flex flex-col justify-center items-center h-[100%]'>
+                                            <img alt="ref" src={RefImg}></img>
+                                            <span className='text-base whitespace-nowrap text-center'>Rosters unavailable</span>
+                                            {/* <span className='text-xs whitespace-nowrap text-center'>You can check your historical rosters on the teams tab</span> */}
+                                        </div>
+                                    }
                                 </div>
 
                                 <div id="col2">
