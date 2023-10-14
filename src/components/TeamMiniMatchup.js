@@ -36,7 +36,7 @@ function TeamInfo({isRight, team, score, isCurrent }) {
         <div className={`flex items-center ${isCurrent ? 'text-green-500' : 'text-gray-500'}`}>
             <div>
                 <div className={isRight ? "font-bold text-sm text-left" : "font-bold text-sm text-right"}>{team}</div>
-                <div className={isRight ? "text-left" : "text-right"}>{score}</div>
+                <div className={isRight ? "text-left" : "text-right"}>{score.toFixed(2}</div>
             </div>
         </div>
     );
