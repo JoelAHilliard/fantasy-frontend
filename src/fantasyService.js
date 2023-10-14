@@ -3,9 +3,10 @@ const apiURL = "https://fantasyapi-production.up.railway.app/"
 
 const LEAGUEID = process.env.REACT_APP_LEAGUEID || 30030;
 
-const NavBarTitle = process.env.REACT_APP_APP_TITLE || "Fantasy Stats";
+export const ACTIVE_YEARS = process.env.REACT_APP_ACTIVE_YEARS || 2023;
 
-export default NavBarTitle;
+export const NavBarTitle = process.env.REACT_APP_APP_TITLE || "Fantasy Stats";
+
 
 export async function getMatchups(year)
 {
