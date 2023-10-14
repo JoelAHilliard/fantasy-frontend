@@ -6,7 +6,10 @@ import { getMatchups } from '../fantasyService';
 import Loading from '../assets/loading_circle.svg';
 
 import { FaSortDown } from 'react-icons/fa';
+
 import Boxscore from './Boxscore';
+
+import {ACTIVE_YEARS} from '../fantasyService';
 
 
 import RefImg from '../assets/ref.png'
@@ -22,6 +25,15 @@ function Matchups(){
         getMatchups(year, 1)
         .then(responseData => {
             setData(responseData);
+            let weeks = [];
+            for(let i =0; i<responseData.length;i++){
+                if(!weeks.includes(responseData[i].week))
+                {
+                    weeks.push(responseData[i].week)
+                }
+            }
+            setWeek(1)
+            setWeeks(weeks)
             setLoading(false);
         })
         .catch(error => {
@@ -41,9 +53,9 @@ function Matchups(){
 
     const [week, setWeek] = useState(1);
 
-    const years = [2023, 2022,2021,2020,2019,2018,2017];
+    const years = JSON.parse(ACTIVE_YEARS);
 
-    const weeks = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
+    const [weeks,setWeeks] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]);
 
     const positions_order = ["QB", "RB", "RB","WR","WR","TE", "FLEX", "D/ST", "K"];
  
