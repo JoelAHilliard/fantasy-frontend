@@ -7,10 +7,9 @@ export const ACTIVE_YEARS = process.env.REACT_APP_ACTIVE_YEARS || 2023;
 
 export const NavBarTitle = process.env.REACT_APP_APP_TITLE || "Fantasy Stats";
 
-
 export async function getMatchups(year)
 {
-    const response = await fetch(apiURL+"matchups?year="+year+"&league_id="+LEAGUEID);
+    const response = await fetch(apiURL + "matchups?year=" + year + "&league_id=" + LEAGUEID);
 
     const matchupData = response.json();
 
@@ -65,5 +64,4 @@ export function getLOGO(team_abbr)
 export function getHeadshot(player_id)
 {
     return "https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/"+player_id+".png&w=426&h=320&cb=1&transparent=true"
-
 }

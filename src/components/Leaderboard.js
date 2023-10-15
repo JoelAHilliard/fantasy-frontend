@@ -106,7 +106,7 @@ function Leaderboard(){
                                 />
                                 <div className="flex flex-col text-left">
                                     <p className="text-sm sm:text-base md:text-lg lg:text-xl">{player['team_name']}</p>
-                                    <span className="text-xs text-gray-600 underline bg-green-200 w-fit rounded-full px-1">years played: {player['years_played']}</span>
+                                    <span className="text-xs text-green-600 bg-green-200 w-fit rounded-full px-1">{player['years_played']} years active</span>
                                 </div>
                             </div>
                         
