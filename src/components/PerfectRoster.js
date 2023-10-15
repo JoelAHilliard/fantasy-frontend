@@ -87,7 +87,7 @@ const playerRow = (player,key) => {
             </div>
         </div>
         <div>
-            <div>
+            <div style={{"width":'90%'}}>
                 <div className="flex flex-row gap-2 justify-end">
                     <p className="font-light text-xs sm:text-xs">Owner</p>
 
