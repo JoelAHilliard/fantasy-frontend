@@ -57,8 +57,7 @@ function PerfectRoster(props){
 
 const playerRow = (player,key) => {
     return(
-        <div key={key+player[4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center py-1" style={{ gridTemplateColumns: '15% 50% 30%' }}>
-                
+        <div key={key+player[4]} className="grid grid-cols-3 gap-2 w-full text-base border-b border-green-600 items-center py-1" style={{ gridTemplateColumns: '10% 60% 30%' }}>
 
         <div className="flex flex-row gap-2 justify-between">
             <p className="text-xs sm:text-sm text-green-700">{key}</p>
@@ -68,7 +67,7 @@ const playerRow = (player,key) => {
         <div className="flex flex-row justify-between">
             <div>
                 <p className="text-sm sm:text-base text-left whitespace-nowrap flex flex-row gap-1"><img alt={player[0][4]} style={{"width":'25px'}} src={getHeadshot(player[7])}></img>{firstNameTruncate(player[0])}</p>
-                <div className="flex flex-row">
+                <div className="flex flex-row gap-1">
 
                     <div className="flex flex-row items-center gap-1 justify-start bg-green-200 rounded-full px-1 w-fit">
                         <img alt={player[4]} style={{"width":"15px"}} src={getLOGO(player[4])}></img>
@@ -77,7 +76,7 @@ const playerRow = (player,key) => {
 
                     {player[6][2] === "BE" ? 
                     <div className="whitespace-nowrap font-xs py-0 flex flex-row items-center w-fit bg-orange-200 rounded-full px-1 h-fit" style={{"fontSize":"10px", "lineHeight": "1", "padding": "2px 0"}}>
-                        <p className="m-0 px-1">bench warmer</p>
+                        <p className="m-0 px-1 text-orange-600">benched</p>
                     </div>
                 : null}
                 </div>
@@ -115,7 +114,7 @@ function firstNameTruncate(name){
 
     if(firstLast[1] === "D/ST")
     {
-        return firstLast[0]
+        return firstLast[0];
     }
     if(firstLast.length > 2){
         let lastName = firstLast[1] + " " + firstLast[2]
