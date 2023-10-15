@@ -65,6 +65,7 @@ function Navbar(){
                         <Route path="/leaderboard" exact element={<Leaderboard></Leaderboard>} />
                         <Route path="/teams" exact element={<Teams></Teams>} />
                         <Route path="/constitution" exact element={<Constitution></Constitution>} />
+                        <Route path="/teams/:teamId" element={<Teams></Teams>} />
                     </Routes>
                 </div>
             
