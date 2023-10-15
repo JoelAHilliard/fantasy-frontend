@@ -5,6 +5,7 @@ import Matchups from './Matchups';
 import LandingPage from './LandingPage';
 import Leaderboard from './Leaderboard';
 import Teams from './Teams';
+import Constitution from './Constitution';
 import {NavBarTitle} from '../fantasyService';
 
 function Navbar(){
@@ -50,6 +51,7 @@ function Navbar(){
                                 <Link onClick={()=>setMenu(false)} to="/matchups" className="block hover:bg-green-700 px-2 py-1 rounded transform active:scale-95 font-bold whitespace-nowrap">Historical Matchups</Link>
                                 <Link onClick={()=>setMenu(false)} to="/teams" className="block hover:bg-green-700 px-2 py-1 rounded transform active:scale-95 font-bold whitespace-nowrap">Teams</Link>
                                 <Link onClick={()=>setMenu(false)} to="/leaderboard" className="block md:mt-0 hover:bg-green-700 px-2 py-1 rounded transform active:scale-95 font-bold">Leaderboard</Link>
+                                <Link onClick={()=>setMenu(false)} to="/constitution" className="block md:mt-0 hover:bg-green-700 px-2 py-1 rounded transform active:scale-95 font-bold">Constitution</Link>
 
                             </div>
                         </div>
@@ -62,6 +64,7 @@ function Navbar(){
                         <Route path="/matchups" exact element={<Matchups/>} />
                         <Route path="/leaderboard" exact element={<Leaderboard></Leaderboard>} />
                         <Route path="/teams" exact element={<Teams></Teams>} />
+                        <Route path="/constitution" exact element={<Constitution></Constitution>} />
                     </Routes>
                 </div>
             
