@@ -80,7 +80,13 @@ function Teams(){
                 </div>
             </div>
             {team?
-            <TeamBreakdown team={team} teams={teams}></TeamBreakdown>:null}
+                <TeamBreakdown team={team} teams={teams}></TeamBreakdown>
+            : 
+                <div className="flex flex-col justify-center items-center">   
+                    <p className="font-bold underline">Select a team above</p>
+                    <img alt="select a team above" className="w-[45%] sm:w-[25%] sm:h-[25%]" src={RefImg}></img>
+                </div>
+                }
         
         </div>
         :
