@@ -31,7 +31,6 @@ function TeamMiniMatchup({matchup, curr_team_id}) {
 }
 
 function TeamInfo({isRight, team, score, isCurrent }) {
-    console.log(team)
     return (
         <div className={`flex items-center ${isCurrent ? 'text-green-500' : 'text-gray-500'}`}>
             <div>
