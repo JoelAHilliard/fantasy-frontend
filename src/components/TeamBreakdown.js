@@ -41,7 +41,7 @@ function TeamBreakdown({team,teams}) {
                 </div>
                
                 <div className="p-4 bg-white rounded shadow border-b border-green-300">
-                    <p className="text-sm font-bold flex flex-row justify-between">playoff percent
+                    <p className="text-sm font-bold flex flex-row justify-between whitespace-nowrap">playoff percent
                         <span className="font-light underline flex justify-center items-center text-xs bg-slate-200 w-fit rounded px-1">{team['playoff_pctRank']}</span>
                     </p>
                     <p>{team['playoff_pct'].toFixed(2)}</p>
