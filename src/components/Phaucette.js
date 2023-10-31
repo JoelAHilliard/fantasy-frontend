@@ -3,20 +3,8 @@ import {IconContext} from 'react-icons';
 import {  BsFillPatchCheckFill} from 'react-icons/bs'
 function Phaucette() {
 
-    const rankings = [
-        "Joel",
-        "Hunter",
-        "Colin",
-        "Matt",
-        "Clog",
-        "Wes",
-        "Ethan",
-        "Eric",
-        "Calvin",
-        "Jrod",
-        "Hoff",
-        "Jacob",
-    ];
+    const rankings = ["Steven", "Joel", "Hunter", "Matt", "Collin", "Ethan", "Wes", "Josh hoff", "Jrod", "Calvin", "Eric", "Jacob"];
+
 
 return (
     
