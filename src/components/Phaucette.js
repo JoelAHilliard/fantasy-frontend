@@ -3,7 +3,22 @@ import {IconContext} from 'react-icons';
 import {  BsFillPatchCheckFill} from 'react-icons/bs'
 function Phaucette() {
 
-    const rankings = ["Steven", "Joel", "Hunter", "Matt", "Collin", "Ethan", "Wes", "Josh hoff", "Jrod", "Calvin", "Eric", "Jacob"];
+const rankings = [
+  "Joel",
+  "Hunter",
+  "Matt",
+  "Steven",
+  "Collin",
+  "Jrod",
+  "Calvin",
+  "Ethan",
+  "Wes",
+  "Josh hoff",
+  "Eric",
+  // If you still want to include Jacob but mark as eliminated
+  "Jacob (eliminated)"
+];
+
 
 
 return (
