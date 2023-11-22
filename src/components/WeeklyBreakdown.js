@@ -31,16 +31,22 @@ function WeeklyBreakdown(){
             "K":[]
         };
       
-
+        if(team === null){
+            return null;
+        }
+        console.log(order)
         for (const key in order) {
             for(let item in team)
             {
                 if(team[item]["position"] === order[key])
                 {
+                    console.log('here')
                     sorted_team[order[key]].push(team[item])
                 }
             }
-            for (let key in sorted_team)
+            
+        }
+        for (let key in sorted_team)
             {
                 if(key !== "FLEX")
                 {
@@ -49,7 +55,6 @@ function WeeklyBreakdown(){
                     })
                 }   
             }
-        }
         
 
         if(sorted_team["RB"][2].points < sorted_team["WR"][2].points)
@@ -57,6 +62,7 @@ function WeeklyBreakdown(){
             sorted_team["FLEX"] = [sorted_team["WR"][2]]
         }
         else{
+            console.log(sorted_team)
             sorted_team["FLEX"] = [sorted_team["RB"][2]]
         }
 
@@ -89,19 +95,19 @@ function WeeklyBreakdown(){
                 for(let item in responseData["matchups"])
                 {
                     
-                    if(responseData["matchups"][item]["away_score"] > topScore)
+                    if(responseData["matchups"][item]["away_score"] > topScore && responseData["matchups"][item]["away_score"] != null)
                     {
                         topScore = responseData["matchups"][item]["away_score"]
                     }
-                    if(responseData["matchups"][item]["home_score"] > topScore)
+                    if(responseData["matchups"][item]["home_score"]  > topScore && responseData["matchups"][item]["home_score"] != null)
                     {
                         topScore = responseData["matchups"][item]["home_score"]
                     }
-                    if(responseData["matchups"][item]["away_score"] < lowestScore)
+                    if(responseData["matchups"][item]["away_score"]  < lowestScore && responseData["matchups"][item]["away_score"] != null)
                     {
                         lowestScore = responseData["matchups"][item]["away_score"]
                     }
-                    if(responseData["matchups"][item]["home_score"] < lowestScore)
+                    if(responseData["matchups"][item]["home_score"] < lowestScore && responseData["matchups"][item]["home_score"] != null)
                     {
                         lowestScore = responseData["matchups"][item]["home_score"]
                     }
@@ -130,18 +136,18 @@ function WeeklyBreakdown(){
                     }
                     responseData["matchups"][item]["away_projected"] = awayProj
                     responseData["matchups"][item]["home_projected"] = homeProj
-    
-                    responseData["matchups"][item]["away_perfect_score"] = perfectTeamRoster(responseData["matchups"][item]["away_team_lineup"])
-                    responseData["matchups"][item]["home_perfect_score"] = perfectTeamRoster(responseData["matchups"][item]["home_team_lineup"])
-
+                    
+                    responseData["matchups"][item]["away_perfect_score"] = perfectTeamRoster(responseData["matchups"][item]["away_team_lineup"]) || 0
+                    responseData["matchups"][item]["home_perfect_score"] = perfectTeamRoster(responseData["matchups"][item]["home_team_lineup"]) || 0
+                   
                     allMatchups.push({
-                        "score":responseData["matchups"][item]["away_score"],
+                        "score":responseData["matchups"][item]["away_score"] || 0,
                         "perfect_score":responseData["matchups"][item]["away_perfect_score"],
                         "team_logo":responseData["matchups"][item]["away_team_logo"],
                         "team_name":responseData["matchups"][item]["away_team"]
                     })
                     allMatchups.push({
-                        "score":responseData["matchups"][item]["home_score"],
+                        "score":responseData["matchups"][item]["home_score"] || 0,
                         "perfect_score":responseData["matchups"][item]["home_perfect_score"],
                         "team_logo":responseData["matchups"][item]["home_team_logo"],
                         "team_name":responseData["matchups"][item]["home_team"]
