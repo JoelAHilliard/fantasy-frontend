@@ -4,19 +4,18 @@ import {  BsFillPatchCheckFill} from 'react-icons/bs'
 function Phaucette() {
 
 const rankings = [
-  "Colin",
-  "Joel",
   "Hunter",
-  "Matt",
-  "Hoff",
-  "Wes",
+  "Joel",
+  "Colin",
+  "Faucette",
   "Jrod",
-  "Ethan",
-  "Steven",
-  "Calvin",
-  "Eric",
-  // If you still want to include Jacob but mark as eliminated
-  "Jacob (eliminated)"
+  "Hoff",
+  "Wes (eliminated)",
+  "Ethan (eliminated)",
+  "Steven (eliminated)",
+  "Jacob (eliminated)",
+  "Calvin (eliminated)",
+  "Eric (eliminated)"
 ];
 
 
