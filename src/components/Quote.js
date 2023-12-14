@@ -31,6 +31,8 @@ class Quote extends Component {
         "Cason, you know. - Bacon",
         "We're gonna pound McClain in the second half. - Brister",
         "If that was my daughter, I'd kill em. - Bacon",
+        "Lift or leave. - Whitmore",
+        "I hate football, but I love you guys. - Whitmore"
 
 
         // Add more quotes here
