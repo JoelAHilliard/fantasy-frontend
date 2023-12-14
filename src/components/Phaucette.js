@@ -16,6 +16,7 @@ const rankings = [
   "Jacob (eliminated)",
   "Calvin (eliminated)",
   "Eric (eliminated)"
+
 ];
 
 
