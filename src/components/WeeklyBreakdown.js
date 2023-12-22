@@ -171,7 +171,7 @@ function WeeklyBreakdown(){
                 <div id="matchups" className="flex flex-col gap-2">
                     <div className='flex flex-row items-center gap-2 p-1 rounded bg-green-200 w-fit'>
                         <span className='font-bold'>Matchups</span>
-                        <span className='font-light text-xs underline'>Week 13</span>
+                        <span className='font-light text-xs underline'>Week 15</span>
                     </div>
                     <div className='flex flex-col p-2'>
                         <div className='flex flex-col gap-2 w-full justify-center'>
@@ -249,32 +249,38 @@ function WeeklyBreakdown(){
                             return (b["score"]/b["perfect_score"]) - (a["score"]/a["perfect_score"])
                         })
                          .map((matchup) =>{
-                            return(
-                                <div>
-                                    <div key={matchup['team_name']}>
-
-                                {/* <img src={matchup['away_team']}></img> */}
-                                    <div className='flex flex-row w-full justify-between items-center'>
-                                        <div>
-                                            <div className='flex flex-row gap-2 items-center mb-1'>
-                                                <img alt={"pfp"} style={{"height":"20px","width":"20px"}} className='rounded-full' src={matchup["team_logo"]} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}/>
-                                                <p className='font-bold text-base'>{matchup['team_name']}</p>
+                            if(matchup['team_name'] !== "BYE")
+                            {
+                                return(
+                                    <div>
+                                        <div key={matchup['team_name']}>
+    
+                                    {/* <img src={matchup['away_team']}></img> */}
+                                        <div className='flex flex-row w-full justify-between items-center'>
+                                            <div>
+                                                <div className='flex flex-row gap-2 items-center mb-1'>
+                                                    <img alt={"pfp"} style={{"height":"20px","width":"20px"}} className='rounded-full' src={matchup["team_logo"]} onError={(e) => { e.target.onerror = null; e.target.src="https://www.gravatar.com/avatar/487f7b22f68312d2c1bbc93b1aea445b?s=50&d=identicon&r=PG" }}/>
+                                                    <p className='font-bold text-base'>{matchup['team_name']}</p>
+                                                </div>
+                                                <div className='flex font-light flex-row gap-2 bg-green-200 w-fit rounded-full px-1 items-center mb-1'>
+                                                    <span className='font-bold text-sm'>{matchup['score'].toFixed(2)}</span>
+                                                    <span className='font-normal text-xs'>{matchup['perfect_score'].toFixed(2)}</span>
+                                                </div> 
                                             </div>
-                                            <div className='flex font-light flex-row gap-2 bg-green-200 w-fit rounded-full px-1 items-center mb-1'>
-                                                <span className='font-bold text-sm'>{matchup['score'].toFixed(2)}</span>
-                                                <span className='font-normal text-xs'>{matchup['perfect_score'].toFixed(2)}</span>
+                                            <div className='flex flex-row gap-2 justify-between'>
+                                                <span className='text-sm text-green-700'>{(matchup['score']/matchup['perfect_score'] * 100).toFixed(0) }%</span>
                                             </div> 
                                         </div>
-                                        <div className='flex flex-row gap-2 justify-between'>
-                                            <span className='text-sm text-green-700'>{(matchup['score']/matchup['perfect_score'] * 100).toFixed(0) }%</span>
-                                        </div> 
-                                    </div>
-
-                                    <PercentageBar dividend={matchup['score']} divisor={matchup['perfect_score']}></PercentageBar>
-                                
-                                    </div>
-                                </div>  
-                            );
+    
+                                        <PercentageBar dividend={matchup['score']} divisor={matchup['perfect_score']}></PercentageBar>
+                                    
+                                        </div>
+                                    </div>  
+                                );
+                            } else {
+                                return null;
+                            }
+                           
                         }) : null }
                 </div>
 
